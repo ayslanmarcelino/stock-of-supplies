@@ -1,0 +1,86 @@
+version: 2.1
+commands:
+  checkout_and_bundle_install:
+    description: "Checkout the code and bundle install"
+    steps:
+      - checkout
+      - run:
+          name: Bundler version
+          command: bundle -v
+
+      - restore_cache:
+          keys:
+            - gem-v1-{{ arch }}
+
+      - run:
+          name: Bundle install
+          command: bundle check || bundle install
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: gem-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
+
+  yarn_install:
+    steps:
+      - restore_cache:
+          name: Restore yarn package cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Install dependencies
+          command: yarn install --immutable
+
+      - save_cache:
+          name: Save yarn package cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+  setup_db:
+    steps:
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: database.yml
+          command: cp -i ./config/database.yml.example ./config/database.yml
+      - run:
+          name: Database setup
+          command: bin/rails db:schema:load --trace
+
+jobs:
+  rspec:
+    parallelism: 2
+    docker:
+      - image: cimg/ruby:3.1.0-browsers
+        environment:
+          BUNDLE_JOBS: 2
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          RAILS_ENV: test
+          DATABASE_URL: postgresql://postgres:@localhost/rails_7_template_db
+          OTP_KEY: eac9f2ab10cdfbb125400287a8072b87
+      - image: circleci/postgres:12-alpine
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: rails_7_template_db
+          POSTGRES_PASSWORD: ""
+
+    steps:
+      - checkout_and_bundle_install
+      - yarn_install
+      - setup_db
+      - run:
+          name: Update binaries
+          command: sudo apt-get update --allow-releaseinfo-change && sudo apt-get install -y ghostscript xvfb libfontconfig wkhtmltopdf
+      - run:
+          name: Run rspec in parallel
+          command: |
+            bundle exec rspec
+workflows:
+  version: 2.1
+  test-and-lint:
+    jobs:
+      - rspec

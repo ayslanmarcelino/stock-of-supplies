@@ -1,0 +1,38 @@
+<h4><%= t('admin.users.components.layout.show') %>: <%= @user.person.name %></h4>
+<div class="mb-2">
+  <%= link_to :back, class: 'btn btn-sm -bg-primary' do %>
+    <i class="bi bi-arrow-left"></i>
+    <%= t('application.back') %>
+  <% end %>
+  <% if can?(:update, User) %>
+    <%= link_to(edit_admin_user_path(@user), class: 'btn btn-sm -transparent-standard') do %>
+      <i class="bi bi-pencil-square"></i>
+      <%= t('application.edit') %>
+    <% end %>
+  <% end %>
+  <% if @user != current_user %>
+    <% if disabled?(@user) && can?(:activate, User) %>
+      <%= link_to(activate_admin_user_path(@user),
+                  data: {
+                    turbo_method: :patch,
+                    turbo_confirm: "#{t('admin.users.components.layout.activate_confirm')}: #{@user.person.name}?"
+                  },
+                  class: 'btn btn-sm -transparent-success') do %>
+        <i class="bi bi-toggle-off"></i>
+        <%= t('application.activate') %>
+      <% end %>
+    <% end %>
+    <% if @user.active? && can?(:disable, User) %>
+      <%= link_to(disable_admin_user_path(@user),
+                  data: {
+                    turbo_method: :patch,
+                    turbo_confirm: "#{t('admin.users.components.layout.disable_confirm')}: #{@user.person.name}?"
+                  },
+                  class: 'btn btn-sm -transparent-danger') do %>
+        <i class="bi bi-toggle-off"></i>
+        <%= t('application.disable') %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<%= render partial: 'admin/users/components/card_show' %>

@@ -1,0 +1,12 @@
+pt-BR:
+  layouts:
+    forms:
+      address:
+        zip_code: CEP
+        street: Logradouro
+        number: Número
+        complement: Complemento
+        neighborhood: Bairro
+        city: Cidade
+        state: Estado
+        country: País

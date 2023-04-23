@@ -1,0 +1,28 @@
+<div>
+  <h4>
+    <%= t("application.#{action_header}") %>
+    <%= "- #{@user.person.name}" if action_header == 'editing' %>
+  </h4>
+</div>
+<div>
+  <%= render partial: 'layouts/components/errors',
+             locals: { resource: @user } %>
+  <%= form_with(model: [:admin, @user]) do |form| %>
+    <%= form.fields_for :person do |person_form| %>
+      <%= person_form.fields_for :address do |address_form| %>
+        <%= render partial: 'admin/users/components/form',
+                   locals: { form: form, person_form: person_form, address_form: address_form } %>
+        <div class="row mt-3">
+          <div class="col-lg-6">
+            <%= link_to(t('application.cancel'), admin_users_path, class: 'btn -transparent-standard') %>
+          </div>
+          <div class="col-lg-6">
+            <button class="btn btn-secondary">
+              <%= t("application.#{action}") %>
+            </button>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

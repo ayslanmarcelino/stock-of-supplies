@@ -1,0 +1,16 @@
+name: Clean code
+
+on: [push]
+
+jobs:
+  Lint:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y ghostscript xvfb libfontconfig wkhtmltopdf
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Rubocop
+        run: bundle exec rubocop --format progress --format json --out rubocop.json

@@ -1,0 +1,77 @@
+.table-wrap {
+	@include media-breakpoint-down(xl) {
+		overflow-x: scroll;
+	}
+}
+
+.table {
+  border: 2px solid darken(#f8f9fd,3%);
+
+	thead {
+		th {
+			border: none;
+      padding: 10px;
+			font-size: 13px;
+			font-weight: 500;
+			color: lighten($black,50%);
+		}
+
+		tr {
+			background: $white;
+			border-bottom: 2px solid darken(#f8f9fd, 3%);
+		}
+	}
+
+	tbody {
+		tr {
+			margin-bottom: 10px;
+			border-bottom: 2px solid #f8f9fd;
+		}
+
+		th, td {
+			border: none;
+			padding: 20px;
+			font-size: 14px;
+			background: $white;
+			vertical-align: middle;
+		}
+
+		td {
+			&.status {
+				span {
+					position: relative;
+					border-radius: 10px;
+					padding: 4px 0px 4px 30px;
+
+					&:after {
+						position: absolute;
+						top: 8px;
+						left: 6px;
+						width: 10px;
+						height: 10px;
+						content: '';
+						border-radius: 50%;
+					}
+				}
+
+				.success {
+					&:after {
+						background: $success;
+					}
+				}
+
+				.warning {
+					&:after {
+						background: $warning;
+					}
+				}
+
+				.danger {
+					&:after {
+						background: $danger;
+					}
+				}
+			}
+		}
+	}
+}

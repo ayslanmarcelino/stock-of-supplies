@@ -1,0 +1,38 @@
+<div class="border-bottom">
+  <nav class="navbar m-2 mt-0 mb-0">
+    <a class="btn text-secondary" id="menu-toggle">
+      <i class="bi bi-list"></i>
+    </a>
+    <div>
+      <%= render partial: 'layouts/components/update_enterprise_modal' %>
+      <%= render partial: 'layouts/components/dropdown_options' %>
+    </div>
+  </nav>
+</div>
+<div class="d-flex" id="wrapper">
+  <div class="no-print" id="sidebar-wrapper">
+    <div class="list-group list-group-flush mt-4">
+      <%= render partial: 'layouts/components/menu' %>
+    </div>
+  </div>
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
+  </div>
+</div>
+<script>
+  <%= render partial: 'notification',
+             formats: [:js],
+             locals: {
+               title: @notify_title,
+               confirm_button_text: @notify_confirm_button_text,
+               show_cancel_button: @show_cancel_button,
+               cancel_button_text: @notify_cancel_button_text,
+               confirm_path_ajax: @confirm_path_ajax
+             } %>
+
+  $("#menu-toggle").click(function(e) {
+    $("#wrapper").toggleClass("toggled");
+  });
+</script>

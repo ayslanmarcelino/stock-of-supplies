@@ -1,0 +1,8 @@
+<div>
+  <%= check_box_tag('q[active_in][]') %>
+  <%= form.label(t('application.only_active')) %>
+</div>
+<div>
+  <%= check_box_tag('q[active_in][]', '0') %>
+  <%= form.label(t('application.only_disabled')) %>
+</div>

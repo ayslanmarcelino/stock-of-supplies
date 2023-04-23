@@ -1,0 +1,136 @@
+.btn {
+  &.-standard {
+    background-color: $grey;
+    color: $white;
+
+    &:hover {
+      background-color: darken($grey, 15%);
+    }
+  }
+
+  &.-danger {
+    color: $danger;
+
+    &:hover {
+      color: darken($danger, 15%);
+    }
+  }
+
+  &.-success {
+    color: $success;
+
+    &:hover {
+      color: darken($success, 15%);
+    }
+  }
+
+  &.-bg-primary {
+    background-color: $grey;
+    color: $white;
+
+    &:hover {
+      background-color: darken($grey, 15%);
+    }
+  }
+
+  &.-bg-danger {
+    background-color: $danger;
+    color: $white;
+
+    &:hover {
+      background-color: darken($danger, 15%);
+    }
+  }
+
+  &.-transparent-standard {
+    border-color: $grey;
+
+    &:hover {
+      background-color: $grey;
+      color: $white;
+    }
+  }
+
+  &.-transparent-danger {
+    border-color: $grey;
+    color: $grey;
+
+    &:hover {
+      color: $white;
+      border-color: $danger;
+      background-color: $danger;
+    }
+  }
+
+  &.-transparent-success {
+    border-color: $grey;
+    color: $grey;
+
+    &:hover {
+      color: $white;
+      border-color: $success;
+      background-color: $success;
+    }
+  }
+}
+
+.pull-right {
+  float: right;
+}
+
+.nav {
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+}
+
+a.nav-link.info-card {
+  color: $grey;
+
+  &:hover {
+    background-color: $light-grey;
+    color: $white;
+  }
+}
+
+.nav-link.active {
+  background-color: $grey !important;
+
+  a {
+    color: $white;
+  }
+}
+
+.form-control {
+  font-size: 0.9rem;
+}
+
+.pagination {
+  .page-item {
+    a.page-link {
+      font-size: 0.8rem;
+      color: $grey;
+    }
+  }
+
+  .page-item.active {
+    a.page-link {
+      background: $grey;
+      color: $white;
+      border-color: $grey;
+    }
+  }
+}
+
+.required-empty {
+  border-color: $dark-red;
+  color: $dark-red;
+}
+
+.required-error {
+  font-size: 80%;
+  color: $dark-red;
+}
+
+label.required-label::after {
+  content: ' *';
+  color: $dark-red;
+}

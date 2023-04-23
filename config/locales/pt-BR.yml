@@ -1,0 +1,6 @@
+'pt-BR':
+  activerecord:
+    errors:
+      messages:
+        blank: não pode ficar em branco
+        taken: já está em uso

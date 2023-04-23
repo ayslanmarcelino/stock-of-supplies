@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Olá, <%= @user.person.name %>.</h1>
+
+    <p>Gostaríamos de dar-lhe as boas-vindas ao nosso sistema.
+
+    <p>Para começar, aqui estão algumas informações úteis:</p>
+
+    <ul>
+      <li>Para realizar login, basta acessar o site clicando <a href="<%= new_user_session_url %>">aqui</a></li>
+      <li>Seu login e senha por padrão é: <b><%= @user.email %></b></li>
+      <li>Recomendamos alterar a senha após realizar o primeiro login por questão de segurança, basta clicar <a href="<%= edit_admin_user_url(@user) %>">aqui</a></li>
+    </ul>
+
+    <p>Se você tiver alguma dúvida ou precisar de ajuda, basta entrar em contato com o seu gestor.</p>
+
+    <p>Atenciosamente,</p>
+
+    <p><%= @user.person.enterprise.trade_name %></p>
+  </body>
+</html>
+
+
+

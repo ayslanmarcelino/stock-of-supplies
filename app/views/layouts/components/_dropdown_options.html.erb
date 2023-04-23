@@ -1,0 +1,21 @@
+<div class="btn">
+  <%= link_to('#', data: { toggle: "modal", target: "#settings" }, class: 'nav-link text-secondary') do %>
+    <i class="bi bi-person-fill"></i>
+  <% end %>
+  <div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="settingsLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body d-grid">
+          <%= link_to(edit_admin_user_path(current_user), class: 'btn btn-sm') do %>
+            <i class="bi bi-person-badge"></i>
+            Editar meu perfil
+          <% end %>
+          <%= link_to(destroy_user_session_path, class: 'btn btn-sm mt-2') do %>
+            <i class="bi bi-box-arrow-right"></i>
+            Sair
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

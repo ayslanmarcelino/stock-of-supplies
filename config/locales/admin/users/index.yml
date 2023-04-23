@@ -1,0 +1,10 @@
+pt-BR:
+  admin:
+    users:
+      index:
+        id: Código
+        email: E-mail
+        document_number: CPF
+        name: Nome completo
+        status: Status
+        user_roles: Regras de usuário

@@ -1,0 +1,36 @@
+
+<h4 class="mt-3">
+  Endereço
+</h4>
+<div class="col-lg-4">
+  <%= address_form.label(:zip_code) %>
+  <%= address_form.text_field(:zip_code, class: 'form-control input-zip-code', id: 'zip_code') %>
+</div>
+<div class="col-lg-6">
+  <%= address_form.label(:street) %>
+  <%= address_form.text_field(:street, class: 'form-control', id: 'street', disabled: true) %>
+</div>
+<div class="col-lg-2">
+  <%= address_form.label(:number) %>
+  <%= address_form.number_field(:number, class: 'form-control', id: 'number', disabled: true) %>
+</div>
+<div class="col-lg-12">
+  <%= address_form.label(:complement) %>
+  <%= address_form.text_field(:complement, class: 'form-control', id: 'complement', disabled: true) %>
+</div>
+<div class="col-lg-5">
+  <%= address_form.label(:neighborhood) %>
+  <%= address_form.text_field(:neighborhood, class: 'form-control', id: 'neighborhood', disabled: true) %>
+</div>
+<div class="col-lg-4">
+  <%= address_form.label(:city) %>
+  <%= address_form.text_field(:city, class: 'form-control', id: 'city', disabled: true) %>
+</div>
+<div class="col-lg-3">
+  <%= address_form.label(:state) %>
+  <%= address_form.select(:state, Address::STATES, { include_blank: 'Selecione um estado' }, { class: 'form-control', id: 'state', disabled: true }) %>
+</div>
+<div class="col-lg-3">
+  <%= address_form.label(:country) %>
+  <%= address_form.select(:country, Address::COUNTRIES, { include_blank: 'Selecione um país' }, { class: 'form-control', id: 'country', disabled: true }) %>
+</div>

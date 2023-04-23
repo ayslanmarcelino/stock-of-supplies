@@ -1,0 +1,26 @@
+<table class="table">
+  <tbody>
+    <tr>
+      <th><%= t('activerecord.attributes.person.name') %></th>
+      <td><%= @user.person.name %></td>
+    </tr>
+    <tr>
+      <th><%= t('activerecord.attributes.person.nickname') %></th>
+      <td><%= @user.person.nickname %></td>
+    </tr>
+    <tr>
+      <th><%= t('activerecord.attributes.person.birth_date') %></th>
+      <td><%= l(@user.person.birth_date, default: '') %></td>
+    </tr>
+    <tr>
+      <th><%= t('activerecord.attributes.person.marital_status_cd') %></th>
+      <td>
+        <%=
+          I18n.t(
+            "activerecord.attributes.person.marital_status_list.#{@user.person.marital_status_cd}"
+          ) if @user.person.marital_status_cd.present?
+        %>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,8 @@
+pt-BR:
+  admin:
+    users:
+      show:
+        personal: Dados pessoais
+        contact: Contatos
+        document: Documentos
+        address: Endereço

@@ -1,0 +1,11 @@
+<hr>
+<div>
+  <%= link_to(url_for, class: 'btn btn-sm -standard') do %>
+    <i class="bi bi-eraser-fill"></i>
+    <%= t('application.clear') %>
+  <% end %>
+  <%= button_tag(class: 'btn btn-sm -transparent-standard') do %>
+    <i class="bi bi-search"></i>
+    <%= t('application.search') %>
+  <% end %>
+</div>

@@ -1,0 +1,37 @@
+<div class="btn">
+  <%= link_to('#', data: { toggle: "modal", target: "#updateCurrentEnterprise" }, class: 'nav-link text-secondary') do %>
+    <i class="bi bi-building-gear"></i>
+  <% end %>
+  <div class="modal fade" id="updateCurrentEnterprise" tabindex="-1" role="dialog" aria-labelledby="updateCurrentEnterpriseLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header g-0 row">
+          <h5 class="modal-title text-center">Trocar de conta</h5>
+        </div>
+        <div class="modal-body">
+          <% if enterprises.size.positive? %>
+            <% enterprises.uniq.each do |enterprise| %>
+              <div class="p-1 mt-1">
+                <span style="font-size: 14px;">
+                  <%= enterprise.trade_name %> - <%= CNPJ.new(enterprise.document_number).formatted %>
+                </span>
+                <%=
+                  link_to(
+                    'Acessar',
+                    update_current_enterprise_admin_user_path(current_user, change_enterprise: { id: enterprise.id }),
+                    data: { turbo_method: :patch },
+                    class: 'btn -transparent-standard btn-sm pull-right'
+                  )
+                %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="text-center">
+              Você não possui empresa vinculada.
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div>
+  <h4>
+    <%= t("application.#{action_header}") %>
+    <%= "- (#{@role.translated_kind} - #{@role.user.person.name})" if action_header == 'editing' %>
+  </h4>
+</div>
+<div>
+  <%= render partial: 'layouts/components/errors',
+             locals: { resource: @role } %>
+  <%= form_with(model: @role) do |form| %>
+    <%= render partial: 'user/roles/components/form',
+               locals: { form: form } %>
+    <div class="row mt-3">
+      <div class="col-lg-6">
+        <%= link_to(t('application.cancel'), user_roles_path, class: 'btn -transparent-standard') %>
+      </div>
+      <div class="col-lg-6">
+        <button class="btn btn-secondary">
+          <%= t("application.#{action}") %>
+        </button>
+      </div>
+    </div>
+  <% end %>
+</div>

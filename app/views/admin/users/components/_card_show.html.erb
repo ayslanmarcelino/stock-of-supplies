@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="nav flex-column nav-pills col-lg-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link info-card active" id="v-pills-user-personal-tab" data-toggle="pill" href="#v-pills-user-personal" role="tab" aria-controls="v-pills-user-personal" aria-selected="true">
+          <%= t('admin.users.show.personal') %>
+        </a>
+        <a class="nav-link info-card" id="v-pills-user-contact-tab" data-toggle="pill" href="#v-pills-user-contact" role="tab" aria-controls="v-pills-user-contact" aria-selected="true">
+          <%= t('admin.users.show.contact') %>
+        </a>
+        <a class="nav-link info-card" id="v-pills-user-document-tab" data-toggle="pill" href="#v-pills-user-document" role="tab" aria-controls="v-pills-user-document" aria-selected="true">
+          <%= t('admin.users.show.document') %>
+        </a>
+        <a class="nav-link info-card" id="v-pills-user-address-tab" data-toggle="pill" href="#v-pills-user-address" role="tab" aria-controls="v-pills-user-address" aria-selected="true">
+          <%= t('admin.users.show.address') %>
+        </a>
+      </div>
+      <div class="tab-content col-lg-9" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="v-pills-user-personal" role="tabpanel" aria-labelledby="v-pills-home-tab">
+          <%= render partial: 'admin/users/components/personal_table' %>
+        </div>
+        <div class="tab-pane fade show" id="v-pills-user-contact" role="tabpanel" aria-labelledby="v-pills-home-tab">
+          <%= render partial: 'admin/users/components/contact_table' %>
+        </div>
+        <div class="tab-pane fade show" id="v-pills-user-document" role="tabpanel" aria-labelledby="v-pills-home-tab">
+          <%= render partial: 'admin/users/components/document_table' %>
+        </div>
+        <div class="tab-pane fade show" id="v-pills-user-address" role="tabpanel" aria-labelledby="v-pills-home-tab">
+          <%= render partial: 'layouts/components/show/address_table', locals: { resource: @user.person } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

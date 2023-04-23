@@ -1,0 +1,10 @@
+pt-BR:
+  admin:
+    users:
+      components:
+        layout:
+          resource: Usuários
+          show: Você está visualizando o(a) usuário(a)
+          new: Novo usuário(a)
+          activate_confirm: Você deseja ATIVAR o(a) usuário(a)
+          disable_confirm: Você deseja DESATIVAR o(a) usuário(a)

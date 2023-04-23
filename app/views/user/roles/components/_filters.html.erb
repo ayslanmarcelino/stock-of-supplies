@@ -1,0 +1,8 @@
+<div class="row mb-3">
+  <div class="col-md-4">
+    <%= form.select :kind_cd_eq, User::Role::USER_ROLES, { include_blank: 'Selecione um tipo de perfil' }, class: 'form-control' %>
+  </div>
+  <div class="col-md-8">
+    <%= form.text_field :user_person_name_cont, placeholder: t('user.roles.index.name'), class: 'form-control' %>
+  </div>
+</div>

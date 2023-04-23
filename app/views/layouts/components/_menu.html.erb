@@ -1,0 +1,21 @@
+<%= link_to(dashboard_index_path, class: "#{'active-menu' if request.path.include?(dashboard_index_path) || request.path == root_path} list-item-menu list-group-item-action",
+                                  id: 'dashboard') do %>
+  <div class="menu">
+    <div class="icon">
+      <i class="bi bi-clipboard-data"></i>
+    </div>
+    <span><%= t('layouts.application.dashboard') %></span>
+  </div>
+<% end %>
+
+<% if can?(:read, User) %>
+  <%= link_to(admin_users_path, class: "#{'active-menu' if request.path.include?(admin_users_path) || request.path.include?(user_roles_path)} list-item-menu list-group-item-action",
+                          id: 'user') do %>
+    <div class="menu">
+      <div class="icon">
+        <i class="bi bi-people"></i>
+      </div>
+      <span><%= t('admin.users.components.layout.resource') %></span>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,9 @@
+pt-BR:
+  user:
+    roles:
+      index:
+        id: Código
+        kind: Tipo
+        name: Nome completo
+        enterprise: Empresa
+        users: Usuários

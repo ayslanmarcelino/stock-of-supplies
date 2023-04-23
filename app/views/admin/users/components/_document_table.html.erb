@@ -1,0 +1,20 @@
+<table class="table">
+  <tbody>
+    <tr>
+      <th><%= t('activerecord.attributes.person.document_number') %></th>
+      <td><%= formatted(@user.person.document_number) %></td>
+    </tr>
+    <tr>
+      <th><%= t('activerecord.attributes.person.identity_document_type') %></th>
+      <td><%= @user.person.identity_document_type.upcase %></td>
+    </tr>
+    <tr>
+      <th><%= t('activerecord.attributes.person.identity_document_issuing_agency') %></th>
+      <td><%= @user.person.identity_document_issuing_agency %></td>
+    </tr>
+    <tr>
+      <th><%= t('activerecord.attributes.person.identity_document_number') %></th>
+      <td><%= @user.person.identity_document_number %></td>
+    </tr>
+  </tbody>
+</table>

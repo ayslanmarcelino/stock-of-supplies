@@ -1,0 +1,90 @@
+<div class="row col-md-12">
+  <h4><%= t('admin.users.components.layout.resource') %></h4>
+  <div>
+    <%= render(layout: 'layouts/components/filter/body') do %>
+      <%= search_form_for(@query, url: admin_users_path) do |form| %>
+        <%= render(partial: 'admin/users/components/filters', locals: { form: form }) %>
+        <%= render(partial: 'layouts/components/filter/footer', locals: { form: form }) %>
+      <% end %>
+    <% end %>
+    <div class="pull-right mb-2">
+      <% if can?(:read, User::Role) %>
+        <%= link_to(user_roles_path, class: 'btn btn-sm btn-dark') do %>
+          <i class="bi bi-person-badge"></i>
+          <%= t('.user_roles') %>
+        <% end %>
+      <% end %>
+      <% if can?(:create, User) %>
+        <%= link_to(new_admin_user_path, class: 'btn btn-sm btn-success') do %>
+          <i class="bi bi-plus-circle"></i>
+          <%= t('application.new') %>
+        <% end %>
+      <% end %>
+    </div>  
+  </div>
+  <div class="table-wrap">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th><%= t('.document_number') %></th>
+          <th><%= sort_link(@query, :person_name, t('.name')) %></th>
+          <th><%= sort_link(@query, :email, t('.email')) %></th>
+          <th><%= t('.status') %></th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= formatted(user.person.document_number) %></td>
+            <td><%= user.person.name %></td>
+            <td><%= user.email %></td>
+            <td class="status">
+              <span class="<%= active?(user.active) %>"></span>
+            </td>
+            <td>
+              <% if can?(:read, User) %>
+                <%= link_to(admin_user_path(user), class: 'btn btn-sm') do %>
+                  <i class="bi bi-eye"></i>
+                <% end %>
+              <% end %>
+              <% if can?(:update, User) %>
+                <%= link_to(edit_admin_user_path(user), class: 'btn btn-sm') do %>
+                  <i class="bi bi-pencil-square"></i>
+                <% end %>
+              <% end %>
+              <% if user != current_user %>
+                <% if user.active? && can?(:disable, User) %>
+                  <%= link_to(disable_admin_user_path(user),
+                              data: {
+                                turbo_method: :patch,
+                                turbo_confirm: "#{t('admin.users.components.layout.disable_confirm')}: #{user.person.name}?"
+                              },
+                              class: 'btn btn-sm -success') do %>
+                    <i class="bi bi-toggle-on"></i>
+                  <% end %>
+                <% end %>
+                <% if disabled?(user) && can?(:activate, User) %>
+                  <%= link_to(activate_admin_user_path(user),
+                              data: {
+                                turbo_method: :patch,
+                                turbo_confirm: "#{t('admin.users.components.layout.activate_confirm')}: #{user.person.name}?"
+                              },
+                              class: 'btn btn-sm -danger') do %>
+                    <i class="bi bi-toggle-off"></i>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%=
+  render partial: 'layouts/components/index/footer',
+         locals: {
+           resource: @users
+         }
+%>

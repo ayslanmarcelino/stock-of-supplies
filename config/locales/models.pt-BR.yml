@@ -1,0 +1,79 @@
+pt-BR:
+  activerecord:
+    attributes:
+      enterprise:
+        id: Código
+        email: E-mail
+        document_number: CNPJ
+        active: Ativo
+        name: Razão Social
+        trade_name: Nome fantasia
+        opening_date: Data de abertura da empresa
+        representative_name: Nome completo
+        representative_document_number: CPF
+        telephone_number: Telefone
+        cell_number: Celular
+        identity_document_type: Tipo do documento de identificação
+        identity_document_number: Número do documento de identificação
+        identity_document_issuing_agency: Órgão expedidor do documento de identificação
+        birth_date: Data de nascimento
+        created_at: Criado em
+        updated_at: Atualizado em
+      address:
+        street: Logradouro
+        number: Número
+        neighborhood: Bairro
+        city: Cidade
+        state: Estado
+        zip_code: CEP
+        country: País
+        complement: Complemento
+      person:
+        id: Código
+        document_number: CPF
+        owner: Tipo
+        owner_type: Tipo
+        owner_id: ID do tipo
+        enterprise: Empresa
+        name: Nome completo
+        nickname: Apelido
+        trade_name: Nome fantasia
+        birth_date: Data de nascimento
+        roles: Regras de usuário
+        marital_status_cd: Estado civil
+        marital_status_list:
+          single: Solteiro(a)
+          married: Casado(a)
+          divorced: Divorciado(a)
+          widowed: Viúvo(a)
+        kind_cd: Tipo
+        kind_list:
+          person: Pessoa física
+          company: Pessoa jurídica
+        telephone_number: Telefone
+        cell_number: Celular
+        identity_document_issuing_agency: Órgão expedidor
+        identity_document_number: Documento de identificação
+        identity_document_type: Tipo de documento de identificação
+        created_at: Criado em
+        updated_at: Atualizado em
+      user/role:
+        id: Código
+        kind_cd: Perfil
+        manager_id: Gestor
+        user_id: Usuário
+        enterprise: Empresa
+        user: Usuário
+        kinds:
+          admin_master: Admin master
+          owner: Proprietário
+          viewer: Visualizador
+        created_at: Criado em
+        updated_at: Atualizado em
+      client:
+        id: Código
+        active: Ativo
+        person: Pessoa
+        enterprise: Empresa
+        created_at: Criado em
+        updated_at: Atualizado em

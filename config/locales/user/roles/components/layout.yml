@@ -1,0 +1,8 @@
+pt-BR:
+  user:
+    roles:
+      components:
+        layout:
+          resource: Regras de usuário
+          delete_confirm: Você deseja EXCLUIR a regra de usuário
+          new: Nova regra de usuário

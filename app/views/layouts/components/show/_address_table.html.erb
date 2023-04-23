@@ -1,0 +1,36 @@
+<table class="table">
+  <tbody>
+    <tr>
+      <th><%= t('activerecord.attributes.address.zip_code') %></th>
+      <td><%= resource.address&.zip_code %></td>
+    </tr>
+    <tr>
+      <th><%= t('activerecord.attributes.address.street') %></th>
+      <td><%= resource.address&.street %></td>
+    </tr>
+    <tr>
+      <th><%= t('activerecord.attributes.address.neighborhood') %></th>
+      <td><%= resource.address&.neighborhood %></td>
+    </tr>
+    <tr>
+      <th><%= t('activerecord.attributes.address.number') %></th>
+      <td><%= resource.address&.number %></td>
+    </tr>
+    <tr>
+      <th><%= t('activerecord.attributes.address.complement') %></th>
+      <td><%= resource.address&.complement %></td>
+    </tr>
+    <tr>
+      <th><%= t('activerecord.attributes.address.city') %></th>
+      <td><%= resource.address&.city %></td>
+    </tr>
+    <tr>
+      <th><%= t('activerecord.attributes.address.state') %></th>
+      <td><%= resource.address&.state %></td>
+    </tr>
+    <tr>
+      <th><%= t('activerecord.attributes.address.country') %></th>
+      <td><%= resource.address&.country %></td>
+    </tr>
+  </tbody>
+</table>
