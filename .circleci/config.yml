@@ -60,12 +60,12 @@ jobs:
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
-          DATABASE_URL: postgresql://postgres:@localhost/rails_7_template_db
+          DATABASE_URL: postgresql://postgres:@localhost/stock_of_supplies_db
           OTP_KEY: eac9f2ab10cdfbb125400287a8072b87
       - image: circleci/postgres:12-alpine
         environment:
           POSTGRES_USER: postgres
-          POSTGRES_DB: rails_7_template_db
+          POSTGRES_DB: stock_of_supplies_db
           POSTGRES_PASSWORD: ""
 
     steps:
