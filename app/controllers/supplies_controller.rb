@@ -12,10 +12,6 @@ class SuppliesController < ApplicationController
     @supplies = @query.result(distinct: false)
   end
 
-  def new; end
-
-  def create; end
-
   def new
     @supply = Supply.new
   end
