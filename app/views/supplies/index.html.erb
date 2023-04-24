@@ -1,0 +1,36 @@
+<div class="row col-md-12">
+  <h4><%= t('supplies.components.layout.resource') %></h4>
+ <div>
+    <%= render(layout: 'layouts/components/filter/body') do %>
+      <%= search_form_for(@query, url: supplies_path) do |form| %>
+        <%= render(partial: 'supplies/components/filters', locals: { form: form }) %>
+        <%= render(partial: 'layouts/components/filter/footer', locals: { form: form }) %>
+      <% end %>
+    <% end %>
+  </div> 
+  <div class="table-wrap">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th><%= sort_link(@query, :id, t('.id')) %></th>
+          <th><%= sort_link(@query, :name, t('.name')) %></th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @supplies.each do |supply| %>
+          <tr>
+            <td><%= supply.id %></td>
+            <td><%= supply.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%=
+  render partial: 'layouts/components/index/footer',
+         locals: {
+           resource: @supplies
+         }
+%>
