@@ -1,12 +1,12 @@
 <div class="row mb-3">
-  <div class="col-md-4">
-    <%= form.text_field :email_cont, placeholder: t('admin.users.index.email'), class: 'form-control' %>
+  <div class="col-md-3">
+    <%= form.text_field :person_document_number_cont, placeholder: t('admin.users.index.document_number'), class: 'form-control' %>
   </div>
   <div class="col-md-5">
     <%= form.text_field :person_name_cont, placeholder: t('admin.users.index.name'), class: 'form-control' %>
   </div>
-  <div class="col-md-3">
-    <%= form.text_field :person_document_number_cont, placeholder: t('admin.users.index.document_number'), class: 'form-control' %>
+  <div class="col-md-4">
+    <%= form.text_field :email_cont, placeholder: t('admin.users.index.email'), class: 'form-control' %>
   </div>
 </div>
 <%= render partial: 'layouts/components/filter/active', locals: { form: form } %>

@@ -2,34 +2,34 @@
 #
 # Table name: user_roles
 #
-#  id            :bigint           not null, primary key
-#  kind_cd       :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  enterprise_id :bigint
-#  user_id       :bigint
+#  id         :bigint           not null, primary key
+#  kind_cd    :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  unit_id    :bigint
+#  user_id    :bigint
 #
 # Indexes
 #
-#  index_user_roles_on_enterprise_id  (enterprise_id)
-#  index_user_roles_on_user_id        (user_id)
+#  index_user_roles_on_unit_id  (unit_id)
+#  index_user_roles_on_user_id  (user_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (enterprise_id => enterprises.id)
+#  fk_rails_...  (unit_id => units.id)
 #  fk_rails_...  (user_id => users.id)
 #
 require 'rails_helper'
 
 RSpec.describe User::Role, type: :model do
   describe 'associations' do
-    it { is_expected.to belong_to(:enterprise) }
+    it { is_expected.to belong_to(:unit) }
     it { is_expected.to belong_to(:user) }
   end
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:kind_cd) }
-    it { is_expected.to validate_uniqueness_of(:kind_cd).scoped_to(:user_id, :enterprise_id) }
+    it { is_expected.to validate_uniqueness_of(:kind_cd).scoped_to(:user_id, :unit_id) }
   end
 
   describe 'methods' do
@@ -37,7 +37,7 @@ RSpec.describe User::Role, type: :model do
       let(:kinds) do
         [
           :admin_master,
-          :owner,
+          :coordinator,
           :viewer
         ]
       end

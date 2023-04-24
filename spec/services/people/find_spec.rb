@@ -1,14 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe People::Find, type: :service do
-  subject { described_class.new(document_number: document_number) }
+  subject { described_class.new(document_number: document_number, cns_number: cns_number) }
 
   let!(:document_number) { CPF.generate }
-  let!(:enterprise) { create(:enterprise) }
+  let!(:cns_number) { FFaker.numerify('#######') }
+  let!(:unit) { create(:unit) }
 
   describe '#call' do
     context 'when the user exists' do
-      let!(:person) { create(:person, :person, document_number: document_number) }
+      let!(:person) { create(:person, document_number: document_number, cns_number: cns_number) }
 
       it 'returns the user' do
         result = subject.call

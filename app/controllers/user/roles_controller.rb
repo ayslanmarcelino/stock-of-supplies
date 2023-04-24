@@ -2,7 +2,7 @@ class User::RolesController < ApplicationController
   load_and_authorize_resource
 
   before_action :role, only: [:edit, :destroy]
-  before_action :enterprises, only: [:new, :create, :edit]
+  before_action :units, only: [:new, :create, :edit]
   before_action :users, only: [:new, :create, :edit]
 
   def index
@@ -21,10 +21,10 @@ class User::RolesController < ApplicationController
 
   def create
     @role = User::Role.new(role_params)
-    @role.enterprise_id = enterprise_id if role.enterprise_id.blank?
+    @role.unit_id = unit_id if role.unit_id.blank?
 
     if @role.save
-      @role.user.update(current_enterprise_id: @role.enterprise_id)
+      @role.user.update(current_unit_id: @role.unit_id)
 
       redirect_success(path: user_roles_path, action: 'criada')
     else
@@ -56,12 +56,12 @@ class User::RolesController < ApplicationController
     @role ||= User::Role.find(params[:id])
   end
 
-  def enterprises
-    @enterprises ||= Enterprise.where(id: current_user.current_enterprise)
+  def units
+    @units ||= Unit.where(id: current_user.current_unit)
   end
 
   def users
-    @users ||= User.includes(:person).where(person: { enterprise_id: current_user.person.enterprise_id })
+    @users ||= User.includes(:person).where(person: { unit_id: current_user.person.unit_id })
   end
 
   def role_params
@@ -69,8 +69,8 @@ class User::RolesController < ApplicationController
           .permit(User::Role.permitted_params)
   end
 
-  def enterprise_id
-    params[:user_role][:enterprise_id].presence || current_user.current_enterprise.id
+  def unit_id
+    params[:user_role][:unit_id].presence || current_user.current_unit.id
   end
 
   def redirect_success(path:, action:)

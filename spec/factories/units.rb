@@ -1,11 +1,12 @@
 FactoryBot.define do
-  factory :enterprise do
+  factory :unit do
     email { FFaker::Internet.email }
-    document_number { CNPJ.generate }
+    cnes_number { FFaker.numerify('#######') }
+    kind_cd { :pni }
     name { FFaker::Company.name }
-    trade_name { FFaker::Company.name }
     representative_name { FFaker::NameBR.name }
     representative_document_number { CPF.generate }
+    representative_cns_number { FFaker.numerify('#######') }
     opening_date { Date.today - 30 }
     birth_date { Date.today - 18.years }
     cell_number { FFaker.numerify('###########') }

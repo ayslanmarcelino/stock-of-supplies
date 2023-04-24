@@ -1,9 +1,9 @@
 module Users
   class Create < ApplicationService
-    def initialize(params:, person:, enterprise:)
+    def initialize(params:, person:, unit:)
       @params = params
       @person = person
-      @enterprise = enterprise
+      @unit = unit
     end
 
     def call
@@ -28,7 +28,7 @@ module Users
         password: @params[:email],
         password_confirmation: @params[:email],
         person_id: @person.id,
-        current_enterprise_id: @enterprise.id
+        current_unit_id: @unit.id
       )
       @user.save
     end
@@ -42,10 +42,7 @@ module Users
     def update_person!
       return if @find.present?
 
-      @person.update(
-        owner: @user,
-        kind: :person
-      )
+      @person.update(owner: @user)
     end
 
     def user

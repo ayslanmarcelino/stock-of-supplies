@@ -5,5 +5,5 @@ pt-BR:
         id: Código
         kind: Tipo
         name: Nome completo
-        enterprise: Empresa
+        unit: Unidade
         users: Usuários

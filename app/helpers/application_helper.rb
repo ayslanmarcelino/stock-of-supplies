@@ -13,8 +13,8 @@ module ApplicationHelper
     end
   end
 
-  def enterprises
-    @enterprises ||= current_user.roles.map(&:enterprise)
+  def units
+    @units ||= current_user.roles.map(&:unit)
   end
 
   def abbreviation(word)

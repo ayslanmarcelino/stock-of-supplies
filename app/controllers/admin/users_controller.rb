@@ -3,7 +3,7 @@
 module Admin
   class UsersController < ApplicationController
     load_and_authorize_resource
-    before_action :enterprise, only: [:show, :disable]
+    before_action :unit, only: [:show, :disable]
     before_action :user, only: [:edit, :update]
     before_action :verify_password, only: [:update]
 
@@ -28,9 +28,8 @@ module Admin
 
     def create
       @user = User.new(create_params)
-      @user.person.kind = :person
       @user.person.owner = @user
-      @user.person.enterprise_id = current_user.current_enterprise.id
+      @user.person.unit_id = current_user.current_unit.id
 
       if @user.save
         UserMailer.with(user: @user).new_user.deliver_now
@@ -69,10 +68,10 @@ module Admin
       end
     end
 
-    def update_current_enterprise
-      current_user.update(current_enterprise_id: params[:change_enterprise][:id])
+    def update_current_unit
+      current_user.update(current_unit_id: params[:change_unit][:id])
       redirect_to(root_path)
-      flash[:success] = "Agora você está acessando a empresa #{current_user.current_enterprise.trade_name}."
+      flash[:success] = "Agora você está acessando a unidade #{current_user.current_unit.name}."
     end
 
     private
@@ -103,8 +102,8 @@ module Admin
       flash[:success] = "Usuário(a) #{action}(a) com sucesso."
     end
 
-    def enterprise
-      @enterprise ||= Enterprise.where(id: current_user.roles.map(&:enterprise_id))
+    def unit
+      @unit ||= Unit.where(id: current_user.roles.map(&:unit_id))
     end
 
     def user

@@ -6,7 +6,7 @@ FactoryBot.define do
 
     trait :with_person do
       before :create do |resource|
-        resource.person = create(:person, :person, owner: resource)
+        resource.person = create(:person, owner: resource)
       end
     end
   end

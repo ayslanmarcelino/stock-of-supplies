@@ -41,30 +41,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_26_040755) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "enterprises", force: :cascade do |t|
-    t.string "email"
-    t.string "document_number"
-    t.boolean "active", default: true
-    t.string "name"
-    t.string "trade_name"
-    t.date "opening_date"
-    t.string "representative_name"
-    t.string "representative_document_number"
-    t.string "cell_number"
-    t.string "telephone_number"
-    t.string "identity_document_type"
-    t.string "identity_document_number"
-    t.string "identity_document_issuing_agency"
-    t.date "birth_date"
-    t.bigint "address_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_enterprises_on_address_id"
-  end
-
   create_table "people", force: :cascade do |t|
     t.string "name"
-    t.string "trade_name"
+    t.string "cns_number"
     t.string "nickname"
     t.string "document_number"
     t.string "cell_number"
@@ -73,26 +52,48 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_26_040755) do
     t.string "identity_document_number"
     t.string "identity_document_issuing_agency"
     t.string "marital_status_cd"
-    t.string "kind_cd"
     t.date "birth_date"
     t.string "owner_type"
     t.bigint "owner_id"
     t.bigint "address_id"
-    t.bigint "enterprise_id"
+    t.bigint "unit_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_people_on_address_id"
-    t.index ["enterprise_id"], name: "index_people_on_enterprise_id"
     t.index ["owner_type", "owner_id"], name: "index_people_on_owner"
+    t.index ["unit_id"], name: "index_people_on_unit_id"
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.string "email"
+    t.string "cnes_number"
+    t.string "kind_cd"
+    t.boolean "active", default: true
+    t.string "name"
+    t.string "trade_name"
+    t.date "opening_date"
+    t.string "representative_name"
+    t.string "representative_document_number"
+    t.string "representative_cns_number"
+    t.string "cell_number"
+    t.string "telephone_number"
+    t.string "identity_document_type"
+    t.string "identity_document_number"
+    t.string "identity_document_issuing_agency"
+    t.date "birth_date"
+    t.bigint "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_units_on_address_id"
   end
 
   create_table "user_roles", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "enterprise_id"
+    t.bigint "unit_id"
     t.string "kind_cd"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["enterprise_id"], name: "index_user_roles_on_enterprise_id"
+    t.index ["unit_id"], name: "index_user_roles_on_unit_id"
     t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
@@ -111,18 +112,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_26_040755) do
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
     t.bigint "person_id"
-    t.bigint "current_enterprise_id"
-    t.index ["current_enterprise_id"], name: "index_users_on_current_enterprise_id"
+    t.bigint "current_unit_id"
+    t.index ["current_unit_id"], name: "index_users_on_current_unit_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["person_id"], name: "index_users_on_person_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "enterprises", "addresses"
   add_foreign_key "people", "addresses"
-  add_foreign_key "people", "enterprises"
-  add_foreign_key "user_roles", "enterprises"
+  add_foreign_key "people", "units"
+  add_foreign_key "units", "addresses"
+  add_foreign_key "user_roles", "units"
   add_foreign_key "user_roles", "users"
-  add_foreign_key "users", "enterprises", column: "current_enterprise_id"
   add_foreign_key "users", "people"
+  add_foreign_key "users", "units", column: "current_unit_id"
 end

@@ -33,8 +33,8 @@ ActiveAdmin.register(User, as: 'all_users') do
     attributes_table(title: 'Informações do usuário') do
       row :email
       row :active
-      row :enterprise do |user|
-        user.person.enterprise
+      row :unit do |user|
+        user.person.unit
       end
       row :person
       row :created_at
@@ -46,7 +46,7 @@ ActiveAdmin.register(User, as: 'all_users') do
         table_for(collection) do
           column(:id) { |role| auto_link(role, role.id) }
           column(:kind_cd)
-          column(:enterprise)
+          column(:unit)
         end
       end
     end
@@ -60,7 +60,7 @@ ActiveAdmin.register(User, as: 'all_users') do
       f.input(:password)
       f.input(:password_confirmation)
       f.input(:person)
-      f.input(:current_enterprise)
+      f.input(:current_unit)
     end
 
     f.actions

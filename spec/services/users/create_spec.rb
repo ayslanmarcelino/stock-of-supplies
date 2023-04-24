@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Users::Create, type: :service do
   describe '#call' do
-    subject { described_class.new(params: params, person: person, enterprise: enterprise) }
+    subject { described_class.new(params: params, person: person, unit: unit) }
 
     let!(:params) { { email: FFaker::Internet.email } }
-    let!(:person) { create(:person, :person) }
-    let!(:enterprise) { create(:enterprise) }
+    let!(:person) { create(:person) }
+    let!(:unit) { create(:unit) }
 
     context 'when user is found' do
       let!(:user_found) { create(:user, person: person) }
@@ -41,12 +41,11 @@ RSpec.describe Users::Create, type: :service do
         user = User.last
         expect(user.email).to eq(params[:email])
         expect(user.person_id).to eq(person.id)
-        expect(user.current_enterprise_id).to eq(enterprise.id)
+        expect(user.current_unit_id).to eq(unit.id)
       end
 
       it 'updates the person' do
         expect { subject.call }.to change { person.reload.owner }.from(nil).to(an_instance_of(User))
-        expect(person.reload.kind).to eq(:person)
       end
 
       it 'sends an e-mail' do

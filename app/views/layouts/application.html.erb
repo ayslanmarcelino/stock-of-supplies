@@ -2,11 +2,11 @@
 <html>
   <head>
     <title>
-    <% if current_user&.current_enterprise %>
-        <%= current_user.current_enterprise.trade_name %>
-      <% else %>
-        Selecione uma empresa
-      <% end %>
+    <% if current_user&.current_unit %>
+      <%= current_user.current_unit.name %>
+    <% else %>
+      Selecione uma unidade
+    <% end %>
     </title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>

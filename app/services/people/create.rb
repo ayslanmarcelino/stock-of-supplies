@@ -1,8 +1,8 @@
 module People
   class Create < ApplicationService
-    def initialize(params:, enterprise:)
+    def initialize(params:, unit:)
       @params = params
-      @enterprise = enterprise
+      @unit = unit
     end
 
     def call
@@ -24,7 +24,8 @@ module People
         identity_document_issuing_agency: @params[:identity_document_issuing_agency],
         identity_document_number: @params[:identity_document_number],
         identity_document_type: @params[:identity_document_type],
-        enterprise_id: @enterprise.id
+        cns_number: @params[:representative_cns_number],
+        unit_id: @unit.id
       )
 
       @person.build_address
@@ -33,7 +34,10 @@ module People
     end
 
     def person
-      @person ||= People::Find.call(document_number: @params[:representative_document_number])
+      @person ||= People::Find.call(
+        document_number: @params[:representative_document_number],
+        cns_number: @params[:representative_cns_number]
+      )
     end
   end
 end

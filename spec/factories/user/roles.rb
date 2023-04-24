@@ -3,6 +3,6 @@ FactoryBot.define do
     user { create(:user, :with_person) }
     kind_cd { :admin_master }
 
-    enterprise { user.person.enterprise }
+    unit { user.person.unit }
   end
 end

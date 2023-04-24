@@ -6,8 +6,8 @@ ActiveAdmin.register_page("Dashboard") do
   content do
     columns do
       column do
-        panel 'Últimas empresas cadastradas' do
-          table_for Enterprise.order(created_at: :desc).limit(5) do
+        panel 'Últimas unidades cadastradas' do
+          table_for Unit.order(created_at: :desc).limit(5) do
             column :name
             column :trade_name
             column :email
@@ -29,8 +29,8 @@ ActiveAdmin.register_page("Dashboard") do
 
     columns do
       column do
-        panel 'Criação de novas empresas' do
-          line_chart(Enterprise.group_by_month(:created_at, format: :chart).count)
+        panel 'Criação de novas unidades' do
+          line_chart(Unit.group_by_month(:created_at, format: :chart).count)
         end
       end
     end
