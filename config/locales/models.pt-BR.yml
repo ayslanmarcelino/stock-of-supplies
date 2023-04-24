@@ -76,3 +76,9 @@ pt-BR:
         unit: Unidade
         created_at: Criado em
         updated_at: Atualizado em
+      supply:
+        id: Código
+        name: Nome imunobiológico
+        created_by: Criado por
+        created_at: Criado em
+        updated_at: Atualizado em
