@@ -8,8 +8,6 @@ pt-BR:
         kind_cd: Tipo
         active: Ativo
         name: Nome
-        trade_name: Nome fantasia
-        opening_date: Data de abertura da unidade
         representative_name: Nome completo
         representative_document_number: CPF
         representative_cns_number: CNS
@@ -43,7 +41,6 @@ pt-BR:
         unit: Unidade
         name: Nome completo
         nickname: Apelido
-        trade_name: Nome fantasia
         birth_date: Data de nascimento
         roles: Regras de usuário
         marital_status_cd: Estado civil

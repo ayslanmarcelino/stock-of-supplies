@@ -70,8 +70,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_26_040755) do
     t.string "kind_cd"
     t.boolean "active", default: true
     t.string "name"
-    t.string "trade_name"
-    t.date "opening_date"
     t.string "representative_name"
     t.string "representative_document_number"
     t.string "representative_cns_number"

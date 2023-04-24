@@ -22,7 +22,6 @@ ActiveAdmin.register(Unit) do
     column :cnes_number
     column :kind_cd
     column :name
-    column :opening_date
     column :active
     column :created_at
     column :updated_at
@@ -35,7 +34,6 @@ ActiveAdmin.register(Unit) do
       f.input(:cnes_number)
       f.input(:name)
       f.input(:kind_cd, as: :select, collection: Unit::KINDS)
-      f.input(:opening_date, as: :datepicker)
     end
 
     f.inputs('Representante') do
@@ -70,7 +68,6 @@ ActiveAdmin.register(Unit) do
       row :cnes_number
       row :name
       row :kind_cd
-      row :opening_date
       row :created_at
       row :updated_at
     end

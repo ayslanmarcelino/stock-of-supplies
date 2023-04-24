@@ -13,12 +13,10 @@
 #  identity_document_type           :string
 #  kind_cd                          :string
 #  name                             :string
-#  opening_date                     :date
 #  representative_cns_number        :string
 #  representative_document_number   :string
 #  representative_name              :string
 #  telephone_number                 :string
-#  trade_name                       :string
 #  created_at                       :datetime         not null
 #  updated_at                       :datetime         not null
 #  address_id                       :bigint
@@ -59,7 +57,6 @@ class Unit < ApplicationRecord
       :cnes_number,
       :name,
       :kind_cd,
-      :opening_date,
       :representative_name,
       :representative_document_number,
       :representative_cns_number,

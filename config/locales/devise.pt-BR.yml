@@ -32,6 +32,7 @@ pt-BR:
         person: Pessoa
         unit: Unidade
         current_unit: Unidade logada
+        cns_number: CNS
     models:
       user: Usuário
       user/role: Regra de usuário

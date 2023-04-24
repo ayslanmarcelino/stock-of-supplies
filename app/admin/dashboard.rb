@@ -9,7 +9,7 @@ ActiveAdmin.register_page("Dashboard") do
         panel 'Últimas unidades cadastradas' do
           table_for Unit.order(created_at: :desc).limit(5) do
             column :name
-            column :trade_name
+            column :cnes_number
             column :email
             column :created_at
           end
@@ -18,8 +18,11 @@ ActiveAdmin.register_page("Dashboard") do
 
       column do
         panel 'Últimos usuários cadastrados' do
-          table_for User.order(created_at: :desc).limit(5) do
+          table_for User.includes(:person).order(created_at: :desc).limit(5) do
             column :name
+            column :cns_number do |user|
+              user.person.cns_number
+            end
             column :email
             column :created_at
           end

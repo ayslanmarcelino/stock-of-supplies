@@ -7,8 +7,6 @@ class CreateUnits < ActiveRecord::Migration[7.0]
       t.boolean :active, default: true
 
       t.string :name
-      t.string :trade_name
-      t.date :opening_date
 
       t.string :representative_name
       t.string :representative_document_number
