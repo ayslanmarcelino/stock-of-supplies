@@ -66,8 +66,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_030238) do
 
   create_table "supplies", force: :cascade do |t|
     t.string "name"
+    t.bigint "created_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_supplies_on_created_by_id"
   end
 
   create_table "units", force: :cascade do |t|
@@ -127,6 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_030238) do
 
   add_foreign_key "people", "addresses"
   add_foreign_key "people", "units"
+  add_foreign_key "supplies", "users", column: "created_by_id"
   add_foreign_key "units", "addresses"
   add_foreign_key "user_roles", "units"
   add_foreign_key "user_roles", "users"
