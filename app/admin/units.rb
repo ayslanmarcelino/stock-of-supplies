@@ -130,12 +130,12 @@ ActiveAdmin.register(Unit) do
     redirect_to(admin_units_path)
   end
 
-  member_action_button :activate,
+  member_action_button :enable,
                        'Ativar',
                        confirm: 'Tem certeza que deseja ATIVAR esta unidade?',
                        only: :show,
                        if: -> { disabled?(resource) } do
-    activate!(resource)
+    enable!(resource)
     flash[:notice] = 'Empresa ativada com sucesso.'
     redirect_to(admin_units_path)
   end

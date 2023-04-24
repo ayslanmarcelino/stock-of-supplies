@@ -76,12 +76,12 @@ ActiveAdmin.register(User, as: 'all_users') do
     redirect_to(admin_all_users_path)
   end
 
-  member_action_button :activate,
+  member_action_button :enable,
                        'Ativar',
                        confirm: 'Tem certeza que deseja ATIVAR este usuário?',
                        only: :show,
                        if: -> { disabled?(resource) } do
-    activate!(resource)
+    enable!(resource)
     flash[:notice] = 'Usuário ativado com sucesso.'
     redirect_to(admin_all_users_path)
   end

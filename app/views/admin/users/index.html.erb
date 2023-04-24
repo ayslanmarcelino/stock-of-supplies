@@ -64,11 +64,11 @@
                     <i class="bi bi-toggle-on"></i>
                   <% end %>
                 <% end %>
-                <% if disabled?(user) && can?(:activate, User) %>
-                  <%= link_to(activate_admin_user_path(user),
+                <% if disabled?(user) && can?(:enable, User) %>
+                  <%= link_to(enable_admin_user_path(user),
                               data: {
                                 turbo_method: :patch,
-                                turbo_confirm: "#{t('admin.users.components.layout.activate_confirm')}: #{user.person.name}?"
+                                turbo_confirm: "#{t('admin.users.components.layout.enable_confirm')}: #{user.person.name}?"
                               },
                               class: 'btn btn-sm -danger') do %>
                     <i class="bi bi-toggle-off"></i>

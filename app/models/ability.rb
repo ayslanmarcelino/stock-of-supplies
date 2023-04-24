@@ -45,7 +45,7 @@ class Ability
 
     def coordinator_abilities
       can(
-        [:read, :update, :disable, :activate],
+        [:read, :update, :disable, :enable],
         User,
         roles: {
           unit_id: @unit.id, kind_cd: User::Role::USER_KINDS.map(&:to_s)

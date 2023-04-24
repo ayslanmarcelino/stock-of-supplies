@@ -59,9 +59,9 @@ module Admin
       end
     end
 
-    def activate
+    def enable
       if disabled?(@user)
-        activate!(@user)
+        enable!(@user)
         redirect_success(path: admin_users_path, action: 'ativado')
       else
         redirect_failed(path: admin_users_path, action: 'ativado')

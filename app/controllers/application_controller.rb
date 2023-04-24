@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     resource.update!(active: false)
   end
 
-  def activate!(resource)
+  def enable!(resource)
     resource.update!(active: true)
   end
 

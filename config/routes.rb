@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :new, :create, :edit, :update] do
       member do
         patch :disable
-        patch :activate
+        patch :enable
         patch :update_current_unit
       end
     end
