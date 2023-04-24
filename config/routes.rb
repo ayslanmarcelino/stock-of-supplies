@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   end
 
   resources :clients, only: [:index, :new, :create]
+  resources :supplies, only: :index
 end
