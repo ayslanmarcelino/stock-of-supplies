@@ -21,4 +21,12 @@ class Supply < ApplicationRecord
 
   validates :name, presence: true
   validates :name, uniqueness: true
+
+  def self.permitted_params
+    [
+      :id,
+      :name,
+      :created_by_id
+    ]
+  end
 end
