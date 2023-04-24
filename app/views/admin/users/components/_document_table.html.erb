@@ -10,7 +10,7 @@
     </tr>
     <tr>
       <th><%= t('activerecord.attributes.person.identity_document_type') %></th>
-      <td><%= @user.person.identity_document_type.upcase %></td>
+      <td><%= @user.person.identity_document_type&.upcase %></td>
     </tr>
     <tr>
       <th><%= t('activerecord.attributes.person.identity_document_issuing_agency') %></th>
