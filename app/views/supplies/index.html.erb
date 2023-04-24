@@ -23,7 +23,7 @@
           <tr>
             <td><%= supply.id %></td>
             <td><%= supply.name %></td>
-            <td><%= link_to(supply.created_by.name, admin_user_path(supply.created_by)) %></td>
+            <td><%= link_to(supply.created_by.name, admin_user_path(supply.created_by)) if supply.created_by.present? %></td>
           </tr>
         <% end %>
       </tbody>
