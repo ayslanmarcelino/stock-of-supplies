@@ -11,4 +11,14 @@ class SuppliesController < ApplicationController
 
     @supplies = @query.result(distinct: false)
   end
+
+  def new; end
+
+  def create; end
+
+  private
+
+  def supply_params
+    params.require(:supply).permit(Supply.permitted_params).merge(created_by: current_user)
+  end
 end
