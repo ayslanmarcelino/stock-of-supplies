@@ -2,6 +2,11 @@
 
 class SuppliesController < ApplicationController
   def index
-    @supplies = Supply.all
+    @query = Supply.order(created_at: :desc)
+                   .accessible_by(current_ability)
+                   .page(params[:page])
+                   .ransack(params[:q])
+
+    @supplies = @query.result(distinct: false)
   end
 end
