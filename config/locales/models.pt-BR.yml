@@ -1,16 +1,16 @@
 pt-BR:
   activerecord:
     attributes:
-      enterprise:
+      unit:
         id: Código
         email: E-mail
-        document_number: CNPJ
+        cnes_number: CNES
+        kind_cd: Tipo
         active: Ativo
-        name: Razão Social
-        trade_name: Nome fantasia
-        opening_date: Data de abertura da empresa
+        name: Nome
         representative_name: Nome completo
         representative_document_number: CPF
+        representative_cns_number: CNS
         telephone_number: Telefone
         cell_number: Celular
         identity_document_type: Tipo do documento de identificação
@@ -19,6 +19,9 @@ pt-BR:
         birth_date: Data de nascimento
         created_at: Criado em
         updated_at: Atualizado em
+        kind_list:
+          unit: Unidade
+          pni: Programa nacional de imunização (PNI)
       address:
         street: Logradouro
         number: Número
@@ -31,13 +34,13 @@ pt-BR:
       person:
         id: Código
         document_number: CPF
+        cns_number: CNS
         owner: Tipo
         owner_type: Tipo
         owner_id: ID do tipo
-        enterprise: Empresa
+        unit: Unidade
         name: Nome completo
         nickname: Apelido
-        trade_name: Nome fantasia
         birth_date: Data de nascimento
         roles: Regras de usuário
         marital_status_cd: Estado civil
@@ -46,10 +49,6 @@ pt-BR:
           married: Casado(a)
           divorced: Divorciado(a)
           widowed: Viúvo(a)
-        kind_cd: Tipo
-        kind_list:
-          person: Pessoa física
-          company: Pessoa jurídica
         telephone_number: Telefone
         cell_number: Celular
         identity_document_issuing_agency: Órgão expedidor
@@ -62,11 +61,11 @@ pt-BR:
         kind_cd: Perfil
         manager_id: Gestor
         user_id: Usuário
-        enterprise: Empresa
+        unit: Unidade
         user: Usuário
         kinds:
           admin_master: Admin master
-          owner: Proprietário
+          coordinator: Coordenador(a)
           viewer: Visualizador
         created_at: Criado em
         updated_at: Atualizado em
@@ -74,6 +73,6 @@ pt-BR:
         id: Código
         active: Ativo
         person: Pessoa
-        enterprise: Empresa
+        unit: Unidade
         created_at: Criado em
         updated_at: Atualizado em

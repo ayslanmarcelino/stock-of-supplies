@@ -83,10 +83,10 @@ m = Module.new do
   def load_bundler!
     ENV["BUNDLE_GEMFILE"] ||= gemfile
 
-    activate_bundler
+    enable_bundler
   end
 
-  def activate_bundler
+  def enable_bundler
     gem_error = activation_error_handling do
       gem "bundler", bundler_requirement
     end

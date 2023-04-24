@@ -30,12 +30,14 @@ pt-BR:
         id: Código
         active: Ativo
         person: Pessoa
-        enterprise: Empresa
-        current_enterprise: Empresa logada
+        unit: Unidade
+        current_unit: Unidade logada
+        cns_number: CNS
+        created_by: Criado por
     models:
       user: Usuário
       user/role: Regra de usuário
-      enterprise: Empresa
+      unit: Unidade
       all_users: Usuário
       person: Pessoa
       client: Cliente

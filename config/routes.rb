@@ -6,19 +6,12 @@ Rails.application.routes.draw do
 
   get 'dashboard/index'
 
-  resources :enterprises, only: [:index, :show, :new, :create, :edit, :update] do
-    member do
-      patch :activate
-      patch :disable
-    end
-  end
-
   namespace :admin do
     resources :users, only: [:index, :show, :new, :create, :edit, :update] do
       member do
         patch :disable
-        patch :activate
-        patch :update_current_enterprise
+        patch :enable
+        patch :update_current_unit
       end
     end
   end

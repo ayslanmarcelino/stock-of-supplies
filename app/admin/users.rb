@@ -17,6 +17,7 @@ ActiveAdmin.register(User, as: 'all_users') do
 
   filter :email
   filter :person
+  filter :created_by
   filter :created_at
 
   index do
@@ -24,6 +25,7 @@ ActiveAdmin.register(User, as: 'all_users') do
     id_column
     column :email
     column :active
+    column :created_by
     column :created_at
     column :updated_at
     actions
@@ -33,10 +35,11 @@ ActiveAdmin.register(User, as: 'all_users') do
     attributes_table(title: 'Informações do usuário') do
       row :email
       row :active
-      row :enterprise do |user|
-        user.person.enterprise
+      row :unit do |user|
+        user.person.unit
       end
       row :person
+      row :created_by
       row :created_at
       row :updated_at
     end
@@ -46,7 +49,7 @@ ActiveAdmin.register(User, as: 'all_users') do
         table_for(collection) do
           column(:id) { |role| auto_link(role, role.id) }
           column(:kind_cd)
-          column(:enterprise)
+          column(:unit)
         end
       end
     end
@@ -60,7 +63,7 @@ ActiveAdmin.register(User, as: 'all_users') do
       f.input(:password)
       f.input(:password_confirmation)
       f.input(:person)
-      f.input(:current_enterprise)
+      f.input(:current_unit)
     end
 
     f.actions
@@ -76,12 +79,12 @@ ActiveAdmin.register(User, as: 'all_users') do
     redirect_to(admin_all_users_path)
   end
 
-  member_action_button :activate,
+  member_action_button :enable,
                        'Ativar',
                        confirm: 'Tem certeza que deseja ATIVAR este usuário?',
                        only: :show,
                        if: -> { disabled?(resource) } do
-    activate!(resource)
+    enable!(resource)
     flash[:notice] = 'Usuário ativado com sucesso.'
     redirect_to(admin_all_users_path)
   end

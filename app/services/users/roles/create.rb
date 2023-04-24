@@ -1,9 +1,9 @@
 module Users
   module Roles
     class Create < ApplicationService
-      def initialize(params:, enterprise:)
+      def initialize(params:, unit:)
         @params = params
-        @enterprise = enterprise
+        @unit = unit
       end
 
       def call
@@ -19,17 +19,17 @@ module Users
       end
 
       def person
-        @person ||= People::Create.call(params: @params, enterprise: @enterprise)
+        @person ||= People::Create.call(params: @params, unit: @unit)
       end
 
       def user
-        @user ||= Users::Create.call(params: @params, person: @person, enterprise: @enterprise)
+        @user ||= Users::Create.call(params: @params, person: @person, unit: @unit)
       end
 
       def create_user_role!
         @role ||= User::Role.create(
-          kind_cd: :owner,
-          enterprise_id: @enterprise.id,
+          kind_cd: :coordinator,
+          unit_id: @unit.id,
           user_id: @user.id
         )
 

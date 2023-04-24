@@ -1,0 +1,37 @@
+<div class="btn">
+  <%= link_to('#', data: { toggle: "modal", target: "#updateCurrentUnit" }, class: 'nav-link text-secondary') do %>
+    <i class="bi bi-hospital"></i>
+  <% end %>
+  <div class="modal fade" id="updateCurrentUnit" tabindex="-1" role="dialog" aria-labelledby="updateCurrentUnitLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header g-0 row">
+          <h5 class="modal-title text-center">Unidades</h5>
+        </div>
+        <div class="modal-body">
+          <% if units.size.positive? %>
+            <% units.uniq.each do |unit| %>
+              <div class="p-1 mt-1">
+                <span style="font-size: 14px;">
+                  <%= unit.cnes_number %> - <%= unit.name %>
+                </span>
+                <%=
+                  link_to(
+                    'Acessar',
+                    update_current_unit_admin_user_path(current_user, change_unit: { id: unit.id }),
+                    data: { turbo_method: :patch },
+                    class: 'btn -transparent-standard btn-sm pull-right'
+                  )
+                %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="text-center">
+              Você não possui unidade vinculada.
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

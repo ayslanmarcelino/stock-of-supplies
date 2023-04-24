@@ -1,63 +1,68 @@
 # == Schema Information
 #
-# Table name: enterprises
+# Table name: units
 #
 #  id                               :bigint           not null, primary key
 #  active                           :boolean          default(TRUE)
 #  birth_date                       :date
 #  cell_number                      :string
-#  document_number                  :string
+#  cnes_number                      :string
 #  email                            :string
 #  identity_document_issuing_agency :string
 #  identity_document_number         :string
 #  identity_document_type           :string
+#  kind_cd                          :string
 #  name                             :string
-#  opening_date                     :date
+#  representative_cns_number        :string
 #  representative_document_number   :string
 #  representative_name              :string
 #  telephone_number                 :string
-#  trade_name                       :string
 #  created_at                       :datetime         not null
 #  updated_at                       :datetime         not null
 #  address_id                       :bigint
 #
 # Indexes
 #
-#  index_enterprises_on_address_id  (address_id)
+#  index_units_on_address_id  (address_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (address_id => addresses.id)
 #
-class Enterprise < ApplicationRecord
-  IDENTITY_DOCUMENT_TYPES = [
-    ['RG', :rg],
-    ['RNE', :rne]
+class Unit < ApplicationRecord
+  KINDS = [
+    [I18n.t('activerecord.attributes.unit.kind_list.unit'), :unit],
+    [I18n.t('activerecord.attributes.unit.kind_list.pni'), :pni]
   ].freeze
 
   belongs_to :address, optional: true, dependent: :destroy
 
-  validates :document_number, uniqueness: true, if: -> { document_number.present? }
+  validates :cnes_number, uniqueness: true, if: -> { cnes_number.present? }
   validates :email,
-            :document_number,
+            :kind_cd,
+            :cnes_number,
             :name,
             :representative_name,
             :representative_document_number,
+            :representative_cns_number,
             presence: true
+
+  validates :cnes_number, length: { is: 7 }
+  validates :representative_cns_number, length: { is: 15 }
 
   accepts_nested_attributes_for :address
 
-  before_save :format_document_number
+  as_enum :kind, [:unit, :pni], prefix: true, map: :string
 
   def self.permitted_params
     [
       :email,
-      :document_number,
+      :cnes_number,
       :name,
-      :trade_name,
-      :opening_date,
+      :kind_cd,
       :representative_name,
       :representative_document_number,
+      :representative_cns_number,
       :cell_number,
       :telephone_number,
       :identity_document_type,
@@ -66,13 +71,5 @@ class Enterprise < ApplicationRecord
       :birth_date,
       :address_id
     ]
-  end
-
-  def formatted_name
-    "#{name} | #{CNPJ.new(document_number).formatted}"
-  end
-
-  def format_document_number
-    self.document_number = document_number.gsub!(/[^0-9a-zA-Z]/, '') unless document_number.match?(/\A\d+\z/)
   end
 end

@@ -16,19 +16,22 @@
 #  sign_in_count          :integer          default(0), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  current_enterprise_id  :bigint
+#  created_by_id          :bigint
+#  current_unit_id        :bigint
 #  person_id              :bigint
 #
 # Indexes
 #
-#  index_users_on_current_enterprise_id  (current_enterprise_id)
-#  index_users_on_email                  (email) UNIQUE
-#  index_users_on_person_id              (person_id)
-#  index_users_on_reset_password_token   (reset_password_token) UNIQUE
+#  index_users_on_created_by_id         (created_by_id)
+#  index_users_on_current_unit_id       (current_unit_id)
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_person_id             (person_id)
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 # Foreign Keys
 #
-#  fk_rails_...  (current_enterprise_id => enterprises.id)
+#  fk_rails_...  (created_by_id => users.id)
+#  fk_rails_...  (current_unit_id => units.id)
 #  fk_rails_...  (person_id => people.id)
 #
 class User < ApplicationRecord
@@ -40,7 +43,8 @@ class User < ApplicationRecord
   delegate :name, to: :person
 
   belongs_to :person, dependent: :destroy, optional: true
-  belongs_to :current_enterprise, class_name: 'Enterprise', optional: true
+  belongs_to :current_unit, class_name: 'Unit', optional: true
+  belongs_to :created_by, class_name: 'User', optional: true
 
   has_many :roles, dependent: :destroy
 
@@ -54,7 +58,7 @@ class User < ApplicationRecord
       :password,
       :password_confirmation,
       :person_id,
-      :current_enterprise_id
+      :current_unit_id
     ]
   end
 

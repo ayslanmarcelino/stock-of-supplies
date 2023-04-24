@@ -2,18 +2,18 @@
 
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  before_action :active_enterprise?
+  before_action :active_unit?
   before_action :active_user?
 
   helper_method :disabled?
 
   rescue_from CanCan::AccessDenied, with: :access_denied
 
-  def active_enterprise?
-    if current_user.present? && disabled?(current_user.person.enterprise)
+  def active_unit?
+    if current_user.present? && disabled?(current_user.person.unit)
       sign_out(current_user)
       redirect_to(new_user_session_path,
-                  alert: 'Sua empresa está desativada. Para mais informações, entre em contato com o administrador do sistema.')
+                  alert: 'Sua unidade está desativada. Para mais informações, entre em contato com o administrador do sistema.')
     end
   end
 
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
     resource.update!(active: false)
   end
 
-  def activate!(resource)
+  def enable!(resource)
     resource.update!(active: true)
   end
 
