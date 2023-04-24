@@ -33,4 +33,15 @@ module ApplicationHelper
   def not_persisted_action?
     ['new', 'create'].include?(action_name)
   end
+
+  def users_collection
+    users = []
+    query = User.includes(:person).where(person: { unit: current_user.current_unit })
+
+    query.each do |user|
+      users << ["#{user.name} | #{user.email}", user.id]
+    end
+
+    users.sort
+  end
 end
