@@ -5,8 +5,8 @@ ActiveAdmin.register(User::Role) do
 
   permit_params User::Role.permitted_params
 
-  filter :unit
   filter :user
+  filter :unit
   filter :kind_cd, as: :select, collection: User::Role::ROLES
   filter :created_at
 

@@ -7,11 +7,11 @@ ActiveAdmin.register(Person) do
   actions :index, :show, :new, :create, :edit, :update
 
   filter :document_number
-  filter :identity_document_number
+  filter :cns_number
   filter :name
   filter :nickname
-  filter :cns_number
   filter :owner_type
+  filter :identity_document_number
   filter :unit
   filter :created_at
 

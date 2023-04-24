@@ -6,8 +6,10 @@ ActiveAdmin.register(Unit) do
 
   actions :index, :show, :new, :create, :edit, :update
 
-  filter :email
+  filter :cnes_number
+  filter :kind_cd, as: :select, collection: Unit::KINDS
   filter :name
+  filter :email
   filter :representative_name
   filter :representative_document_number
   filter :created_at

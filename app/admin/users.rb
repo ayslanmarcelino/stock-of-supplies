@@ -17,6 +17,7 @@ ActiveAdmin.register(User, as: 'all_users') do
 
   filter :email
   filter :person
+  filter :created_by
   filter :created_at
 
   index do
