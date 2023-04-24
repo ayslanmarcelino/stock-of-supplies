@@ -19,3 +19,15 @@
     </div>
   <% end %>
 <% end %>
+
+<% if can?(:read, Supply) %>
+  <%= link_to(supplies_path, class: "#{'active-menu' if request.path.include?(supplies_path)} list-item-menu list-group-item-action",
+                          id: 'user') do %>
+    <div class="menu">
+      <div class="icon">
+        <i class="bi bi-capsule"></i>
+      </div>
+      <span><%= t('supplies.components.layout.resource') %></span>
+    </div>
+  <% end %>
+<% end %>
