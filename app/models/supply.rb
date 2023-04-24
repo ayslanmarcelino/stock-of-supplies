@@ -18,4 +18,7 @@
 #
 class Supply < ApplicationRecord
   belongs_to :created_by, class_name: 'User', optional: true
+
+  validates :name, presence: true
+  validates :name, uniqueness: true
 end
