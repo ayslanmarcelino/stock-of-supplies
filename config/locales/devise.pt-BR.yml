@@ -41,6 +41,7 @@ pt-BR:
       all_users: Usuário
       person: Pessoa
       client: Cliente
+      supply: Suprimento
       comment: Comentário
   devise:
     confirmations:
