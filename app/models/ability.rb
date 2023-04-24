@@ -54,7 +54,7 @@ class Ability
       can(:create, User)
       can([:read, :update, :destroy], User::Role, unit: @unit, kind_cd: User::Role::USER_KINDS.map(&:to_s))
       can(:create, User::Role, unit: @unit)
-      can(:read, Supply) if @unit.kind_pni?
+      can([:read, :create], Supply) if @unit.kind_pni?
     end
 
     def viewer_abilities
