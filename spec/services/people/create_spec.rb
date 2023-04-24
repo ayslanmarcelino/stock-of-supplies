@@ -14,7 +14,7 @@ RSpec.describe People::Create, type: :service do
       identity_document_issuing_agency: 'SSP',
       identity_document_number: FFaker.numerify('#########'),
       identity_document_type: ['rne', 'rg'].sample,
-      representative_cns_number: FFaker.numerify('#######')
+      representative_cns_number: FFaker.numerify('###############')
     }
   end
 

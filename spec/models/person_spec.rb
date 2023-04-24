@@ -41,7 +41,7 @@ RSpec.describe Person, type: :model do
   let!(:name) { Faker::Name.name }
   let!(:owner) { create(:user) }
   let!(:unit) { create(:unit) }
-  let!(:cns_number) { FFaker.numerify('#######') }
+  let!(:cns_number) { FFaker.numerify('###############') }
 
   context 'when sucessful' do
     context 'when has person with same document_number' do
@@ -99,7 +99,7 @@ RSpec.describe Person, type: :model do
 
       it do
         expect(subject).not_to be_valid
-        expect(subject.errors.full_messages.to_sentence).to eq('CNS não pode ficar em branco')
+        expect(subject.errors.full_messages.to_sentence).to eq('CNS não pode ficar em branco and CNS deve ter 15 caracteres')
       end
     end
 

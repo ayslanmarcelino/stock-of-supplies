@@ -47,8 +47,8 @@ class Unit < ApplicationRecord
             :representative_cns_number,
             presence: true
 
-  validates_length_of :cnes_number, is: 7
-  validates_length_of :representative_cns_number, is: 15
+  validates :cnes_number, length: { is: 7 }
+  validates :representative_cns_number, length: { is: 15 }
 
   accepts_nested_attributes_for :address
 

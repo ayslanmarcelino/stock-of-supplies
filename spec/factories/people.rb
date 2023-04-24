@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :person do
     name { FFaker::NameBR.name }
-    cns_number { FFaker.numerify('#######') }
+    cns_number { FFaker.numerify('###############') }
     nickname { FFaker::NameBR.first_name }
     document_number { CPF.generate }
     cell_number { FFaker.numerify('###########') }

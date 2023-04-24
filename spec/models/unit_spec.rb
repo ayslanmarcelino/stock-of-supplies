@@ -50,7 +50,7 @@ RSpec.describe Unit, type: :model do
   let(:representative_name) { FFaker::NameBR.name }
   let(:representative_document_number) { CPF.generate }
   let(:kind) { Unit::KINDS.map { |array| array.second }.sample }
-  let(:representative_cns_number) { FFaker.numerify('#######') }
+  let(:representative_cns_number) { FFaker.numerify('###############') }
 
   context 'when sucessful' do
     context 'when valid params' do
@@ -93,7 +93,7 @@ RSpec.describe Unit, type: :model do
 
       it do
         expect(subject).not_to be_valid
-        expect(subject.errors.full_messages.to_sentence).to eq('CNES não pode ficar em branco')
+        expect(subject.errors.full_messages.to_sentence).to eq('CNES não pode ficar em branco and CNES deve ter 7 caracteres')
       end
     end
 
@@ -129,7 +129,7 @@ RSpec.describe Unit, type: :model do
 
       it do
         expect(subject).not_to be_valid
-        expect(subject.errors.full_messages.to_sentence).to eq('CNS não pode ficar em branco')
+        expect(subject.errors.full_messages.to_sentence).to eq('CNS não pode ficar em branco and CNS deve ter 15 caracteres')
       end
     end
   end

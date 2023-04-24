@@ -8,7 +8,7 @@ RSpec.describe Users::Roles::Create, type: :service do
       representative_document_number: CPF.generate,
       representative_name: FFaker::Name.name,
       email: FFaker::Internet.email,
-      representative_cns_number: FFaker.numerify('#######')
+      representative_cns_number: FFaker.numerify('###############')
     }
   end
   let!(:unit) { create(:unit) }

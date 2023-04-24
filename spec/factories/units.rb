@@ -6,7 +6,7 @@ FactoryBot.define do
     name { FFaker::Company.name }
     representative_name { FFaker::NameBR.name }
     representative_document_number { CPF.generate }
-    representative_cns_number { FFaker.numerify('#######') }
+    representative_cns_number { FFaker.numerify('###############') }
     birth_date { Date.today - 18.years }
     cell_number { FFaker.numerify('###########') }
     identity_document_issuing_agency { 'SSP' }

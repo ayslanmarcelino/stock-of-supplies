@@ -4,7 +4,7 @@ RSpec.describe People::Find, type: :service do
   subject { described_class.new(document_number: document_number, cns_number: cns_number) }
 
   let!(:document_number) { CPF.generate }
-  let!(:cns_number) { FFaker.numerify('#######') }
+  let!(:cns_number) { FFaker.numerify('###############') }
   let!(:unit) { create(:unit) }
 
   describe '#call' do
