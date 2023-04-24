@@ -19,7 +19,7 @@
 require 'rails_helper'
 
 RSpec.describe Supply, type: :model do
-  subject { described_class.new(name: name, name: name, created_by: user) }
+  subject { described_class.new(name: name, created_by: user) }
 
   let!(:name) { 'Omalizumabe' }
   let!(:user) { create(:user) }
