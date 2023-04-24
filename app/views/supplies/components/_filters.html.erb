@@ -3,6 +3,6 @@
     <%= form.text_field :name_cont, placeholder: t('supplies.index.name'), class: 'form-control' %>
   </div>
   <div class="col-md-4">
-    <%= form.select :created_by_id_eq, users_collection, { include_blank: 'Selecione um tipo de perfil' }, class: 'form-control' %>
+    <%= form.select :created_by_id_eq, users_collection, { include_blank: 'Selecione o criador' }, class: 'form-control' %>
   </div>
 </div>
