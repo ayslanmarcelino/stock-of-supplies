@@ -40,7 +40,6 @@ pt-BR:
       unit: Unidade
       all_users: Usuário
       person: Pessoa
-      client: Cliente
       supply: Suprimento
       comment: Comentário
   devise:

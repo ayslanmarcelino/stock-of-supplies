@@ -20,6 +20,5 @@ Rails.application.routes.draw do
     resources :roles, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
-  resources :clients, only: [:index, :new, :create]
-  resources :supplies, only: :index
+  resources :supplies, only: [:index, :new, :create]
 end
