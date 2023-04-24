@@ -17,7 +17,7 @@
 #  fk_rails_...  (created_by_id => users.id)
 #
 class Supply < ApplicationRecord
-  belongs_to :created_by, class_name: 'User', optional: true
+  belongs_to :created_by, class_name: 'User'
 
   validates :name, presence: true
   validates :name, uniqueness: true
