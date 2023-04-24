@@ -56,6 +56,8 @@ class Person < ApplicationRecord
   validates :document_number, uniqueness: { scope: [:owner_type, :unit_id] }, if: -> { document_number.present? }
   validates :document_number, :name, :cns_number, presence: true
 
+  validates_length_of :cns_number, is: 15
+
   accepts_nested_attributes_for :address
 
   before_save :format_document_number
