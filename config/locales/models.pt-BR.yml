@@ -69,13 +69,6 @@ pt-BR:
           viewer: Visualizador
         created_at: Criado em
         updated_at: Atualizado em
-      client:
-        id: Código
-        active: Ativo
-        person: Pessoa
-        unit: Unidade
-        created_at: Criado em
-        updated_at: Atualizado em
       supply:
         id: Código
         name: Nome imunobiológico
