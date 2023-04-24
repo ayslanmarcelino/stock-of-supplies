@@ -110,7 +110,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_26_040755) do
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
     t.bigint "person_id"
+    t.bigint "created_by_id"
     t.bigint "current_unit_id"
+    t.index ["created_by_id"], name: "index_users_on_created_by_id"
     t.index ["current_unit_id"], name: "index_users_on_current_unit_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["person_id"], name: "index_users_on_person_id"
@@ -124,4 +126,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_26_040755) do
   add_foreign_key "user_roles", "users"
   add_foreign_key "users", "people"
   add_foreign_key "users", "units", column: "current_unit_id"
+  add_foreign_key "users", "users", column: "created_by_id"
 end

@@ -24,6 +24,7 @@ ActiveAdmin.register(User, as: 'all_users') do
     id_column
     column :email
     column :active
+    column :created_by
     column :created_at
     column :updated_at
     actions
@@ -37,6 +38,7 @@ ActiveAdmin.register(User, as: 'all_users') do
         user.person.unit
       end
       row :person
+      row :created_by
       row :created_at
       row :updated_at
     end

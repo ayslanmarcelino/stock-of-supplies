@@ -33,6 +33,7 @@ pt-BR:
         unit: Unidade
         current_unit: Unidade logada
         cns_number: CNS
+        created_by: Criado por
     models:
       user: Usuário
       user/role: Regra de usuário
