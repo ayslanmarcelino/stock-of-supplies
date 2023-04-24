@@ -14,6 +14,7 @@
         <tr>
           <th><%= sort_link(@query, :id, t('.id')) %></th>
           <th><%= sort_link(@query, :name, t('.name')) %></th>
+          <th><%= sort_link(@query, :created_by, t('.created_by')) %></th>
           <th>&nbsp;</th>
         </tr>
       </thead>
@@ -22,6 +23,7 @@
           <tr>
             <td><%= supply.id %></td>
             <td><%= supply.name %></td>
+            <td><%= link_to(supply.created_by.name, admin_user_path(supply.created_by)) %></td>
           </tr>
         <% end %>
       </tbody>
