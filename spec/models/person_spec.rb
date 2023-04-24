@@ -85,6 +85,15 @@ RSpec.describe Person, type: :model do
       end
     end
 
+    context 'when has person with same CNS, unit and owner' do
+      let!(:person) { create(:person, cns_number: cns_number, unit: unit, owner: owner) }
+
+      it do
+        expect(subject).not_to be_valid
+        expect(subject.errors.full_messages.to_sentence).to eq('CNS já está em uso')
+      end
+    end
+
     context 'when do not pass document_number' do
       let(:document_number) {}
 
