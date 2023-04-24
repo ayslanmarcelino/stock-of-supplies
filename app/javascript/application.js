@@ -6,7 +6,7 @@ import '../../lib/assets/javascripts/confirm';
 import '../../lib/assets/javascripts/masks';
 import '../../lib/assets/javascripts/fill_address';
 import '../../lib/assets/javascripts/required_fields';
-import '../../lib/assets/javascripts/validate_document_number/person';
+import '../../lib/assets/javascripts/validates/document_number/person';
 import 'chartkick/chart.js'
 
 window.Swal = Swal;
