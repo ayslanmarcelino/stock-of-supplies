@@ -79,6 +79,7 @@ pt-BR:
         id: Código
         identifier: Nome
         amount: Quantidade
+        remaining: Restante
         supply: Suprimento
         arrived_date: Data de chegada
         expiration_date: Data de validade
