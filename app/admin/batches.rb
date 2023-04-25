@@ -9,12 +9,12 @@ ActiveAdmin.register(Batch) do
 
   form do |f|
     f.inputs('Informações gerais') do
-      f.input :identifier
-      f.input :supply
-      f.input :amount
-      f.input :arrived_date
-      f.input :expiration_date
-      f.input :created_by
+      f.input(:identifier)
+      f.input(:supply)
+      f.input(:amount)
+      f.input(:arrived_date)
+      f.input(:expiration_date)
+      f.input(:created_by)
     end
 
     f.actions
