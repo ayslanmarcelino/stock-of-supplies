@@ -4,7 +4,8 @@ class SuppliesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @query = Supply.order(created_at: :desc)
+    @query = Supply.includes(created_by: :person)
+                   .order(created_at: :desc)
                    .accessible_by(current_ability)
                    .page(params[:page])
                    .ransack(params[:q])

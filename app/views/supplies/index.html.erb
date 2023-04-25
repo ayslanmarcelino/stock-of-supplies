@@ -31,7 +31,7 @@
           <tr>
             <td><%= supply.id %></td>
             <td><%= supply.name %></td>
-            <td><%= link_to(supply.created_by.name, admin_user_path(supply.created_by)) if supply.created_by.present? %></td>
+            <td><%= link_to(supply.created_by.person.name, admin_user_path(supply.created_by)) %></td>
           </tr>
         <% end %>
       </tbody>

@@ -39,7 +39,7 @@ module ApplicationHelper
     query = User.includes(:person).where(person: { unit: current_user.current_unit })
 
     query.each do |user|
-      users << ["#{user.name} | #{user.email}", user.id]
+      users << ["#{user.person.name} | #{user.email}", user.id]
     end
 
     users.sort

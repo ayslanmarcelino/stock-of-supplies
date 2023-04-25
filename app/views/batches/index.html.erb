@@ -33,7 +33,7 @@
             <td><%= batch.supply.name %></td>
             <td><%= I18n.l(batch.arrived_date) %></td>
             <td><%= I18n.l(batch.expiration_date) %></td>
-            <td><%= link_to(batch.created_by.name, admin_user_path(batch.created_by)) %></td>
+            <td><%= link_to(batch.created_by.person.name, admin_user_path(batch.created_by)) %></td>
           </tr>
         <% end %>
       </tbody>

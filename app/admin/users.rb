@@ -1,6 +1,8 @@
 ActiveAdmin.register(User, as: 'all_users') do
   menu priority: 3
 
+  includes created_by: :person
+
   permit_params User.permitted_params,
                 person_attributes: [
                   Person.permitted_params,
