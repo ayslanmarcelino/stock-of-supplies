@@ -7,3 +7,4 @@
         wrong_length: deve ter %{count} caracteres
         greater_than_or_equal_to: deve ser hoje ou depois
         greater_than: deve ser maior que %{count}
+        not_a_number: não é um número válido
