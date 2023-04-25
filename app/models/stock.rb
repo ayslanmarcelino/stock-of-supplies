@@ -3,7 +3,7 @@
 # Table name: stocks
 #
 #  id         :bigint           not null, primary key
-#  amount     :string
+#  amount     :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  supply_id  :bigint
@@ -20,4 +20,6 @@
 #  fk_rails_...  (unit_id => units.id)
 #
 class Stock < ApplicationRecord
+  belongs_to :supply
+  belongs_to :unit
 end
