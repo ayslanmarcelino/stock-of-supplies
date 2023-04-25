@@ -1,0 +1,8 @@
+pt-BR:
+  batches:
+    index:
+      id: Código
+      identifier: Nome
+      arrived_date: Data de chegada
+      expiration_date: Data de validade
+      created_by: Criado por
