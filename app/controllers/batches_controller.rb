@@ -1,6 +1,7 @@
 class BatchesController < ApplicationController
   def index
-    @query = Batch.order(created_at: :desc)
+    @query = Batch.includes(:supply)
+                  .order(created_at: :desc)
                   .accessible_by(current_ability)
                   .page(params[:page])
                   .ransack(params[:q])
