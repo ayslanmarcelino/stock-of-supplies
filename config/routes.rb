@@ -21,5 +21,5 @@ Rails.application.routes.draw do
   end
 
   resources :supplies, only: [:index, :new, :create]
-  resources :batches, only: :index
+  resources :batches, only: [:index, :new, :create]
 end
