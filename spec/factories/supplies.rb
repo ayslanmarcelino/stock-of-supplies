@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :supply do
-    name { 'Omalizumabe' }
+    name { Faker::Company.name }
     created_by { create(:user, :with_person) }
   end
 end

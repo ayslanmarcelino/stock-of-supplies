@@ -53,6 +53,7 @@ class Person < ApplicationRecord
 
   has_one :user
 
+  validates :cns_number, uniqueness: true, if: -> { cns_number.present? }
   validates :document_number, uniqueness: { scope: [:owner_type, :unit_id] }, if: -> { document_number.present? }
   validates :document_number, :name, :cns_number, presence: true
 

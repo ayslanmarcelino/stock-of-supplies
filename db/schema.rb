@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_24_030238) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_24_220240) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,6 +39,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_030238) do
     t.string "zip_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "batches", force: :cascade do |t|
+    t.string "identifier"
+    t.date "arrived_date"
+    t.date "expiration_date"
+    t.integer "amount"
+    t.bigint "supply_id"
+    t.bigint "created_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_batches_on_created_by_id"
+    t.index ["supply_id"], name: "index_batches_on_supply_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -127,6 +140,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_030238) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "batches", "supplies"
+  add_foreign_key "batches", "users", column: "created_by_id"
   add_foreign_key "people", "addresses"
   add_foreign_key "people", "units"
   add_foreign_key "supplies", "users", column: "created_by_id"
