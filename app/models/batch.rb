@@ -42,7 +42,6 @@ class Batch < ApplicationRecord
       :arrived_date,
       :expiration_date,
       :identifier,
-      :remaining,
       :created_by_id,
       :supply_id
     ]
