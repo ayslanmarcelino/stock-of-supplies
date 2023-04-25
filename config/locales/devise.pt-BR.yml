@@ -41,6 +41,7 @@ pt-BR:
       all_users: Usuário
       person: Pessoa
       supply: Suprimento
+      batch: Lote
       comment: Comentário
   devise:
     confirmations:
