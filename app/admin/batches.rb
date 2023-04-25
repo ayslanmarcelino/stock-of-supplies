@@ -1,7 +1,7 @@
 ActiveAdmin.register(Batch) do
   menu priority: 7
 
-  includes :supply, created_by: :person
+  includes :supply, :created_by
 
   permit_params Batch.permitted_params
 
