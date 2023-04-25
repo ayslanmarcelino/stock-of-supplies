@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_24_220240) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_25_223931) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,6 +76,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_220240) do
     t.index ["address_id"], name: "index_people_on_address_id"
     t.index ["owner_type", "owner_id"], name: "index_people_on_owner"
     t.index ["unit_id"], name: "index_people_on_unit_id"
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.string "amount"
+    t.bigint "supply_id"
+    t.bigint "unit_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["supply_id"], name: "index_stocks_on_supply_id"
+    t.index ["unit_id"], name: "index_stocks_on_unit_id"
   end
 
   create_table "supplies", force: :cascade do |t|
@@ -145,6 +155,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_220240) do
   add_foreign_key "batches", "users", column: "created_by_id"
   add_foreign_key "people", "addresses"
   add_foreign_key "people", "units"
+  add_foreign_key "stocks", "supplies"
+  add_foreign_key "stocks", "units"
   add_foreign_key "supplies", "users", column: "created_by_id"
   add_foreign_key "units", "addresses"
   add_foreign_key "user_roles", "units"
