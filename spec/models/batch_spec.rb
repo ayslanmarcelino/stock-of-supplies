@@ -7,6 +7,7 @@
 #  arrived_date    :date
 #  expiration_date :date
 #  identifier      :string
+#  remaining       :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  created_by_id   :bigint

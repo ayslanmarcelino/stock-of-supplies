@@ -5,6 +5,7 @@ class CreateBatches < ActiveRecord::Migration[7.0]
       t.date :arrived_date
       t.date :expiration_date
       t.integer :amount
+      t.integer :remaining
 
       t.references :supply, foreign_key: true
       t.references :created_by, foreign_key: { to_table: :users }

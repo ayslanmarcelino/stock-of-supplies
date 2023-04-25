@@ -46,6 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_24_220240) do
     t.date "arrived_date"
     t.date "expiration_date"
     t.integer "amount"
+    t.integer "remaining"
     t.bigint "supply_id"
     t.bigint "created_by_id"
     t.datetime "created_at", null: false
