@@ -1,6 +1,8 @@
 ActiveAdmin.register(Batch) do
   menu priority: 7
 
+  includes :supply, created_by: :person
+
   permit_params Batch.permitted_params
 
   actions :index, :show, :new, :create, :edit, :update

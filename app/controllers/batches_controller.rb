@@ -1,6 +1,6 @@
 class BatchesController < ApplicationController
   def index
-    @query = Batch.includes(:supply)
+    @query = Batch.includes(:supply, created_by: :person)
                   .order(created_at: :desc)
                   .accessible_by(current_ability)
                   .page(params[:page])
