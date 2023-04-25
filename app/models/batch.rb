@@ -33,6 +33,7 @@ class Batch < ApplicationRecord
             presence: true
   validates :identifier, uniqueness: true
   validates :amount, numericality: { greater_than: 0 }
+  validates :arrived_date, comparison: { less_than_or_equal_to: Date.current }
   validates :expiration_date, comparison: { greater_than_or_equal_to: Date.current }
 
   def self.permitted_params

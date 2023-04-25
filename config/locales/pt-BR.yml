@@ -6,5 +6,6 @@
         taken: já está em uso
         wrong_length: deve ter %{count} caracteres
         greater_than_or_equal_to: deve ser hoje ou depois
+        less_than_or_equal_to: deve ser hoje ou antes
         greater_than: deve ser maior que %{count}
         not_a_number: não é um número válido
