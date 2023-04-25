@@ -75,3 +75,11 @@ pt-BR:
         created_by: Criado por
         created_at: Criado em
         updated_at: Atualizado em
+      batch:
+        id: Código
+        identifier: Nome
+        amount: Quantidade
+        supply: Suprimento
+        arrived_date: Data de chegada
+        expiration_date: Data de validade
+        created_by: Criado por

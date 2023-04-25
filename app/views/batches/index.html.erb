@@ -14,6 +14,8 @@
         <tr>
           <th><%= sort_link(@query, :id, t('.id')) %></th>
           <th><%= sort_link(@query, :identifier, t('.identifier')) %></th>
+          <th><%= sort_link(@query, :amount, t('.amount')) %></th>
+          <th><%= sort_link(@query, :supply, t('.supply')) %></th>
           <th><%= sort_link(@query, :arrived_date, t('.arrived_date')) %></th>
           <th><%= sort_link(@query, :expiration_date, t('.expiration_date')) %></th>
           <th><%= sort_link(@query, :created_by, t('.created_by')) %></th>
@@ -25,6 +27,8 @@
           <tr>
             <td><%= batch.id %></td>
             <td><%= batch.identifier %></td>
+            <td><%= batch.amount %></td>
+            <td><%= batch.supply.name %></td>
             <td><%= I18n.l(batch.arrived_date) %></td>
             <td><%= I18n.l(batch.expiration_date) %></td>
             <td><%= link_to(batch.created_by.name, admin_user_path(batch.created_by)) if batch.created_by.present? %></td>
