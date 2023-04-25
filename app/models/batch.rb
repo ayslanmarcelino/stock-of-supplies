@@ -28,7 +28,6 @@ class Batch < ApplicationRecord
   belongs_to :supply
 
   validates :amount,
-            :arrived_date,
             :identifier,
             presence: true
   validates :identifier, uniqueness: true

@@ -96,6 +96,15 @@ RSpec.describe Batch, type: :model do
         end
       end
 
+      context 'when arrived_date' do
+        let!(:arrived_date) { Date.current + 1.day }
+
+        it do
+          expect(subject).not_to be_valid
+          expect(subject.errors.full_messages.to_sentence).to eq('Data de chegada deve ser hoje ou antes')
+        end
+      end
+
       context 'when expiration_date' do
         let!(:expiration_date) { Date.current - 1.day }
 
