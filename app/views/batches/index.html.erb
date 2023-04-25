@@ -1,0 +1,48 @@
+<div class="row col-md-12">
+  <h4><%= t('batches.components.layout.resource') %></h4>
+  <div>
+    <%= render(layout: 'layouts/components/filter/body') do %>
+      <%= search_form_for(@query, url: batches_path) do |form| %>
+        <%= render(partial: 'batches/components/filters', locals: { form: form }) %>
+        <%= render(partial: 'layouts/components/filter/footer', locals: { form: form }) %>
+      <% end %>
+    <% end %> 
+  </div> 
+  <div class="table-wrap">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th><%= sort_link(@query, :id, t('.id')) %></th>
+          <th><%= sort_link(@query, :identifier, t('.identifier')) %></th>
+          <th><%= sort_link(@query, :amount, t('.amount')) %></th>
+          <th><%= sort_link(@query, :remaining, t('.remaining')) %></th>
+          <th><%= sort_link(@query, :supply_name, t('.supply')) %></th>
+          <th><%= sort_link(@query, :arrived_date, t('.arrived_date')) %></th>
+          <th><%= sort_link(@query, :expiration_date, t('.expiration_date')) %></th>
+          <th><%= sort_link(@query, :created_by, t('.created_by')) %></th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @batches.each do |batch| %>
+          <tr>
+            <td><%= batch.id %></td>
+            <td><%= batch.identifier %></td>
+            <td><%= batch.amount %></td>
+            <td><%= batch.remaining %></td>
+            <td><%= batch.supply.name %></td>
+            <td><%= I18n.l(batch.arrived_date) %></td>
+            <td><%= I18n.l(batch.expiration_date) %></td>
+            <td><%= link_to(batch.created_by.name, admin_user_path(batch.created_by)) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%=
+  render partial: 'layouts/components/index/footer',
+         locals: {
+           resource: @batches
+         }
+%>

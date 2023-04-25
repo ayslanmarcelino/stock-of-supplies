@@ -31,3 +31,15 @@
     </div>
   <% end %>
 <% end %>
+
+<% if can?(:read, Batch) %>
+  <%= link_to(batches_path, class: "#{'active-menu' if request.path.include?(batches_path)} list-item-menu list-group-item-action",
+                            id: 'user') do %>
+    <div class="menu">
+      <div class="icon">
+        <i class="bi bi-box-seam"></i>
+      </div>
+      <span><%= t('batches.components.layout.resource') %></span>
+    </div>
+  <% end %>
+<% end %>
