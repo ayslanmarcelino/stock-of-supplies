@@ -3,7 +3,7 @@
 # Table name: batches
 #
 #  id              :bigint           not null, primary key
-#  amount          :string
+#  amount          :integer
 #  arrived_date    :date
 #  expiration_date :date
 #  identifier      :string
@@ -28,9 +28,9 @@ class Batch < ApplicationRecord
 
   validates :amount,
             :arrived_date,
-            :expiration_date,
             :identifier,
             presence: true
-
   validates :identifier, uniqueness: true
+  validates :amount, numericality: { greater_than: 0 }
+  validates :expiration_date, comparison: { greater_than_or_equal_to: Date.current }
 end
