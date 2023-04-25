@@ -2,8 +2,11 @@
   <div class="col-md-4">
     <%= form.text_field :identifier_cont, placeholder: t('batches.index.identifier'), class: 'form-control' %>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-5">
     <%= form.select :created_by_id_eq, users_collection, { include_blank: 'Selecione o criador' }, class: 'form-control' %>
+  </div>
+  <div class="col-md-3">
+    <%= form.select :supply_name_eq, Supply.all.map(&:name), { include_blank: 'Selecione o suprimento' }, class: 'form-control' %>
   </div>
 </div>
 <hr>

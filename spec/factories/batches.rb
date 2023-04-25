@@ -4,6 +4,7 @@ FactoryBot.define do
     arrived_date { Date.current }
     expiration_date { Date.current + 1.month }
     amount { rand(1..100) }
+    remaining { amount }
     supply { create(:supply) }
     created_by { create(:user, :with_person) }
   end
