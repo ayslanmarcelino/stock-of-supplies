@@ -6,7 +6,15 @@
         <%= render(partial: 'batches/components/filters', locals: { form: form }) %>
         <%= render(partial: 'layouts/components/filter/footer', locals: { form: form }) %>
       <% end %>
-    <% end %> 
+    <% end %>
+    <div class="pull-right mb-2">
+      <% if can?(:create, Batch) %>
+        <%= link_to(new_batch_path, class: 'btn btn-sm btn-success') do %>
+          <i class="bi bi-plus-circle"></i>
+          <%= t('application.new') %>
+        <% end %>
+      <% end %>
+    </div>
   </div> 
   <div class="table-wrap">
     <table class="table table-responsive">
