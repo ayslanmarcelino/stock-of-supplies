@@ -24,12 +24,17 @@ module Stocks
 
       def feed_arrays
         supplies_by_stock.each do |supply|
-          input_amount = input_values[supply.id]&.sum(&:amount) || 0
-          output_amount = output_values[supply.id]&.sum(&:amount) || 0
-
           @labels << supply.name
-          @values << input_amount - output_amount
+          @values << input_amount(supply.id) - output_amount(supply.id)
         end
+      end
+
+      def output_amount(supply_id)
+        output_values[supply_id]&.sum(&:amount) || 0
+      end
+
+      def input_amount(supply_id)
+        input_values[supply_id]&.sum(&:amount) || 0
       end
 
       def supplies_by_stock
