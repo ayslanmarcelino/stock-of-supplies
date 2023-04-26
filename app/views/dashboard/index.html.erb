@@ -1,1 +1,18 @@
 <%= "Bem-vindo(a), #{current_user.person.name}." %>
+<div class="row mt-4">
+  <div class="col-12 col-md-6">
+    <div class="card h-100">
+      <div class="card-body">
+        <h4 class="text-center">Estoque de suprimentos</h4>
+        <div class="d-flex justify-content-between">
+          <% if @chart[:labels].present? && @chart[:values].present? %>
+            <canvas id="chart" data-labels="<%= @chart[:labels] %>" data-values="<%= @chart[:values] %>"></canvas>
+          <% end %>
+        </div>
+        <span class="pull-right mt-4">
+          <%= link_to('Ver detalhes', stocks_path) %>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

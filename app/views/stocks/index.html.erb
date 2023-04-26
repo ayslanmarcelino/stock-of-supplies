@@ -1,8 +1,5 @@
 <div class="row col-md-12">
   <h4><%= t('stocks.components.layout.resource') %></h4>
-  <% if @chart[:labels].present? && @chart[:values].present? %>
-    <canvas id="chart" data-labels="<%= @chart[:labels] %>" data-values="<%= @chart[:values] %>"></canvas>
-  <% end %>
   <div>
     <%= render(layout: 'layouts/components/filter/body') do %>
       <%= search_form_for(@query, url: stocks_path) do |form| %>
