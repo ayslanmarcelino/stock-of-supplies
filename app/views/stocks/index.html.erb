@@ -9,7 +9,7 @@
     <% end %>
     <div class="pull-right mb-2">
       <% if can?(:read, Stock) %>
-        <%= link_to(stocks_path, class: 'btn btn-sm btn-danger disabled') do %>
+        <%= link_to(stocks_path, class: 'btn btn-sm -transparent-danger') do %>
           <i class="bi bi-arrow-left"></i>
           <%= t('application.new_output') %>
         <% end %>
