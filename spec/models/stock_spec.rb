@@ -27,5 +27,43 @@
 require 'rails_helper'
 
 RSpec.describe Stock, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject do
+    described_class.new(
+      amount: amount,
+      kind: kind,
+      reason: reason,
+      created_by: created_by,
+      supply: supply,
+      unit: unit
+    )
+  end
+
+  let!(:amount) { rand(1..100) }
+  let!(:kind) { [:input, :output].sample }
+  let!(:reason) { 'Recebido pelo governo' }
+  let!(:created_by) { create(:user) }
+  let!(:supply) { create(:supply) }
+  let!(:unit) { create(:unit) }
+
+  context 'when successful' do
+    it do
+      expect(subject).to be_valid
+    end
+  end
+
+  context 'when unsuccessful' do
+    context 'when does not pass a required attribute' do
+      [:amount, :kind, :reason, :created_by, :supply, :unit].each do |attribute|
+        context "when does not pass #{attribute}" do
+          let!(attribute) {}
+          let!(:message) { "#{I18n.t("activerecord.attributes.stock.#{attribute}")} não pode ficar em branco" }
+
+          it do
+            expect(subject).not_to be_valid
+            expect(subject.errors.full_messages.to_sentence).to eq(message)
+          end
+        end
+      end
+    end
+  end
 end
