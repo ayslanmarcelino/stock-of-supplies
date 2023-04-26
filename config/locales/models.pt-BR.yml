@@ -87,3 +87,13 @@ pt-BR:
         created_by: Criado por
         created_at: Criado em
         updated_at: Atualizado em
+      stock:
+        amount: Quantidade
+        kind_cd: Tipo
+        supply_id: Suprimento
+        unit_id: Unidade
+        kind_list:
+          input: Entrada
+          output: Saída
+        created_at: Criado em
+        updated_at: Atualizado em

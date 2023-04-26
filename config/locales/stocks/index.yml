@@ -1,0 +1,9 @@
+pt-BR:
+  stocks:
+    index:
+      id: Código
+      supply_name: Suprimento
+      amount: Quantidade
+      kind: Tipo
+      created_at: Criado em
+      input_and_output: Entrada e saída
