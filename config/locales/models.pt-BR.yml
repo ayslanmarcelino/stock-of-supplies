@@ -81,6 +81,7 @@ pt-BR:
         amount: Quantidade
         remaining: Restante
         supply: Suprimento
+        supply_id: Suprimento
         arrived_date: Data de chegada
         expiration_date: Data de validade
         created_by: Criado por

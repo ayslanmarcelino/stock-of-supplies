@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-lg-4">
+    <%= form.label(:identifier, class: 'required-label') %>
+    <%= form.text_field(:identifier, class: 'form-control required', required: true) %>
+  </div>
+  <div class="col-lg-3">
+    <%= form.label(:amount, class: 'required-label') %>
+    <%= form.number_field(:amount, class: 'form-control required', required: true) %>
+  </div>
+  <div class="col-lg-5">
+    <%= form.label(:supply_id, class: 'required-label') %>
+    <%= form.collection_select(:supply_id, @supplies, :id, :name, { include_blank: 'Selecione um suprimento' }, { class: 'form-control required', required: true }) %>
+  </div>
+  <div class="col-lg-6 mt-4">
+    <%= form.label(:arrived_date, class: 'required-label') %>
+    <%= form.date_field(:arrived_date, class: 'form-control required', required: true ) %>
+  </div>
+  <div class="col-lg-6 mt-4">
+    <%= form.label(:expiration_date, class: 'required-label') %>
+    <%= form.date_field(:expiration_date, class: 'form-control required', required: true ) %>
+  </div>
+</div>
