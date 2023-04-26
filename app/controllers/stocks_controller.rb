@@ -4,7 +4,7 @@ class StocksController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @query = Stock.includes(:supply)
+    @query = Stock.includes(:supply, :created_by)
                   .order(created_at: :desc)
                   .accessible_by(current_ability)
                   .page(params[:page])
