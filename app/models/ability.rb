@@ -59,6 +59,8 @@ class Ability
         can([:read, :create], Supply)
         can([:read, :create], Batch)
       end
+
+      can(:read, Stock, unit: @unit)
     end
 
     def viewer_abilities
@@ -69,6 +71,8 @@ class Ability
         can(:read, Supply)
         can(:read, Batch)
       end
+
+      can(:read, Stock, unit: @unit)
     end
   end
 end
