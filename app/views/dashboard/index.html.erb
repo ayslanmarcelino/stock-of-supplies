@@ -1,19 +1,29 @@
-<%= "Bem-vindo(a), #{current_user.person.name}." %>
-<% if @chart[:labels].present? && @chart[:values].present? %>
-  <div class="row mt-4">
-    <div class="col-12 col-md-6">
-      <div class="card h-100">
-        <div class="card-body">
-          <h4 class="text-center">Estoque de suprimentos</h4>
-          <hr>
-          <div class="d-flex justify-content-between">
-            <canvas id="chart" data-labels="<%= @chart[:labels] %>" data-values="<%= @chart[:values] %>"></canvas>
+<div class="row col-md-12">
+  <div>
+    <h4><%= t('dashboard.components.layout.resource') %></h4>
+    <div class="pull-right mb-2">
+      <%= link_to(root_path, class: 'btn btn-sm -transparent-standard') do %>
+        <i class="bi bi-filetype-pdf"></i>
+        <%= t('application.generate_pdf') %>
+      <% end %>
+    </div>
+  </div>
+  <% if @chart[:labels].present? && @chart[:values].present? %>
+    <div class="row mt-4">
+      <div class="col-12 col-md-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <h4 class="text-center">Estoque de suprimentos</h4>
+            <hr>
+            <div class="d-flex justify-content-between">
+              <canvas id="chart" data-labels="<%= @chart[:labels] %>" data-values="<%= @chart[:values] %>"></canvas>
+            </div>
+            <span class="pull-right mt-4">
+              <%= link_to('Ver detalhes', stocks_path, style: 'font-size: 12px;') %>
+            </span>
           </div>
-          <span class="pull-right mt-4">
-            <%= link_to('Ver detalhes', stocks_path, style: 'font-size: 12px;') %>
-          </span>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
