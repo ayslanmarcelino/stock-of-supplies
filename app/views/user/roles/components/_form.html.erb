@@ -5,6 +5,6 @@
   </div>
   <div class="col-lg-6">
     <%= form.label(:user_id, class: 'required-label') %>
-    <%= form.collection_select(:user_id, @users, :id, :name, { include_blank: 'Selecione um usuário' }, { class: 'form-control required', required: true }) %>
+    <%= form.select :user_id, users_collection, { include_blank: 'Selecione o usuário' }, class: 'form-control' %>
   </div>
 </div>
