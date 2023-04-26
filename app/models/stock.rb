@@ -41,6 +41,10 @@ class Stock < ApplicationRecord
 
   as_enum :kind, [:input, :output], prefix: true, map: :string
 
+  ransacker :created_at, type: :date do
+    Arel.sql('date(created_at)')
+  end
+
   def translated_kind
     I18n.t("activerecord.attributes.stock.kind_list.#{kind}")
   end

@@ -62,4 +62,8 @@ module ApplicationHelper
       'left'
     end
   end
+
+  def stock_reason_collection
+    Stock.all.map(&:reason).uniq.sort
+  end
 end
