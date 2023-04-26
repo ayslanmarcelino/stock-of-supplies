@@ -5,5 +5,7 @@ pt-BR:
       supply_name: Suprimento
       amount: Quantidade
       kind: Tipo
+      reason: Motivo
+      created_by: Criado por
       created_at: Criado em
       input_and_output: Entrada e saída

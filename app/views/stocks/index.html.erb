@@ -19,6 +19,8 @@
           <th><%= sort_link(@query, :supply_name, t('.supply_name')) %></th>
           <th><%= sort_link(@query, :amount, t('.amount')) %></th>
           <th><%= sort_link(@query, :kind_cd, t('.kind')) %></th>
+          <th><%= sort_link(@query, :reason, t('.reason')) %></th>
+          <th><%= sort_link(@query, :created_by, t('.created_by')) %></th>
           <th><%= sort_link(@query, :created_at, t('.created_at')) %></th>
           <th>&nbsp;</th>
         </tr>
@@ -33,6 +35,8 @@
                 <i class="bi bi-arrow-<%= kind_icon(stock.kind) %>"></i>
                 <%= stock.translated_kind %>
               </span>
+            <td><%= stock.reason %></td>
+            <td><%= link_to(stock.created_by.person.name, admin_user_path(stock.created_by)) %></td>
             <td><%= l(stock.created_at) %></td>
             </td>
           </tr>
