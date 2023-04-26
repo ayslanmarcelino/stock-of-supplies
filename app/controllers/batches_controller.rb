@@ -23,6 +23,7 @@ class BatchesController < ApplicationController
     @batch = Batch.new(batch_params)
 
     if @batch.save
+      create_input_stock
       redirect_success(path: batches_path, action: 'criado')
     else
       render(:new, status: :unprocessable_entity)
@@ -42,5 +43,14 @@ class BatchesController < ApplicationController
 
   def supplies
     @supplies ||= Supply.all
+  end
+
+  def create_input_stock
+    Stocks::Create.call(
+      params: @batch,
+      unit: current_user.current_unit,
+      reason: 'Recebido pelo governo',
+      kind: :input
+    )
   end
 end

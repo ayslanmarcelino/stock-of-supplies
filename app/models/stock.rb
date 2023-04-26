@@ -34,6 +34,11 @@ class Stock < ApplicationRecord
   belongs_to :supply
   belongs_to :unit
 
+  validates :amount,
+            :kind_cd,
+            :reason,
+            presence: true
+
   as_enum :kind, [:input, :output], prefix: true, map: :string
 
   def translated_kind

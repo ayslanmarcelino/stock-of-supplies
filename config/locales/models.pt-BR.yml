@@ -90,10 +90,13 @@ pt-BR:
       stock:
         amount: Quantidade
         kind_cd: Tipo
+        kind: Tipo
         reason: Motivo
         created_by: Criado por
         supply_id: Suprimento
+        supply: Suprimento
         unit_id: Unidade
+        unit: Unidade
         kind_list:
           input: Entrada
           output: Saída
