@@ -90,6 +90,8 @@ pt-BR:
       stock:
         amount: Quantidade
         kind_cd: Tipo
+        reason: Motivo
+        created_by: Criado por
         supply_id: Suprimento
         unit_id: Unidade
         kind_list:
