@@ -11,7 +11,7 @@ RSpec.describe Stocks::Create, type: :service do
   let!(:created_by) { create(:user) }
   let!(:amount) { 100 }
   let!(:unit) { create(:unit) }
-  let!(:reason) { 'Recebido pelo governo' }
+  let!(:reason) { 'Recebido pelo Estado' }
   let!(:kind) { :input }
   let!(:expiration_date) { Date.current + 5.years }
   let!(:occurrence_date) { Date.current - 5.days }

@@ -48,7 +48,7 @@ RSpec.describe Stock, type: :model do
 
   let!(:amount) { rand(1..100) }
   let!(:kind) { [:input, :output].sample }
-  let!(:reason) { 'Recebido pelo governo' }
+  let!(:reason) { 'Recebido pelo Estado' }
   let!(:created_by) { create(:user) }
   let!(:supply) { create(:supply) }
   let!(:unit) { create(:unit) }

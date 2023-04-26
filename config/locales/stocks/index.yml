@@ -10,4 +10,5 @@ pt-BR:
       created_at: Criado em
       source: Origem
       expiration_date: Data de validade
+      occurrence_date: Data da ocorrência
       input_and_output: Entrada e saída
