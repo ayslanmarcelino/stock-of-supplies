@@ -46,17 +46,19 @@ module ApplicationHelper
   end
 
   def kind_class(kind)
-    if kind == :input
+    case kind
+    when :input
       'success'
-    elsif kind == :output
+    when :output
       'danger'
     end
   end
 
   def kind_icon(kind)
-    if kind == :input
+    case kind
+    when :input
       'right'
-    elsif kind == :output
+    when :output
       'left'
     end
   end

@@ -32,6 +32,6 @@ class Stock < ApplicationRecord
   as_enum :kind, [:input, :output], prefix: true, map: :string
 
   def translated_kind
-    translated = I18n.t("activerecord.attributes.stock.kind_list.#{kind}")
+    I18n.t("activerecord.attributes.stock.kind_list.#{kind}")
   end
 end
