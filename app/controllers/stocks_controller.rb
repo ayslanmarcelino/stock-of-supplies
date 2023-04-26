@@ -11,6 +11,6 @@ class StocksController < ApplicationController
                   .ransack(params[:q])
 
     @stocks = @query.result(distinct: false)
-    @chart = Stocks::Chart::Create.call(user: current_user)
+    @chart = Stocks::Chart::Build.call(user: current_user)
   end
 end

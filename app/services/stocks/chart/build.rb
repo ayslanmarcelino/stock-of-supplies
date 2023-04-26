@@ -1,6 +1,6 @@
 module Stocks
   module Chart
-    class Create < ApplicationService
+    class Build < ApplicationService
       def initialize(user:)
         @user = user
         @labels = []
@@ -8,12 +8,12 @@ module Stocks
       end
 
       def call
-        data
+        build_data
       end
 
       private
 
-      def data
+      def build_data
         feed_arrays
 
         {

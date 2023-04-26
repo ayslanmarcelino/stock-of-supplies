@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Stocks::Chart::Create, type: :service do
+RSpec.describe Stocks::Chart::Build, type: :service do
   subject { described_class.new(user: user) }
 
   let!(:user) { create(:user) }
