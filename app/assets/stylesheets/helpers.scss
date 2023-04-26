@@ -134,3 +134,20 @@ label.required-label::after {
   content: ' *';
   color: $dark-red;
 }
+
+.badge {
+  &.-success {
+    background-color: $success;
+  }
+
+  &.-danger {
+    background-color: $danger;
+  }
+}
+
+#chart {
+  width: 75% !important;
+  height: 75% !important;
+  margin: 0 auto !important;
+  display: block !important;
+}

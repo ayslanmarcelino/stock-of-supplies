@@ -1,0 +1,49 @@
+<div class="row col-md-12">
+  <h4><%= t('stocks.components.layout.resource') %></h4>
+  <canvas id="chart" data-labels="<%= @labels %>" data-values="<%= @values %>"></canvas>
+  <div>
+    <%= render(layout: 'layouts/components/filter/body') do %>
+      <%= search_form_for(@query, url: stocks_path) do |form| %>
+        <%= render(partial: 'stocks/components/filters', locals: { form: form }) %>
+        <%= render(partial: 'layouts/components/filter/footer', locals: { form: form }) %>
+      <% end %>
+    <% end %>
+  </div>
+  <h6>
+    <i class="bi bi-arrow-left-right"></i>
+    <%= t('stocks.components.layout.input_and_output') %>
+  </h6>
+  <div class="table-wrap">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th><%= sort_link(@query, :supply_name, t('.supply_name')) %></th>
+          <th><%= sort_link(@query, :amount, t('.amount')) %></th>
+          <th><%= sort_link(@query, :kind, t('.kind')) %></th>
+          <th><%= sort_link(@query, :created_at, t('.created_at')) %></th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @stocks.each do |stock| %>
+          <tr>
+            <td><%= stock.supply.name %></td>
+            <td><%= stock.amount %></td>
+            <td>
+              <span class="badge -<%= kind_class(stock.kind) %> w-100">
+                <%= stock.translated_kind %>
+              </span>
+            <td><%= l(stock.created_at) %></td>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%=
+  render partial: 'layouts/components/index/footer',
+         locals: {
+           resource: @stocks
+         }
+%>

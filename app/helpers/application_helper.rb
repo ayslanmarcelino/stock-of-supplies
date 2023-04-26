@@ -44,4 +44,12 @@ module ApplicationHelper
 
     users.sort
   end
+
+  def kind_class(kind)
+    if kind == :input
+      'success'
+    elsif kind == :output
+      'danger'
+    end
+  end
 end
