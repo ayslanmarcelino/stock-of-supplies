@@ -91,6 +91,7 @@ pt-BR:
         amount: Quantidade
         kind_cd: Tipo
         kind: Tipo
+        translated_kind: Tipo
         reason: Motivo
         created_by: Criado por
         supply_id: Suprimento
