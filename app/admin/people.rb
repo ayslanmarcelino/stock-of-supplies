@@ -75,7 +75,7 @@ ActiveAdmin.register(Person) do
       f.input(:marital_status_cd, as: :select, collection: Person::MARITAL_STATUSES)
       f.input(:telephone_number)
       f.input(:cell_number)
-      f.input(:owner_id, as: :select, collection: User.all.map { |user| [user.email, user.id] })
+      f.input(:owner_id, as: :select, collection: User.all.map { |user| ["#{user.person.name} | #{user.email}", user.id] })
       f.input(:owner_type, as: :select, collection: ['User'])
     end
 
