@@ -52,4 +52,12 @@ module ApplicationHelper
       'danger'
     end
   end
+
+  def kind_icon(kind)
+    if kind == :input
+      'right'
+    elsif kind == :output
+      'left'
+    end
+  end
 end
