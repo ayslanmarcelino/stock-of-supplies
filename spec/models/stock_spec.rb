@@ -2,19 +2,23 @@
 #
 # Table name: stocks
 #
-#  id            :bigint           not null, primary key
-#  amount        :integer
-#  kind_cd       :string
-#  reason        :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  created_by_id :bigint
-#  supply_id     :bigint
-#  unit_id       :bigint
+#  id              :bigint           not null, primary key
+#  amount          :integer
+#  expiration_date :date
+#  kind_cd         :string
+#  reason          :string
+#  source_type     :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  created_by_id   :bigint
+#  source_id       :bigint
+#  supply_id       :bigint
+#  unit_id         :bigint
 #
 # Indexes
 #
 #  index_stocks_on_created_by_id  (created_by_id)
+#  index_stocks_on_source         (source_type,source_id)
 #  index_stocks_on_supply_id      (supply_id)
 #  index_stocks_on_unit_id        (unit_id)
 #
@@ -34,7 +38,9 @@ RSpec.describe Stock, type: :model do
       reason: reason,
       created_by: created_by,
       supply: supply,
-      unit: unit
+      unit: unit,
+      expiration_date: expiration_date,
+      source: source
     )
   end
 
@@ -44,6 +50,8 @@ RSpec.describe Stock, type: :model do
   let!(:created_by) { create(:user) }
   let!(:supply) { create(:supply) }
   let!(:unit) { create(:unit) }
+  let!(:expiration_date) { Date.current + 5.years }
+  let!(:source) { create(:batch) }
 
   context 'when successful' do
     it do
@@ -53,7 +61,7 @@ RSpec.describe Stock, type: :model do
 
   context 'when unsuccessful' do
     context 'when does not pass a required attribute' do
-      [:amount, :kind, :reason, :created_by, :supply, :unit].each do |attribute|
+      [:amount, :kind, :reason, :created_by, :supply, :unit, :expiration_date, :source].each do |attribute|
         context "when does not pass #{attribute}" do
           let!(attribute) {}
           let!(:message) { "#{I18n.t("activerecord.attributes.stock.#{attribute}")} não pode ficar em branco" }

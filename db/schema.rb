@@ -82,12 +82,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_223931) do
     t.integer "amount"
     t.string "kind_cd"
     t.string "reason"
+    t.date "expiration_date"
     t.bigint "supply_id"
     t.bigint "unit_id"
     t.bigint "created_by_id"
+    t.string "source_type"
+    t.bigint "source_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_by_id"], name: "index_stocks_on_created_by_id"
+    t.index ["source_type", "source_id"], name: "index_stocks_on_source"
     t.index ["supply_id"], name: "index_stocks_on_supply_id"
     t.index ["unit_id"], name: "index_stocks_on_unit_id"
   end

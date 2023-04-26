@@ -18,9 +18,11 @@ module Stocks
         created_by: @params.created_by,
         supply: @params.supply,
         amount: @params.amount,
+        expiration_date: @params.expiration_date,
         unit: @unit,
         reason: @reason,
-        kind: @kind
+        kind: @kind,
+        source: @params
       )
     end
   end

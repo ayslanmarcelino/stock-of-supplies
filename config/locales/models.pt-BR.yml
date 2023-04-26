@@ -101,5 +101,8 @@ pt-BR:
         kind_list:
           input: Entrada
           output: Saída
+        expiration_date: Data de validade
+        source: Origem
+        source_id: Origem
         created_at: Criado em
         updated_at: Atualizado em

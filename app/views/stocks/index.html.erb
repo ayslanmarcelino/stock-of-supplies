@@ -29,7 +29,9 @@
           <th><%= sort_link(@query, :kind_cd, t('.kind')) %></th>
           <th><%= sort_link(@query, :reason, t('.reason')) %></th>
           <th><%= sort_link(@query, :created_by, t('.created_by')) %></th>
+          <th><%= sort_link(@query, :expiration_date, t('.expiration_date')) %></th>
           <th><%= sort_link(@query, :created_at, t('.created_at')) %></th>
+          <th><%= sort_link(@query, :source, t('.source')) %></th>
           <th>&nbsp;</th>
         </tr>
       </thead>
@@ -41,11 +43,12 @@
             <td>
               <span class="badge -<%= kind_class(stock.kind) %> w-100">
                 <i class="bi bi-arrow-<%= kind_icon(stock.kind) %>"></i>
-                <%= stock.translated_kind %>
               </span>
             <td><%= stock.reason %></td>
             <td><%= link_to(stock.created_by.person.name, admin_user_path(stock.created_by)) %></td>
+            <td><%= l(stock.expiration_date) %></td>
             <td><%= l(stock.created_at) %></td>
+            <td><%= I18n.t("activerecord.models.#{stock.source.class.name.downcase}") %></td>
             </td>
           </tr>
         <% end %>
