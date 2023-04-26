@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  amount     :integer
+#  kind_cd    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  supply_id  :bigint
