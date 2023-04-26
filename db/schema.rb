@@ -80,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_223931) do
 
   create_table "stocks", force: :cascade do |t|
     t.integer "amount"
+    t.string "kind_cd"
     t.bigint "supply_id"
     t.bigint "unit_id"
     t.datetime "created_at", null: false
