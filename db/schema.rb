@@ -48,11 +48,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_223931) do
     t.integer "amount"
     t.integer "remaining"
     t.bigint "supply_id"
+    t.bigint "unit_id"
     t.bigint "created_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_by_id"], name: "index_batches_on_created_by_id"
     t.index ["supply_id"], name: "index_batches_on_supply_id"
+    t.index ["unit_id"], name: "index_batches_on_unit_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -160,6 +162,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_223931) do
   end
 
   add_foreign_key "batches", "supplies"
+  add_foreign_key "batches", "units"
   add_foreign_key "batches", "users", column: "created_by_id"
   add_foreign_key "people", "addresses"
   add_foreign_key "people", "units"

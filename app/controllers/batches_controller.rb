@@ -33,7 +33,13 @@ class BatchesController < ApplicationController
   private
 
   def batch_params
-    params.require(:batch).permit(Batch.permitted_params).merge(created_by: current_user, remaining: params[:batch][:amount])
+    params.require(:batch)
+          .permit(Batch.permitted_params)
+          .merge(
+            unit: current_user.current_unit,
+            created_by: current_user,
+            remaining: params[:batch][:amount]
+          )
   end
 
   def redirect_success(path:, action:)
@@ -48,7 +54,6 @@ class BatchesController < ApplicationController
   def create_input_stock!
     Stocks::Create.call(
       params: @batch,
-      unit: current_user.current_unit,
       reason: 'Recebido pelo governo',
       kind: :input
     )

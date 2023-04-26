@@ -12,16 +12,19 @@
 #  updated_at      :datetime         not null
 #  created_by_id   :bigint
 #  supply_id       :bigint
+#  unit_id         :bigint
 #
 # Indexes
 #
 #  index_batches_on_created_by_id  (created_by_id)
 #  index_batches_on_supply_id      (supply_id)
+#  index_batches_on_unit_id        (unit_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (created_by_id => users.id)
 #  fk_rails_...  (supply_id => supplies.id)
+#  fk_rails_...  (unit_id => units.id)
 #
 require 'rails_helper'
 
@@ -33,7 +36,8 @@ RSpec.describe Batch, type: :model do
       arrived_date: arrived_date,
       expiration_date: expiration_date,
       supply: supply,
-      created_by: created_by
+      created_by: created_by,
+      unit: unit
     )
   end
 
@@ -43,6 +47,7 @@ RSpec.describe Batch, type: :model do
   let!(:expiration_date) { Date.current + 1.month }
   let!(:supply) { create(:supply) }
   let!(:created_by) { create(:user, :with_person) }
+  let!(:unit) { create(:unit) }
 
   context 'when successful' do
     it do
@@ -67,6 +72,16 @@ RSpec.describe Batch, type: :model do
       context "when does not pass amount" do
         let!(:amount) {}
         let!(:message) { 'Quantidade não pode ficar em branco and Quantidade não é um número válido' }
+
+        it do
+          expect(subject).not_to be_valid
+          expect(subject.errors.full_messages.to_sentence).to eq(message)
+        end
+      end
+
+      context "when does not pass amount" do
+        let!(:unit) {}
+        let!(:message) { 'Unidade não pode ficar em branco' }
 
         it do
           expect(subject).not_to be_valid

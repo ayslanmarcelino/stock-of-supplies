@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Stocks::Create, type: :service do
-  subject { described_class.new(params: params, unit: unit, reason: reason, kind: kind) }
+  subject { described_class.new(params: params, reason: reason, kind: kind) }
 
-  let!(:params) { build(:batch, supply: supply, created_by: created_by, amount: amount, expiration_date: expiration_date) }
+  let!(:params) do
+    build(:batch, supply: supply, created_by: created_by, amount: amount, expiration_date: expiration_date, unit: unit)
+  end
   let!(:supply) { create(:supply) }
   let!(:created_by) { create(:user) }
   let!(:amount) { 100 }
