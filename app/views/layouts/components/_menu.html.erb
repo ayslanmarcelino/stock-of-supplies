@@ -45,7 +45,7 @@
 <% end %>
 
 <% if can?(:read, Stock) %>
-  <%= link_to(stocks_path, class: "#{'active-menu' if request.path == root_path} list-item-menu list-group-item-action",
+  <%= link_to(stocks_path, class: "#{'active-menu' if request.path.include?(stocks_path)} list-item-menu list-group-item-action",
                             id: 'user') do %>
     <div class="menu">
       <div class="icon">
