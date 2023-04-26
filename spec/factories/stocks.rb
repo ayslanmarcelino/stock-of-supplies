@@ -7,6 +7,7 @@ FactoryBot.define do
     supply { batch.supply }
     created_by { create(:user) }
     expiration_date { Date.current + 5.years }
+    occurrence_date { Date.current - 2.days }
     unit { create(:unit) }
   end
 end

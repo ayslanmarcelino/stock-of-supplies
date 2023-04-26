@@ -4,7 +4,8 @@ RSpec.describe Stocks::Create, type: :service do
   subject { described_class.new(params: params, reason: reason, kind: kind) }
 
   let!(:params) do
-    build(:batch, supply: supply, created_by: created_by, amount: amount, expiration_date: expiration_date, unit: unit)
+    build(:batch, supply: supply, created_by: created_by, amount: amount, expiration_date: expiration_date, unit: unit,
+                  arrived_date: occurrence_date)
   end
   let!(:supply) { create(:supply) }
   let!(:created_by) { create(:user) }
@@ -13,6 +14,7 @@ RSpec.describe Stocks::Create, type: :service do
   let!(:reason) { 'Recebido pelo governo' }
   let!(:kind) { :input }
   let!(:expiration_date) { Date.current + 5.years }
+  let!(:occurrence_date) { Date.current - 5.days }
 
   describe '#call' do
     context 'with valid params' do
@@ -22,7 +24,7 @@ RSpec.describe Stocks::Create, type: :service do
     end
 
     context 'with invalid params' do
-      [:amount, :kind, :reason, :created_by, :supply, :unit, :expiration_date].each do |attribute|
+      [:amount, :kind, :reason, :created_by, :supply, :unit, :expiration_date, :occurrence_date].each do |attribute|
         context "when does not pass #{attribute}" do
           let!(attribute) {}
           let!(:message) { "#{I18n.t("activerecord.attributes.stock.#{attribute}")} não pode ficar em branco" }

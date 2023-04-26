@@ -85,6 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_223931) do
     t.string "kind_cd"
     t.string "reason"
     t.date "expiration_date"
+    t.date "occurrence_date"
     t.bigint "supply_id"
     t.bigint "unit_id"
     t.bigint "created_by_id"

@@ -79,7 +79,7 @@ RSpec.describe Batch, type: :model do
         end
       end
 
-      context "when does not pass amount" do
+      context "when does not pass unit" do
         let!(:unit) {}
         let!(:message) { 'Unidade não pode ficar em branco' }
 

@@ -6,6 +6,7 @@
 #  amount          :integer
 #  expiration_date :date
 #  kind_cd         :string
+#  occurrence_date :date
 #  reason          :string
 #  source_type     :string
 #  created_at      :datetime         not null
@@ -43,6 +44,7 @@ class Stock < ApplicationRecord
             :kind_cd,
             :reason,
             :expiration_date,
+            :occurrence_date,
             presence: true
 
   as_enum :kind, [:input, :output], prefix: true, map: :string

@@ -5,6 +5,7 @@ class CreateStocks < ActiveRecord::Migration[7.0]
       t.string :kind_cd
       t.string :reason
       t.date :expiration_date
+      t.date :occurrence_date
 
       t.references :supply, foreign_key: true
       t.references :unit, foreign_key: true

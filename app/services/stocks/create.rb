@@ -19,6 +19,7 @@ module Stocks
         amount: @params.amount,
         unit: @params.unit,
         expiration_date: @params.expiration_date,
+        occurrence_date: @params.arrived_date,
         reason: @reason,
         kind: @kind,
         source: @params
