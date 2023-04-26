@@ -81,10 +81,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_223931) do
   create_table "stocks", force: :cascade do |t|
     t.integer "amount"
     t.string "kind_cd"
+    t.string "reason"
     t.bigint "supply_id"
     t.bigint "unit_id"
+    t.bigint "created_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_stocks_on_created_by_id"
     t.index ["supply_id"], name: "index_stocks_on_supply_id"
     t.index ["unit_id"], name: "index_stocks_on_unit_id"
   end
@@ -158,6 +161,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_223931) do
   add_foreign_key "people", "units"
   add_foreign_key "stocks", "supplies"
   add_foreign_key "stocks", "units"
+  add_foreign_key "stocks", "users", column: "created_by_id"
   add_foreign_key "supplies", "users", column: "created_by_id"
   add_foreign_key "units", "addresses"
   add_foreign_key "user_roles", "units"
