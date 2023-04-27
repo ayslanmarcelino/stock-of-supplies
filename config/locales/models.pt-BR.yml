@@ -77,7 +77,7 @@ pt-BR:
         updated_at: Atualizado em
       batch:
         id: Código
-        identifier: Nome
+        identifier: Identificador
         amount: Quantidade
         remaining: Restante
         supply: Suprimento

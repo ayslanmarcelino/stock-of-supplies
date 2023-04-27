@@ -28,6 +28,8 @@
           <th><%= sort_link(@query, :arrived_date, t('.arrived_date')) %></th>
           <th><%= sort_link(@query, :expiration_date, t('.expiration_date')) %></th>
           <th><%= sort_link(@query, :created_by, t('.created_by')) %></th>
+          <th><%= sort_link(@query, :created_at, t('.created_at')) %></th>
+          <th><%= sort_link(@query, :updated_at, t('.updated_at')) %></th>
           <th>&nbsp;</th>
         </tr>
       </thead>
@@ -42,6 +44,13 @@
             <td><%= I18n.l(batch.arrived_date) %></td>
             <td><%= I18n.l(batch.expiration_date) %></td>
             <td><%= link_to(batch.created_by.person.name, admin_user_path(batch.created_by)) %></td>
+            <td><%= I18n.l(batch.created_at) %></td>
+            <td><%= I18n.l(batch.updated_at) %></td>
+            <td>
+              <% if can?(:increment_amount, Stock) %>
+                <%= render partial: 'batches/components/increment_amount_modal', locals: { resource: batch } %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

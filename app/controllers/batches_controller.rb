@@ -23,11 +23,28 @@ class BatchesController < ApplicationController
     @batch = Batch.new(batch_params)
 
     if @batch.save
-      create_input_stock!
+      create_input_stock!(amount: @batch.amount, arrived_date: @batch.arrived_date)
       redirect_success(path: batches_path, action: 'criado')
     else
       render(:new, status: :unprocessable_entity)
     end
+  end
+
+  def increment_amount
+    batch = Batch.find(params[:id])
+    batch.amount += params[:batch][:amount].to_i
+    batch.remaining += params[:batch][:amount].to_i
+    batch.arrived_date = params[:batch][:arrived_date] if batch.arrived_date < params[:batch][:arrived_date].to_date
+
+    if batch.valid?
+      batch.save!
+      create_input_stock!(amount: params[:batch][:amount], arrived_date: params[:batch][:arrived_date])
+      flash[:success] = "Valor adicionado ao lote #{batch.identifier}."
+    else
+      flash[:alert] = batch.errors.full_messages.to_sentence
+    end
+
+    redirect_to(batches_path)
   end
 
   private
@@ -51,11 +68,13 @@ class BatchesController < ApplicationController
     @supplies ||= Supply.all
   end
 
-  def create_input_stock!
+  def create_input_stock!(amount:, arrived_date:)
     Stocks::Create.call(
       params: @batch,
       reason: 'Recebido pelo Estado',
-      kind: :input
+      kind: :input,
+      amount: amount,
+      arrived_date: arrived_date
     )
   end
 end
