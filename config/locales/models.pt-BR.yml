@@ -19,6 +19,7 @@ pt-BR:
         birth_date: Data de nascimento
         created_at: Criado em
         updated_at: Atualizado em
+        created_by: Criado por
         kind_list:
           unit: Unidade
           pni: Programa nacional de imunização (PNI)

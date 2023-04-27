@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_25_223931) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_27_171308) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -127,7 +127,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_223931) do
     t.bigint "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "created_by_id"
     t.index ["address_id"], name: "index_units_on_address_id"
+    t.index ["created_by_id"], name: "index_units_on_created_by_id"
   end
 
   create_table "user_roles", force: :cascade do |t|
@@ -175,6 +177,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_223931) do
   add_foreign_key "stocks", "users", column: "created_by_id"
   add_foreign_key "supplies", "users", column: "created_by_id"
   add_foreign_key "units", "addresses"
+  add_foreign_key "units", "users", column: "created_by_id"
   add_foreign_key "user_roles", "units"
   add_foreign_key "user_roles", "users"
   add_foreign_key "users", "people"
