@@ -1,6 +1,8 @@
 ActiveAdmin.register(Unit) do
   menu priority: 2
 
+  includes created_by: :person
+
   permit_params Unit.permitted_params,
                 address_attributes: Address.permitted_params
 
@@ -12,6 +14,7 @@ ActiveAdmin.register(Unit) do
   filter :email
   filter :representative_name
   filter :representative_document_number
+  filter :created_by, as: :select, collection: User.all.map { |user| ["#{user.person.name} | #{user.email}", user.id] }.sort
   filter :created_at
 
   scope('Todos', :all)
@@ -25,6 +28,9 @@ ActiveAdmin.register(Unit) do
     column :kind_cd
     column :name
     column :active
+    column :created_by do |resource|
+      link_to(resource.created_by&.person&.name, admin_all_user_path(resource.created_by)) if resource.created_by.present?
+    end
     column :created_at
     column :updated_at
     actions
@@ -36,6 +42,7 @@ ActiveAdmin.register(Unit) do
       f.input(:cnes_number)
       f.input(:name)
       f.input(:kind_cd, as: :select, collection: Unit::KINDS)
+      f.input :created_by, input_html: { value: current_user }, as: :hidden
     end
 
     f.inputs('Representante') do
@@ -70,6 +77,9 @@ ActiveAdmin.register(Unit) do
       row :cnes_number
       row :name
       row :kind_cd
+      row :created_by do |resource|
+        link_to(resource.created_by&.person&.name, admin_all_user_path(resource.created_by)) if resource.created_by.present?
+      end
       row :created_at
       row :updated_at
     end
