@@ -55,6 +55,6 @@ class Batch < ApplicationRecord
   end
 
   def upcase_identifier
-    self.identifier = identifier.upcase
+    self.identifier = identifier&.upcase
   end
 end
