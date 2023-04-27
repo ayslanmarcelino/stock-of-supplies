@@ -31,15 +31,12 @@ class BatchesController < ApplicationController
   end
 
   def increment_amount
-    batch = Batch.find(params[:id])
-    batch.amount += params[:batch][:amount].to_i
-    batch.remaining += params[:batch][:amount].to_i
-    batch.arrived_date = params[:batch][:arrived_date] if batch.arrived_date < params[:batch][:arrived_date].to_date
+    assign_data
 
-    if batch.valid?
-      batch.save!
+    if resource.valid?
+      resource.save!
       create_input_stock!(amount: params[:batch][:amount], arrived_date: params[:batch][:arrived_date])
-      flash[:success] = "Valor adicionado ao lote #{batch.identifier}."
+      flash[:success] = "Valor adicionado ao lote #{resource.identifier}."
     else
       flash[:alert] = batch.errors.full_messages.to_sentence
     end
@@ -77,5 +74,19 @@ class BatchesController < ApplicationController
       amount: amount,
       arrived_date: arrived_date
     )
+  end
+
+  def resource
+    @resource ||= Batch.find(params[:id])
+  end
+
+  def assign_data
+    resource.amount += params[:batch][:amount].to_i
+    resource.remaining += params[:batch][:amount].to_i
+    resource.arrived_date = params[:batch][:arrived_date] if before?
+  end
+
+  def before?
+    resource.arrived_date < params[:batch][:arrived_date].to_date
   end
 end
