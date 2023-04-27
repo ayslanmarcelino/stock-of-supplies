@@ -42,7 +42,7 @@ ActiveAdmin.register(Unit) do
       f.input(:cnes_number)
       f.input(:name)
       f.input(:kind_cd, as: :select, collection: Unit::KINDS)
-      f.input :created_by, input_html: { value: current_user }, as: :hidden
+      f.input(:created_by, input_html: { value: current_user }, as: :hidden)
     end
 
     f.inputs('Representante') do
