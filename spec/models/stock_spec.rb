@@ -45,7 +45,8 @@ RSpec.describe Stock, type: :model do
       unit: unit,
       expiration_date: expiration_date,
       source: source,
-      occurrence_date: occurrence_date
+      occurrence_date: occurrence_date,
+      batch: batch
     )
   end
 
@@ -58,6 +59,7 @@ RSpec.describe Stock, type: :model do
   let!(:expiration_date) { Date.current + 5.years }
   let!(:source) { create(:batch) }
   let!(:occurrence_date) { Date.current - 5.days }
+  let!(:batch) { create(:batch) }
 
   context 'when successful' do
     it do
@@ -67,7 +69,7 @@ RSpec.describe Stock, type: :model do
 
   context 'when unsuccessful' do
     context 'when does not pass a required attribute' do
-      [:amount, :kind, :reason, :created_by, :supply, :unit, :expiration_date, :source, :occurrence_date].each do |attribute|
+      [:amount, :kind, :reason, :created_by, :supply, :unit, :expiration_date, :source, :occurrence_date, :batch].each do |attribute|
         context "when does not pass #{attribute}" do
           let!(attribute) {}
           let!(:message) { "#{I18n.t("activerecord.attributes.stock.#{attribute}")} não pode ficar em branco" }

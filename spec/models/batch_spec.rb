@@ -96,7 +96,7 @@ RSpec.describe Batch, type: :model do
 
         it do
           expect(subject).not_to be_valid
-          expect(subject.errors.full_messages.to_sentence).to eq('Nome já está em uso')
+          expect(subject.errors.full_messages.to_sentence).to eq('Identificador já está em uso')
         end
       end
     end
