@@ -20,14 +20,17 @@
 #  created_at                       :datetime         not null
 #  updated_at                       :datetime         not null
 #  address_id                       :bigint
+#  created_by_id                    :bigint
 #
 # Indexes
 #
-#  index_units_on_address_id  (address_id)
+#  index_units_on_address_id     (address_id)
+#  index_units_on_created_by_id  (created_by_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (address_id => addresses.id)
+#  fk_rails_...  (created_by_id => users.id)
 #
 class Unit < ApplicationRecord
   KINDS = [
@@ -36,6 +39,7 @@ class Unit < ApplicationRecord
   ].freeze
 
   belongs_to :address, optional: true, dependent: :destroy
+  belongs_to :created_by, class_name: 'User'
 
   validates :cnes_number, uniqueness: true, if: -> { cnes_number.present? }
   validates :email,
@@ -69,7 +73,8 @@ class Unit < ApplicationRecord
       :identity_document_number,
       :identity_document_issuing_agency,
       :birth_date,
-      :address_id
+      :address_id,
+      :created_by
     ]
   end
 end
