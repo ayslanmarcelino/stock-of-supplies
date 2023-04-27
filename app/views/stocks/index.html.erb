@@ -31,8 +31,8 @@
           <th><%= sort_link(@query, :reason, t('.reason')) %></th>
           <th><%= sort_link(@query, :created_by, t('.created_by')) %></th>
           <th><%= sort_link(@query, :expiration_date, t('.expiration_date')) %></th>
-          <th><%= sort_link(@query, :created_at, t('.created_at')) %></th>
           <th><%= sort_link(@query, :occurrence_date, t('.occurrence_date')) %></th>
+          <th><%= sort_link(@query, :created_at, t('.created_at')) %></th>
           <th><%= sort_link(@query, :source, t('.source')) %></th>
           <th>&nbsp;</th>
         </tr>
@@ -50,8 +50,8 @@
             <td><%= stock.reason %></td>
             <td><%= link_to(stock.created_by.person.name, admin_user_path(stock.created_by)) %></td>
             <td><%= l(stock.expiration_date) %></td>
-            <td><%= l(stock.created_at) %></td>
             <td><%= l(stock.occurrence_date) %></td>
+            <td><%= l(stock.created_at) %></td>
             <td><%= I18n.t("activerecord.models.#{stock.source.class.name.downcase}") %></td>
           </tr>
         <% end %>

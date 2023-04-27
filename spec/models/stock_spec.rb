@@ -69,7 +69,18 @@ RSpec.describe Stock, type: :model do
 
   context 'when unsuccessful' do
     context 'when does not pass a required attribute' do
-      [:amount, :kind, :reason, :created_by, :supply, :unit, :expiration_date, :source, :occurrence_date, :batch].each do |attribute|
+      [
+        :amount,
+        :kind,
+        :reason,
+        :created_by,
+        :supply,
+        :unit,
+        :expiration_date,
+        :source,
+        :occurrence_date,
+        :batch
+      ].each do |attribute|
         context "when does not pass #{attribute}" do
           let!(attribute) {}
           let!(:message) { "#{I18n.t("activerecord.attributes.stock.#{attribute}")} não pode ficar em branco" }

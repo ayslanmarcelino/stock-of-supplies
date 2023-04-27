@@ -47,7 +47,7 @@
             <td><%= I18n.l(batch.created_at) %></td>
             <td><%= I18n.l(batch.updated_at) %></td>
             <td>
-              <% if can?(:increment_amount, Stock) %>
+              <% if can?(:increment_amount, Batch) %>
                 <%= render partial: 'batches/components/increment_amount_modal', locals: { resource: batch } %>
               <% end %>
             </td>

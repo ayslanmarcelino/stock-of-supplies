@@ -82,8 +82,8 @@ pt-BR:
         remaining: Restante
         supply: Suprimento
         supply_id: Suprimento
-        arrived_date: Data de chegada
-        expiration_date: Data de validade
+        arrived_date: Chegada
+        expiration_date: Validade
         created_by: Criado por
         created_at: Criado em
         updated_at: Atualizado em
@@ -102,8 +102,8 @@ pt-BR:
         kind_list:
           input: Entrada
           output: Saída
-        expiration_date: Data de validade
-        occurrence_date: Data de chegada
+        expiration_date: Validade
+        occurrence_date: Chegada
         source: Origem
         source_id: Origem
         batch: Lote

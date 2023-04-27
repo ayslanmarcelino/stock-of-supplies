@@ -116,7 +116,7 @@ RSpec.describe Batch, type: :model do
 
         it do
           expect(subject).not_to be_valid
-          expect(subject.errors.full_messages.to_sentence).to eq('Data de chegada deve ser hoje ou antes')
+          expect(subject.errors.full_messages.to_sentence).to eq('Chegada deve ser hoje ou antes')
         end
       end
 
@@ -125,7 +125,7 @@ RSpec.describe Batch, type: :model do
 
         it do
           expect(subject).not_to be_valid
-          expect(subject.errors.full_messages.to_sentence).to eq('Data de validade deve ser hoje ou depois')
+          expect(subject.errors.full_messages.to_sentence).to eq('Validade deve ser hoje ou depois')
         end
       end
     end

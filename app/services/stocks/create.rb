@@ -4,9 +4,9 @@ module Stocks
       @params = params
       @reason = reason
       @kind = kind
+      @batch = batch
       @amount = amount
       @arrived_date = arrived_date
-      @batch = batch
     end
 
     def call

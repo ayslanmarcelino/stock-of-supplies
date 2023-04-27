@@ -53,6 +53,7 @@ Lint/InheritException:
 
 Metrics/ParameterLists:
   Exclude:
+    - 'app/services/stocks/create.rb'
 
 Metrics/ModuleLength:
   Exclude:

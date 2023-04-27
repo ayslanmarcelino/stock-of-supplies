@@ -9,7 +9,7 @@ pt-BR:
       created_by: Criado por
       created_at: Criado em
       source: Origem
-      expiration_date: Data de validade
-      occurrence_date: Data da ocorrência
+      expiration_date: Validade
+      occurrence_date: Ocorreu em
       input_and_output: Entrada e saída
       batch: Lote
