@@ -9,5 +9,6 @@ FactoryBot.define do
     expiration_date { Date.current + 5.years }
     occurrence_date { Date.current - 2.days }
     unit { create(:unit) }
+    batch { create(:batch) }
   end
 end

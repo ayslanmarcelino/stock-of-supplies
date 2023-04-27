@@ -71,6 +71,7 @@ class BatchesController < ApplicationController
   def create_input_stock!(amount:, arrived_date:)
     Stocks::Create.call(
       params: @batch,
+      batch: @batch,
       reason: 'Recebido pelo Estado',
       kind: :input,
       amount: amount,

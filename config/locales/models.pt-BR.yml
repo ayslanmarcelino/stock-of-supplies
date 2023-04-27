@@ -106,5 +106,7 @@ pt-BR:
         occurrence_date: Data de chegada
         source: Origem
         source_id: Origem
+        batch: Lote
+        batch_id: Lote
         created_at: Criado em
         updated_at: Atualizado em

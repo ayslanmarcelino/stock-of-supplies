@@ -35,6 +35,7 @@ ActiveAdmin.register(Batch) do
     def create_input_stock!
       Stocks::Create.call(
         params: @batch,
+        batch: @batch,
         reason: 'Recebido pelo Estado',
         kind: :input
       )

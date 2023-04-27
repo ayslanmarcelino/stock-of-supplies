@@ -1,11 +1,12 @@
 module Stocks
   class Create < ApplicationService
-    def initialize(params:, reason:, kind:, amount: nil, arrived_date: nil)
+    def initialize(params:, reason:, kind:, batch:, amount: nil, arrived_date: nil)
       @params = params
       @reason = reason
       @kind = kind
       @amount = amount
       @arrived_date = arrived_date
+      @batch = batch
     end
 
     def call
@@ -24,7 +25,8 @@ module Stocks
         occurrence_date: occurrence_date,
         reason: @reason,
         kind: @kind,
-        source: @params
+        source: @params,
+        batch: @batch
       )
     end
 

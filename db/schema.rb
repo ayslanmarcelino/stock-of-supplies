@@ -86,6 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_223931) do
     t.string "reason"
     t.date "expiration_date"
     t.date "occurrence_date"
+    t.bigint "batch_id"
     t.bigint "supply_id"
     t.bigint "unit_id"
     t.bigint "created_by_id"
@@ -93,6 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_223931) do
     t.bigint "source_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["batch_id"], name: "index_stocks_on_batch_id"
     t.index ["created_by_id"], name: "index_stocks_on_created_by_id"
     t.index ["source_type", "source_id"], name: "index_stocks_on_source"
     t.index ["supply_id"], name: "index_stocks_on_supply_id"
@@ -167,6 +169,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_223931) do
   add_foreign_key "batches", "users", column: "created_by_id"
   add_foreign_key "people", "addresses"
   add_foreign_key "people", "units"
+  add_foreign_key "stocks", "batches"
   add_foreign_key "stocks", "supplies"
   add_foreign_key "stocks", "units"
   add_foreign_key "stocks", "users", column: "created_by_id"

@@ -25,6 +25,7 @@
       <thead>
         <tr>
           <th><%= sort_link(@query, :supply_name, t('.supply_name')) %></th>
+          <th><%= sort_link(@query, :batch, t('.batch')) %></th>
           <th><%= sort_link(@query, :amount, t('.amount')) %></th>
           <th><%= sort_link(@query, :kind_cd, t('.kind')) %></th>
           <th><%= sort_link(@query, :reason, t('.reason')) %></th>
@@ -40,6 +41,7 @@
         <% @stocks.each do |stock| %>
           <tr>
             <td><%= stock.supply.name %></td>
+            <td><%= stock.batch.identifier %></td>
             <td><%= stock.amount %></td>
             <td>
               <span class="badge -<%= kind_class(stock.kind) %> w-100">
