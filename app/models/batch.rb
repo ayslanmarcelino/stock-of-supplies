@@ -39,6 +39,8 @@ class Batch < ApplicationRecord
   validates :arrived_date, comparison: { less_than_or_equal_to: Date.current }
   validates :expiration_date, comparison: { greater_than_or_equal_to: Date.current }
 
+  before_validation :upcase_identifier
+
   def self.permitted_params
     [
       :id,
@@ -50,5 +52,9 @@ class Batch < ApplicationRecord
       :supply_id,
       :unit_id
     ]
+  end
+
+  def upcase_identifier
+    self.identifier = identifier.upcase
   end
 end
