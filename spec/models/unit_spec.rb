@@ -20,14 +20,17 @@
 #  created_at                       :datetime         not null
 #  updated_at                       :datetime         not null
 #  address_id                       :bigint
+#  created_by_id                    :bigint
 #
 # Indexes
 #
-#  index_units_on_address_id  (address_id)
+#  index_units_on_address_id     (address_id)
+#  index_units_on_created_by_id  (created_by_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (address_id => addresses.id)
+#  fk_rails_...  (created_by_id => users.id)
 #
 require 'rails_helper'
 
@@ -40,7 +43,8 @@ RSpec.describe Unit, type: :model do
       representative_name: representative_name,
       representative_document_number: representative_document_number,
       representative_cns_number: representative_cns_number,
-      kind: kind
+      kind: kind,
+      created_by: created_by
     )
   end
 
@@ -51,6 +55,7 @@ RSpec.describe Unit, type: :model do
   let(:representative_document_number) { CPF.generate }
   let(:kind) { Unit::KINDS.map { |array| array.second }.sample }
   let(:representative_cns_number) { FFaker.numerify('###############') }
+  let(:created_by) { create(:user) }
 
   context 'when sucessful' do
     context 'when valid params' do
@@ -121,6 +126,15 @@ RSpec.describe Unit, type: :model do
       it do
         expect(subject).not_to be_valid
         expect(subject.errors.full_messages.to_sentence).to eq('CPF não pode ficar em branco')
+      end
+    end
+
+    context 'when dont pass a created_by' do
+      let(:created_by) {}
+
+      it do
+        expect(subject).not_to be_valid
+        expect(subject.errors.full_messages.to_sentence).to eq('Criado por não pode ficar em branco')
       end
     end
 
