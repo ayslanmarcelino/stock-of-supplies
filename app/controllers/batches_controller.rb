@@ -92,8 +92,8 @@ class BatchesController < ApplicationController
 
   def create_stock!(amount:, arrived_date:, kind:, reason:)
     Stocks::Create.call(
-      params: resource,
-      batch: resource,
+      params: @batch,
+      batch: @batch,
       reason: reason,
       kind: kind,
       current_user: current_user,

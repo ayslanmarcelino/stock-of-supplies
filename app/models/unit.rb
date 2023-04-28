@@ -58,6 +58,8 @@ class Unit < ApplicationRecord
 
   as_enum :kind, [:unit, :pni], prefix: true, map: :string
 
+  has_many :batches
+
   def self.permitted_params
     [
       :email,
