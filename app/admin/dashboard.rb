@@ -45,7 +45,7 @@ ActiveAdmin.register_page("Dashboard") do
                  .group("identifier || ' - ' || supplies.name")
                  .where('expiration_date >= ? AND expiration_date <= ?', Date.current, Date.current + 1.year)
                  .group_by_month(:expiration_date, format: :chart)
-                 .sum(:amount)
+                 .sum(:remaining)
           )
         end
       end
