@@ -25,9 +25,13 @@
               </div>
               <div class="col-lg-12 mt-4">
                 <div class="form-group">
-                  <button class="btn btn-secondary pull-right col-lg-12">
-                    <%= t("application.update") %>
-                  </button>
+                  <%=
+                    form.submit(
+                      t("application.update"),
+                      class: 'btn btn-secondary pull-right col-lg-12',
+                      data: { turbo_confirm: t('batches.index.increment_amount_confirm') }
+                    )
+                  %>
                 </div>
               </div>
             </div>
