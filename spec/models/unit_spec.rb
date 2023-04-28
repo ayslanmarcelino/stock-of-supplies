@@ -129,15 +129,6 @@ RSpec.describe Unit, type: :model do
       end
     end
 
-    context 'when dont pass a created_by' do
-      let(:created_by) {}
-
-      it do
-        expect(subject).not_to be_valid
-        expect(subject.errors.full_messages.to_sentence).to eq('Criado por não pode ficar em branco')
-      end
-    end
-
     context 'when dont pass a representative_cns_number' do
       let(:representative_cns_number) {}
 

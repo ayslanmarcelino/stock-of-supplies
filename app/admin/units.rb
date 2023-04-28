@@ -156,7 +156,10 @@ ActiveAdmin.register(Unit) do
     def create
       super
 
-      Users::Roles::Create.call(params: representative_params, unit: resource) if resource.persisted?
+      if resource.persisted?
+        resource.update(created_by: current_user)
+        Users::Roles::Create.call(params: representative_params, unit: resource)
+      end
     end
 
     private
