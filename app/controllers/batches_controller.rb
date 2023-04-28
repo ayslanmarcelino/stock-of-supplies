@@ -90,6 +90,7 @@ class BatchesController < ApplicationController
       batch: @batch,
       reason: reason,
       kind: kind,
+      current_user: current_user,
       amount: amount,
       arrived_date: arrived_date
     )
