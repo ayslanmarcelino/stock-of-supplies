@@ -57,7 +57,7 @@ class Ability
 
       if @unit.kind_pni?
         can([:read, :create], Supply)
-        can([:read, :create, :increment_amount], Batch, unit: @unit)
+        can([:read, :create, :increment_amount, :new_output], Batch, unit: @unit)
       end
 
       can(:read, Stock, unit: @unit)
