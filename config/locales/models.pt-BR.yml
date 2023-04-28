@@ -76,7 +76,7 @@ pt-BR:
         created_by: Criado por
         created_at: Criado em
         updated_at: Atualizado em
-      batch:
+      stock:
         id: Código
         identifier: Identificador
         amount: Quantidade
@@ -108,7 +108,7 @@ pt-BR:
         occurrence_date: Chegada
         source: Origem
         source_id: Origem
-        batch: Lote
-        batch_id: Lote
+        stock: Estoque
+        stock_id: Estoque
         created_at: Criado em
         updated_at: Atualizado em

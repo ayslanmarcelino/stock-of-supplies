@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: batches
+# Table name: stocks
 #
 #  id              :bigint           not null, primary key
 #  amount          :integer
@@ -16,9 +16,9 @@
 #
 # Indexes
 #
-#  index_batches_on_created_by_id  (created_by_id)
-#  index_batches_on_supply_id      (supply_id)
-#  index_batches_on_unit_id        (unit_id)
+#  index_stocks_on_created_by_id  (created_by_id)
+#  index_stocks_on_supply_id      (supply_id)
+#  index_stocks_on_unit_id        (unit_id)
 #
 # Foreign Keys
 #
@@ -28,7 +28,7 @@
 #
 require 'rails_helper'
 
-RSpec.describe Batch, type: :model do
+RSpec.describe Stock, type: :model do
   subject do
     described_class.new(
       identifier: identifier,
@@ -62,7 +62,7 @@ RSpec.describe Batch, type: :model do
       [:identifier, :arrived_date, :expiration_date, :supply, :created_by].each do |attribute|
         context "when does not pass #{attribute}" do
           let!(attribute) {}
-          let!(:message) { "#{I18n.t("activerecord.attributes.batch.#{attribute}")} não pode ficar em branco" }
+          let!(:message) { "#{I18n.t("activerecord.attributes.stock.#{attribute}")} não pode ficar em branco" }
 
           it do
             expect(subject).not_to be_valid
@@ -104,7 +104,7 @@ RSpec.describe Batch, type: :model do
 
     context 'when pass a existing attribute' do
       context 'when identifier' do
-        let!(:batch) { create(:batch, identifier: identifier) }
+        let!(:stock) { create(:stock, identifier: identifier) }
 
         it do
           expect(subject).not_to be_valid

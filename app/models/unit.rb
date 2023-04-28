@@ -58,7 +58,7 @@ class Unit < ApplicationRecord
 
   as_enum :kind, [:unit, :pni], prefix: true, map: :string
 
-  has_many :batches
+  has_many :stocks
 
   def self.permitted_params
     [

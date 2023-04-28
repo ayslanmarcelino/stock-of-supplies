@@ -1,5 +1,5 @@
 pt-BR:
-  batches:
+  stocks:
     components:
       layout:
-        resource: Lotes
+        resource: Estoque

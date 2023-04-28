@@ -9,7 +9,7 @@
           <h5 class="modal-title"><%= t('application.new_output') %> - <%= resource.identifier %></h5>
         </div>
         <div class="modal-body">
-          <%= form_for(resource, url: new_output_batch_path(resource), method: :patch, local: true) do |form| %>
+          <%= form_for(resource, url: new_output_stock_path(resource), method: :patch, local: true) do |form| %>
             <div class="row">
               <div class="col-lg-4">
                 <div class="form-group">
@@ -29,7 +29,7 @@
                     form.submit(
                       t("application.create"),
                       class: 'btn -transparent-danger pull-right col-lg-12',
-                      data: { turbo_confirm: t('batches.index.new_output_confirm') }
+                      data: { turbo_confirm: t('stocks.index.new_output_confirm') }
                     )
                   %>
                 </div>

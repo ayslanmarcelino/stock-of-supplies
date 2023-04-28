@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :batch do
+  factory :stock do
     identifier { SecureRandom.base36 }
     arrived_date { Date.current }
     expiration_date { Date.current + 1.month }

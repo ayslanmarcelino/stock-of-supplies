@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: batches
+# Table name: stocks
 #
 #  id              :bigint           not null, primary key
 #  amount          :integer
@@ -16,9 +16,9 @@
 #
 # Indexes
 #
-#  index_batches_on_created_by_id  (created_by_id)
-#  index_batches_on_supply_id      (supply_id)
-#  index_batches_on_unit_id        (unit_id)
+#  index_stocks_on_created_by_id  (created_by_id)
+#  index_stocks_on_supply_id      (supply_id)
+#  index_stocks_on_unit_id        (unit_id)
 #
 # Foreign Keys
 #
@@ -26,7 +26,7 @@
 #  fk_rails_...  (supply_id => supplies.id)
 #  fk_rails_...  (unit_id => units.id)
 #
-class Batch < ApplicationRecord
+class Stock < ApplicationRecord
   belongs_to :created_by, class_name: 'User'
   belongs_to :supply
   belongs_to :unit

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-4">
-    <%= form.text_field :identifier_cont, placeholder: t('batches.index.identifier'), class: 'form-control' %>
+    <%= form.text_field :identifier_cont, placeholder: t('stocks.index.identifier'), class: 'form-control' %>
   </div>
   <div class="col-md-5">
     <%= form.select :created_by_id_eq, users_collection, { include_blank: 'Selecione o criador' }, class: 'form-control' %>
@@ -10,7 +10,7 @@
   </div>
 </div>
 <hr>
-<h6><%= t('batches.index.arrived_date') %></h6>
+<h6><%= t('stocks.index.arrived_date') %></h6>
 <div class="row mb-3">
   <div class="col-md-2">
     <span>Data inicial</span>
@@ -22,7 +22,7 @@
   </div>
 </div>
 <hr>
-<h6><%= t('batches.index.expiration_date') %></h6>
+<h6><%= t('stocks.index.expiration_date') %></h6>
 <div class="row">
   <div class="col-md-2">
     <span>Data inicial</span>

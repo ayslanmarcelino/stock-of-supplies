@@ -1,5 +1,5 @@
 pt-BR:
-  batches:
+  stocks:
     index:
       id: Código
       identifier: Identificador
@@ -12,4 +12,4 @@ pt-BR:
       created_at: Criado em
       updated_at: Atualizado em
       new_output_confirm: Tem certeza que deseja criar esta saída de suprimento?
-      increment_amount_confirm: Tem certeza que deseja adicionar esta quantidade no mesmo lote?
+      increment_amount_confirm: Tem certeza que deseja adicionar esta quantidade no mesmo estoque?

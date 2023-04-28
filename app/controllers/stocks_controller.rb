@@ -1,35 +1,35 @@
 # frozen_string_literal: true
 
-class BatchesController < ApplicationController
+class StocksController < ApplicationController
   load_and_authorize_resource
 
   before_action :supplies, only: [:new, :create]
 
   def index
-    @query = Batch.includes(:supply, created_by: :person)
+    @query = Stock.includes(:supply, created_by: :person)
                   .order(created_at: :desc)
                   .accessible_by(current_ability)
                   .page(params[:page])
                   .ransack(params[:q])
 
-    @batches = @query.result(distinct: false)
+    @stocks = @query.result(distinct: false)
   end
 
   def new
-    @batch = Batch.new
+    @stock = Stock.new
   end
 
   def create
-    @batch = Batch.new(batch_params)
+    @stock = Stock.new(stock_params)
 
-    if @batch.save
+    if @stock.save
       create_movement!(
-        amount: @batch.amount,
-        arrived_date: @batch.arrived_date,
+        amount: @stock.amount,
+        arrived_date: @stock.arrived_date,
         kind: :input,
         reason: 'Recebido pelo Estado'
       )
-      redirect_success(path: batches_path, action: 'criado')
+      redirect_success(path: stocks_path, action: 'criado')
     else
       render(:new, status: :unprocessable_entity)
     end
@@ -39,14 +39,14 @@ class BatchesController < ApplicationController
     assign_increment_data
 
     if input_created_successfully?
-      flash[:success] = "Valor adicionado ao lote #{resource.identifier}."
-    elsif params[:batch][:amount].to_i <= 0
+      flash[:success] = "Valor adicionado ao estoque #{resource.identifier}."
+    elsif params[:stock][:amount].to_i <= 0
       flash[:alert] = 'Quantidade deve ser maior que 0'
     else
       flash[:alert] = increment_amount_error_message
     end
 
-    redirect_to(batches_path)
+    redirect_to(stocks_path)
   end
 
   def new_output
@@ -55,31 +55,31 @@ class BatchesController < ApplicationController
     if date_after_today?
       flash[:alert] = 'Saída deve ser hoje ou antes'
     elsif output_created_successfully?
-      flash[:success] = "Saída do lote #{resource.identifier} criada com sucesso."
-    elsif params[:batch][:remaining].to_i <= 0
+      flash[:success] = "Saída do estoque #{resource.identifier} criada com sucesso."
+    elsif params[:stock][:remaining].to_i <= 0
       flash[:alert] = 'Quantidade deve ser maior que 0'
     else
       flash[:alert] = new_output_error_message
     end
 
-    redirect_to(batches_path)
+    redirect_to(stocks_path)
   end
 
   private
 
-  def batch_params
-    params.require(:batch)
-          .permit(Batch.permitted_params)
+  def stock_params
+    params.require(:stock)
+          .permit(Stock.permitted_params)
           .merge(
             unit: current_user.current_unit,
             created_by: current_user,
-            remaining: params[:batch][:amount]
+            remaining: params[:stock][:amount]
           )
   end
 
   def redirect_success(path:, action:)
     redirect_to(path)
-    flash[:success] = "Lote #{action} com sucesso."
+    flash[:success] = "Estoque #{action} com sucesso."
   end
 
   def supplies
@@ -87,13 +87,13 @@ class BatchesController < ApplicationController
   end
 
   def resource
-    @resource ||= Batch.find(params[:id])
+    @resource ||= Stock.find(params[:id])
   end
 
   def create_movement!(amount:, arrived_date:, kind:, reason:)
     Movements::Create.call(
-      params: @batch,
-      batch: @batch,
+      params: @stock,
+      stock: @stock,
       reason: reason,
       kind: kind,
       current_user: current_user,
@@ -103,32 +103,32 @@ class BatchesController < ApplicationController
   end
 
   def assign_increment_data
-    return if params[:batch][:amount].to_i <= 0
+    return if params[:stock][:amount].to_i <= 0
 
-    resource.amount += params[:batch][:amount].to_i
-    resource.remaining += params[:batch][:amount].to_i
-    resource.arrived_date = params[:batch][:arrived_date] if before?
+    resource.amount += params[:stock][:amount].to_i
+    resource.remaining += params[:stock][:amount].to_i
+    resource.arrived_date = params[:stock][:arrived_date] if before?
   end
 
   def before?
-    resource.arrived_date < params[:batch][:arrived_date].to_date
+    resource.arrived_date < params[:stock][:arrived_date].to_date
   end
 
   def assign_new_output_data
-    return if params[:batch][:remaining].to_i <= 0
+    return if params[:stock][:remaining].to_i <= 0
 
-    resource.remaining -= params[:batch][:remaining].to_i
+    resource.remaining -= params[:stock][:remaining].to_i
   end
 
   def date_after_today?
-    params[:batch][:output_date].to_date > Date.current
+    params[:stock][:output_date].to_date > Date.current
   end
 
   def input_created_successfully?
     resource.valid? &&
-      params[:batch][:amount].to_i.positive? &&
-      create_movement!(amount: params[:batch][:amount], arrived_date: params[:batch][:arrived_date], kind: :input,
-                    reason: 'Recebido pelo Estado') &&
+      params[:stock][:amount].to_i.positive? &&
+      create_movement!(amount: params[:stock][:amount], arrived_date: params[:stock][:arrived_date], kind: :input,
+                       reason: 'Recebido pelo Estado') &&
       resource.save!
   end
 
@@ -138,9 +138,9 @@ class BatchesController < ApplicationController
 
   def output_created_successfully?
     resource.valid? &&
-      @batch.remaining >= params[:batch][:remaining].to_i &&
-      create_movement!(amount: params[:batch][:remaining], arrived_date: params[:batch][:output_date], kind: :output,
-                    reason: 'Utilizado em pacientes') &&
+      @stock.remaining >= params[:stock][:remaining].to_i &&
+      create_movement!(amount: params[:stock][:remaining], arrived_date: params[:stock][:output_date], kind: :output,
+                       reason: 'Utilizado em pacientes') &&
       resource.save!
   end
 

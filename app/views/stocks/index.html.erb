@@ -1,15 +1,15 @@
 <div class="row col-md-12">
-  <h4><%= t('batches.components.layout.resource') %></h4>
+  <h4><%= t('stocks.components.layout.resource') %></h4>
   <div>
     <%= render(layout: 'layouts/components/filter/body') do %>
-      <%= search_form_for(@query, url: batches_path) do |form| %>
-        <%= render(partial: 'batches/components/filters', locals: { form: form }) %>
+      <%= search_form_for(@query, url: stocks_path) do |form| %>
+        <%= render(partial: 'stocks/components/filters', locals: { form: form }) %>
         <%= render(partial: 'layouts/components/filter/footer', locals: { form: form }) %>
       <% end %>
     <% end %>
     <div class="pull-right mb-2">
-      <% if can?(:create, Batch) %>
-        <%= link_to(new_batch_path, class: 'btn btn-sm btn-success') do %>
+      <% if can?(:create, Stock) %>
+        <%= link_to(new_stock_path, class: 'btn btn-sm btn-success') do %>
           <i class="bi bi-plus-circle"></i>
           <%= t('application.new') %>
         <% end %>
@@ -34,24 +34,24 @@
         </tr>
       </thead>
       <tbody>
-        <% @batches.each do |batch| %>
+        <% @stocks.each do |stock| %>
           <tr>
-            <td><%= batch.id %></td>
-            <td><%= batch.identifier %></td>
-            <td><%= batch.amount %></td>
-            <td><%= batch.remaining %></td>
-            <td><%= batch.supply.name %></td>
-            <td><%= I18n.l(batch.arrived_date) %></td>
-            <td><%= I18n.l(batch.expiration_date) %></td>
-            <td><%= I18n.l(batch.created_at) %></td>
-            <td><%= I18n.l(batch.updated_at) %></td>
-            <td><%= link_to(batch.created_by.person.name, admin_user_path(batch.created_by)) %></td>
+            <td><%= stock.id %></td>
+            <td><%= stock.identifier %></td>
+            <td><%= stock.amount %></td>
+            <td><%= stock.remaining %></td>
+            <td><%= stock.supply.name %></td>
+            <td><%= I18n.l(stock.arrived_date) %></td>
+            <td><%= I18n.l(stock.expiration_date) %></td>
+            <td><%= I18n.l(stock.created_at) %></td>
+            <td><%= I18n.l(stock.updated_at) %></td>
+            <td><%= link_to(stock.created_by.person.name, admin_user_path(stock.created_by)) %></td>
             <td>
-              <% if can?(:increment_amount, Batch) %>
-                <%= render partial: 'batches/components/increment_amount_modal', locals: { resource: batch } %>
+              <% if can?(:increment_amount, Stock) %>
+                <%= render partial: 'stocks/components/increment_amount_modal', locals: { resource: stock } %>
               <% end %>
-              <% if can?(:new_output, Batch) %>
-                <%= render partial: 'batches/components/new_output_modal', locals: { resource: batch } %>
+              <% if can?(:new_output, Stock) %>
+                <%= render partial: 'stocks/components/new_output_modal', locals: { resource: stock } %>
               <% end %>
             </td>
           </tr>
@@ -63,6 +63,6 @@
 <%=
   render partial: 'layouts/components/index/footer',
          locals: {
-           resource: @batches
+           resource: @stocks
          }
 %>

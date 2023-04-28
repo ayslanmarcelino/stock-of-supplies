@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   resources :supplies, only: [:index, :new, :create]
 
-  resources :batches, only: [:index, :new, :create] do
+  resources :stocks, only: [:index, :new, :create] do
     member do
       patch :increment_amount
       patch :new_output

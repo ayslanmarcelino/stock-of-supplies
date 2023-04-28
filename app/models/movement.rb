@@ -11,7 +11,7 @@
 #  source_type     :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  batch_id        :bigint
+#  stock_id        :bigint
 #  created_by_id   :bigint
 #  source_id       :bigint
 #  supply_id       :bigint
@@ -19,7 +19,7 @@
 #
 # Indexes
 #
-#  index_movements_on_batch_id       (batch_id)
+#  index_movements_on_stock_id       (stock_id)
 #  index_movements_on_created_by_id  (created_by_id)
 #  index_movements_on_source         (source_type,source_id)
 #  index_movements_on_supply_id      (supply_id)
@@ -27,7 +27,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (batch_id => batches.id)
+#  fk_rails_...  (stock_id => stocks.id)
 #  fk_rails_...  (created_by_id => users.id)
 #  fk_rails_...  (supply_id => supplies.id)
 #  fk_rails_...  (unit_id => units.id)
@@ -38,7 +38,7 @@ class Movement < ApplicationRecord
     [I18n.t('activerecord.attributes.movement.kind_list.output'), :output]
   ].freeze
 
-  belongs_to :batch
+  belongs_to :stock
   belongs_to :supply
   belongs_to :unit
   belongs_to :created_by, class_name: 'User'

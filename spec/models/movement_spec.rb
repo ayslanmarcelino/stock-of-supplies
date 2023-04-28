@@ -11,7 +11,7 @@
 #  source_type     :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  batch_id        :bigint
+#  stock_id        :bigint
 #  created_by_id   :bigint
 #  source_id       :bigint
 #  supply_id       :bigint
@@ -19,7 +19,7 @@
 #
 # Indexes
 #
-#  index_movements_on_batch_id       (batch_id)
+#  index_movements_on_stock_id       (stock_id)
 #  index_movements_on_created_by_id  (created_by_id)
 #  index_movements_on_source         (source_type,source_id)
 #  index_movements_on_supply_id      (supply_id)
@@ -27,7 +27,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (batch_id => batches.id)
+#  fk_rails_...  (stock_id => stocks.id)
 #  fk_rails_...  (created_by_id => users.id)
 #  fk_rails_...  (supply_id => supplies.id)
 #  fk_rails_...  (unit_id => units.id)
@@ -46,7 +46,7 @@ RSpec.describe Movement, type: :model do
       expiration_date: expiration_date,
       source: source,
       occurrence_date: occurrence_date,
-      batch: batch
+      stock: stock
     )
   end
 
@@ -57,9 +57,9 @@ RSpec.describe Movement, type: :model do
   let!(:supply) { create(:supply) }
   let!(:unit) { create(:unit) }
   let!(:expiration_date) { Date.current + 5.years }
-  let!(:source) { create(:batch) }
+  let!(:source) { create(:stock) }
   let!(:occurrence_date) { Date.current - 5.days }
-  let!(:batch) { create(:batch) }
+  let!(:stock) { create(:stock) }
 
   context 'when successful' do
     it do
@@ -79,7 +79,7 @@ RSpec.describe Movement, type: :model do
         :expiration_date,
         :source,
         :occurrence_date,
-        :batch
+        :stock
       ].each do |attribute|
         context "when does not pass #{attribute}" do
           let!(attribute) {}

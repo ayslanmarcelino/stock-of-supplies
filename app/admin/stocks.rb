@@ -1,9 +1,9 @@
-ActiveAdmin.register(Batch) do
+ActiveAdmin.register(Stock) do
   menu priority: 7
 
   includes :supply, :created_by
 
-  permit_params Batch.permitted_params
+  permit_params Stock.permitted_params
 
   actions :index, :show, :new, :create, :edit, :update
 
@@ -35,8 +35,8 @@ ActiveAdmin.register(Batch) do
     def create_input_movement!
       Movements::Create.call(
         current_user: current_user,
-        params: @batch,
-        batch: @batch,
+        params: @stock,
+        stock: @stock,
         reason: 'Recebido pelo Estado',
         kind: :input
       )

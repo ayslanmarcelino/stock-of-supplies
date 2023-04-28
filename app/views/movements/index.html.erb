@@ -13,7 +13,7 @@
       <thead>
         <tr>
           <th><%= sort_link(@query, :supply_name, t('.supply_name')) %></th>
-          <th><%= sort_link(@query, :batch, t('.batch')) %></th>
+          <th><%= sort_link(@query, :stock, t('.stock')) %></th>
           <th><%= sort_link(@query, :amount, t('.amount')) %></th>
           <th><%= sort_link(@query, :kind_cd, t('.kind')) %></th>
           <th><%= sort_link(@query, :reason, t('.reason')) %></th>
@@ -29,7 +29,7 @@
         <% @movements.each do |movement| %>
           <tr>
             <td><%= movement.supply.name %></td>
-            <td><%= movement.batch.identifier %></td>
+            <td><%= movement.stock.identifier %></td>
             <td><%= movement.amount %></td>
             <td>
               <span class="badge -<%= kind_class(movement.kind) %> w-100">
