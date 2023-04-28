@@ -86,6 +86,10 @@ class BatchesController < ApplicationController
     @supplies ||= Supply.all
   end
 
+  def resource
+    @resource ||= Batch.find(params[:id])
+  end
+
   def create_stock!(amount:, arrived_date:, kind:, reason:)
     Stocks::Create.call(
       params: resource,
@@ -96,10 +100,6 @@ class BatchesController < ApplicationController
       amount: amount,
       arrived_date: arrived_date
     )
-  end
-
-  def resource
-    @resource ||= Batch.find(params[:id])
   end
 
   def assign_increment_data
@@ -138,7 +138,7 @@ class BatchesController < ApplicationController
 
   def output_created_successfully?
     resource.valid? &&
-      resource.remaining >= params[:batch][:remaining].to_i &&
+      @batch.remaining >= params[:batch][:remaining].to_i &&
       create_stock!(amount: params[:batch][:remaining], arrived_date: params[:batch][:output_date], kind: :output,
                     reason: 'Utilizado em pacientes') &&
       resource.save!
