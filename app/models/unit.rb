@@ -39,7 +39,7 @@ class Unit < ApplicationRecord
   ].freeze
 
   belongs_to :address, optional: true, dependent: :destroy
-  belongs_to :created_by, class_name: 'User'
+  belongs_to :created_by, class_name: 'User', optional: true
 
   validates :cnes_number, uniqueness: true, if: -> { cnes_number.present? }
   validates :email,
@@ -74,7 +74,7 @@ class Unit < ApplicationRecord
       :identity_document_issuing_agency,
       :birth_date,
       :address_id,
-      :created_by
+      :created_by_id
     ]
   end
 end
