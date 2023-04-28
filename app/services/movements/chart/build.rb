@@ -1,4 +1,4 @@
-module Stocks
+module Movements
   module Chart
     class Build < ApplicationService
       def initialize(user:)
@@ -23,7 +23,7 @@ module Stocks
       end
 
       def feed_arrays
-        supplies_by_stock.each do |supply|
+        supplies_by_movement.each do |supply|
           @labels << supply.name
           @values << input_amount(supply.id) - output_amount(supply.id)
         end
@@ -37,20 +37,20 @@ module Stocks
         input_values[supply_id]&.sum(&:amount) || 0
       end
 
-      def supplies_by_stock
-        @supplies_by_stock ||= Supply.where(id: unit_stock.pluck(:supply_id).uniq).order(:name)
+      def supplies_by_movement
+        @supplies_by_movement ||= Supply.where(id: unit_movement.pluck(:supply_id).uniq).order(:name)
       end
 
       def output_values
-        @output_values ||= unit_stock.kind_outputs.group_by(&:supply_id)
+        @output_values ||= unit_movement.kind_outputs.group_by(&:supply_id)
       end
 
       def input_values
-        @input_values ||= unit_stock.kind_inputs.group_by(&:supply_id)
+        @input_values ||= unit_movement.kind_inputs.group_by(&:supply_id)
       end
 
-      def unit_stock
-        @unit_stock ||= Stock.where(unit: @user.current_unit)
+      def unit_movement
+        @unit_movement ||= Movement.where(unit: @user.current_unit)
       end
     end
   end

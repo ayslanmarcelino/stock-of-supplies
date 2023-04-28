@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :stock do
+  factory :movement do
     amount { rand(1..10) }
     kind_cd { :input }
     reason { 'Recebido pelo Estado' }

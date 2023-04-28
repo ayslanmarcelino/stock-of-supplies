@@ -63,7 +63,7 @@ module ApplicationHelper
     end
   end
 
-  def stock_reason_collection
-    Stock.all.map(&:reason).uniq.sort
+  def movement_reason_collection
+    Movement.all.map(&:reason).uniq.sort
   end
 end

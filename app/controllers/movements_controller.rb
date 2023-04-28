@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-class StocksController < ApplicationController
+class MovementsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @query = Stock.includes(:supply, :created_by, :source, :batch)
+    @query = Movement.includes(:supply, :created_by, :source, :batch)
                   .order(created_at: :desc)
                   .accessible_by(current_ability)
                   .page(params[:page])
                   .ransack(params[:q])
 
-    @stocks = @query.result(distinct: false)
+    @movements = @query.result(distinct: false)
   end
 end

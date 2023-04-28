@@ -61,7 +61,7 @@ class Ability
       end
 
       can([:read, :new_output], Batch, unit: @unit)
-      can(:read, Stock, unit: @unit)
+      can(:read, Movement, unit: @unit)
     end
 
     def viewer_abilities
@@ -73,7 +73,7 @@ class Ability
       end
 
       can(:read, Batch, unit: @unit)
-      can(:read, Stock, unit: @unit)
+      can(:read, Movement, unit: @unit)
     end
   end
 end

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: stocks
+# Table name: movements
 #
 #  id              :bigint           not null, primary key
 #  amount          :integer
@@ -19,11 +19,11 @@
 #
 # Indexes
 #
-#  index_stocks_on_batch_id       (batch_id)
-#  index_stocks_on_created_by_id  (created_by_id)
-#  index_stocks_on_source         (source_type,source_id)
-#  index_stocks_on_supply_id      (supply_id)
-#  index_stocks_on_unit_id        (unit_id)
+#  index_movements_on_batch_id       (batch_id)
+#  index_movements_on_created_by_id  (created_by_id)
+#  index_movements_on_source         (source_type,source_id)
+#  index_movements_on_supply_id      (supply_id)
+#  index_movements_on_unit_id        (unit_id)
 #
 # Foreign Keys
 #
@@ -34,7 +34,7 @@
 #
 require 'rails_helper'
 
-RSpec.describe Stock, type: :model do
+RSpec.describe Movement, type: :model do
   subject do
     described_class.new(
       amount: amount,
@@ -83,7 +83,7 @@ RSpec.describe Stock, type: :model do
       ].each do |attribute|
         context "when does not pass #{attribute}" do
           let!(attribute) {}
-          let!(:message) { "#{I18n.t("activerecord.attributes.stock.#{attribute}")} não pode ficar em branco" }
+          let!(:message) { "#{I18n.t("activerecord.attributes.movement.#{attribute}")} não pode ficar em branco" }
 
           it do
             expect(subject).not_to be_valid

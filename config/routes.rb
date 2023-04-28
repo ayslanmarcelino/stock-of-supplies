@@ -29,5 +29,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :stocks, only: :index
+  resources :movements, only: :index
 end

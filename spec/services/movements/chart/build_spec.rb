@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Stocks::Chart::Build, type: :service do
+RSpec.describe Movements::Chart::Build, type: :service do
   subject { described_class.new(user: user) }
 
   let!(:user) { create(:user) }
@@ -26,15 +26,15 @@ RSpec.describe Stocks::Chart::Build, type: :service do
   before do
     user.update(current_unit: unit)
 
-    create(:stock, unit: unit, amount: 10, supply: supply, kind: :input)
-    create(:stock, unit: unit, amount: 10, supply: other_supply, kind: :input)
-    create(:stock, unit: unit, amount: 20, supply: another_supply, kind: :output)
-    create(:stock, unit: unit, amount: 10, supply: another_supply, kind: :input)
+    create(:movement, unit: unit, amount: 10, supply: supply, kind: :input)
+    create(:movement, unit: unit, amount: 10, supply: other_supply, kind: :input)
+    create(:movement, unit: unit, amount: 20, supply: another_supply, kind: :output)
+    create(:movement, unit: unit, amount: 10, supply: another_supply, kind: :input)
 
-    create_list(:stock, 2, supply: supply, kind: input_kind)
-    create_list(:stock, 3, supply: other_supply, kind: input_kind)
-    create_list(:stock, 1, supply: other_supply, kind: output_kind)
-    create_list(:stock, 4, supply: another_supply, kind: output_kind)
+    create_list(:movement, 2, supply: supply, kind: input_kind)
+    create_list(:movement, 3, supply: other_supply, kind: input_kind)
+    create_list(:movement, 1, supply: other_supply, kind: output_kind)
+    create_list(:movement, 4, supply: another_supply, kind: output_kind)
   end
 
   describe '#call' do

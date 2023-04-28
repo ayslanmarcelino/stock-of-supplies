@@ -23,7 +23,7 @@ class BatchesController < ApplicationController
     @batch = Batch.new(batch_params)
 
     if @batch.save
-      create_stock!(
+      create_movement!(
         amount: @batch.amount,
         arrived_date: @batch.arrived_date,
         kind: :input,
@@ -90,8 +90,8 @@ class BatchesController < ApplicationController
     @resource ||= Batch.find(params[:id])
   end
 
-  def create_stock!(amount:, arrived_date:, kind:, reason:)
-    Stocks::Create.call(
+  def create_movement!(amount:, arrived_date:, kind:, reason:)
+    Movements::Create.call(
       params: @batch,
       batch: @batch,
       reason: reason,
@@ -127,7 +127,7 @@ class BatchesController < ApplicationController
   def input_created_successfully?
     resource.valid? &&
       params[:batch][:amount].to_i.positive? &&
-      create_stock!(amount: params[:batch][:amount], arrived_date: params[:batch][:arrived_date], kind: :input,
+      create_movement!(amount: params[:batch][:amount], arrived_date: params[:batch][:arrived_date], kind: :input,
                     reason: 'Recebido pelo Estado') &&
       resource.save!
   end
@@ -139,7 +139,7 @@ class BatchesController < ApplicationController
   def output_created_successfully?
     resource.valid? &&
       @batch.remaining >= params[:batch][:remaining].to_i &&
-      create_stock!(amount: params[:batch][:remaining], arrived_date: params[:batch][:output_date], kind: :output,
+      create_movement!(amount: params[:batch][:remaining], arrived_date: params[:batch][:output_date], kind: :output,
                     reason: 'Utilizado em pacientes') &&
       resource.save!
   end

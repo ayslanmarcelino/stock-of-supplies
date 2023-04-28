@@ -1,12 +1,12 @@
-ActiveAdmin.register(Stock) do
+ActiveAdmin.register(Movement) do
   menu priority: 8
 
   includes :supply, :unit, :created_by
 
   actions :index
 
-  filter :kind_cd, as: :select, collection: Stock::KINDS
-  filter :reason, as: :select, collection: Stock.all.map(&:reason).uniq.sort
+  filter :kind_cd, as: :select, collection: Movement::KINDS
+  filter :reason, as: :select, collection: Movement.all.map(&:reason).uniq.sort
   filter :supply
   filter :unit
   filter :created_by, as: :select, collection: User.all.map { |user| ["#{user.person&.name} | #{user.email}", user.id] }

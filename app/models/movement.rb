@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: stocks
+# Table name: movements
 #
 #  id              :bigint           not null, primary key
 #  amount          :integer
@@ -19,11 +19,11 @@
 #
 # Indexes
 #
-#  index_stocks_on_batch_id       (batch_id)
-#  index_stocks_on_created_by_id  (created_by_id)
-#  index_stocks_on_source         (source_type,source_id)
-#  index_stocks_on_supply_id      (supply_id)
-#  index_stocks_on_unit_id        (unit_id)
+#  index_movements_on_batch_id       (batch_id)
+#  index_movements_on_created_by_id  (created_by_id)
+#  index_movements_on_source         (source_type,source_id)
+#  index_movements_on_supply_id      (supply_id)
+#  index_movements_on_unit_id        (unit_id)
 #
 # Foreign Keys
 #
@@ -32,10 +32,10 @@
 #  fk_rails_...  (supply_id => supplies.id)
 #  fk_rails_...  (unit_id => units.id)
 #
-class Stock < ApplicationRecord
+class Movement < ApplicationRecord
   KINDS = [
-    [I18n.t('activerecord.attributes.stock.kind_list.input'), :input],
-    [I18n.t('activerecord.attributes.stock.kind_list.output'), :output]
+    [I18n.t('activerecord.attributes.movement.kind_list.input'), :input],
+    [I18n.t('activerecord.attributes.movement.kind_list.output'), :output]
   ].freeze
 
   belongs_to :batch
@@ -54,6 +54,6 @@ class Stock < ApplicationRecord
   as_enum :kind, [:input, :output], prefix: true, map: :string
 
   def translated_kind
-    I18n.t("activerecord.attributes.stock.kind_list.#{kind}")
+    I18n.t("activerecord.attributes.movement.kind_list.#{kind}")
   end
 end

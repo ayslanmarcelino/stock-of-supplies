@@ -26,14 +26,14 @@ ActiveAdmin.register(Batch) do
 
       if resource.persisted?
         resource.update(remaining: resource.amount)
-        create_input_stock!
+        create_input_movement!
       end
     end
 
     private
 
-    def create_input_stock!
-      Stocks::Create.call(
+    def create_input_movement!
+      Movements::Create.call(
         current_user: current_user,
         params: @batch,
         batch: @batch,
