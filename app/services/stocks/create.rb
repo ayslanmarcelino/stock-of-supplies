@@ -1,10 +1,11 @@
 module Stocks
   class Create < ApplicationService
-    def initialize(params:, reason:, kind:, batch:, amount: nil, arrived_date: nil)
+    def initialize(params:, reason:, kind:, batch:, current_user:, amount: nil, arrived_date: nil)
       @params = params
       @reason = reason
       @kind = kind
       @batch = batch
+      @current_user = current_user
       @amount = amount
       @arrived_date = arrived_date
     end
@@ -19,7 +20,7 @@ module Stocks
       return if amount.to_i <= 0
 
       Stock.create!(
-        created_by: @params.created_by,
+        created_by: @current_user,
         supply: @params.supply,
         amount: amount,
         unit: @params.unit,
