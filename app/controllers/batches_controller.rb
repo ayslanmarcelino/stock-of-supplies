@@ -52,7 +52,9 @@ class BatchesController < ApplicationController
   def new_output
     assign_new_output_data
 
-    if output_created_successfully?
+    if date_after_today?
+      flash[:alert] = 'Saída deve ser hoje ou antes'
+    elsif output_created_successfully?
       flash[:success] = "Saída do lote #{resource.identifier} criada com sucesso."
     elsif params[:batch][:remaining].to_i <= 0
       flash[:alert] = 'Quantidade deve ser maior que 0'
@@ -108,15 +110,18 @@ class BatchesController < ApplicationController
     resource.arrived_date = params[:batch][:arrived_date] if before?
   end
 
-  def assign_new_output_data
-    return if params[:batch][:remaining].to_i <= 0
-    
-    resource.remaining -= params[:batch][:remaining].to_i
-    resource.arrived_date = params[:batch][:arrived_date] if before?
-  end
-
   def before?
     resource.arrived_date < params[:batch][:arrived_date].to_date
+  end
+
+  def assign_new_output_data
+    return if params[:batch][:remaining].to_i <= 0
+
+    resource.remaining -= params[:batch][:remaining].to_i
+  end
+
+  def date_after_today?
+    params[:batch][:output_date].to_date > Date.current
   end
 
   def input_created_successfully?
@@ -134,7 +139,7 @@ class BatchesController < ApplicationController
   def output_created_successfully?
     resource.valid? &&
       resource.remaining >= params[:batch][:remaining].to_i &&
-      create_stock!(amount: params[:batch][:remaining], arrived_date: params[:batch][:arrived_date], kind: :output,
+      create_stock!(amount: params[:batch][:remaining], arrived_date: params[:batch][:output_date], kind: :output,
                     reason: 'Utilizado em pacientes') &&
       resource.save!
   end
