@@ -50,6 +50,9 @@
               <% if can?(:increment_amount, Batch) %>
                 <%= render partial: 'batches/components/increment_amount_modal', locals: { resource: batch } %>
               <% end %>
+              <% if can?(:new_output, Batch) %>
+                <%= render partial: 'batches/components/new_output_modal', locals: { resource: batch } %>
+              <% end %>
             </td>
           </tr>
         <% end %>

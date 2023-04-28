@@ -37,7 +37,8 @@ RSpec.describe Batch, type: :model do
       expiration_date: expiration_date,
       supply: supply,
       created_by: created_by,
-      unit: unit
+      unit: unit,
+      remaining: remaining
     )
   end
 
@@ -48,6 +49,7 @@ RSpec.describe Batch, type: :model do
   let!(:supply) { create(:supply) }
   let!(:created_by) { create(:user, :with_person) }
   let!(:unit) { create(:unit) }
+  let!(:remaining) { rand(1..100) }
 
   context 'when successful' do
     it do
@@ -72,6 +74,16 @@ RSpec.describe Batch, type: :model do
       context "when does not pass amount" do
         let!(:amount) {}
         let!(:message) { 'Quantidade não pode ficar em branco and Quantidade não é um número válido' }
+
+        it do
+          expect(subject).not_to be_valid
+          expect(subject.errors.full_messages.to_sentence).to eq(message)
+        end
+      end
+
+      context "when does not pass remaining" do
+        let!(:remaining) {}
+        let!(:message) { 'Restante não é um número válido' }
 
         it do
           expect(subject).not_to be_valid

@@ -20,10 +20,10 @@ ActiveAdmin.register_page("Dashboard") do
         panel 'Últimos usuários cadastrados' do
           table_for User.includes(:person).order(created_at: :desc).limit(5) do
             column :name do |user|
-              user.person.name
+              user.person&.name
             end
             column :cns_number do |user|
-              user.person.cns_number
+              user.person&.cns_number
             end
             column :email
             column :created_at
@@ -34,8 +34,19 @@ ActiveAdmin.register_page("Dashboard") do
 
     columns do
       column do
-        panel 'Criação de novas unidades' do
-          line_chart(Unit.group_by_month(:created_at, format: :chart).count)
+        panel 'Suprimentos nas unidades' do
+          pie_chart(Batch.joins(:supply).group('supplies.name').sum(:remaining), donut: true)
+        end
+      end
+      column do
+        panel 'Quantidade de suprimentos à vencer nos próximos 12 meses' do
+          column_chart(
+            Batch.joins(:supply)
+                 .group("identifier || ' - ' || supplies.name")
+                 .where('expiration_date >= ? AND expiration_date <= ?', Date.current, Date.current + 1.year)
+                 .group_by_month(:expiration_date, format: :chart)
+                 .sum(:remaining)
+          )
         end
       end
     end

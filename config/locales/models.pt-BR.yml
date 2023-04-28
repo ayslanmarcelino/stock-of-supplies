@@ -72,7 +72,7 @@ pt-BR:
         updated_at: Atualizado em
       supply:
         id: Código
-        name: Nome imunobiológico
+        name: Imunobiológico
         created_by: Criado por
         created_at: Criado em
         updated_at: Atualizado em
@@ -91,6 +91,7 @@ pt-BR:
         unit: Unidade
       stock:
         amount: Quantidade
+        remaining: Restante
         kind_cd: Tipo
         kind: Tipo
         translated_kind: Tipo
