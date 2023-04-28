@@ -91,6 +91,7 @@ pt-BR:
         unit: Unidade
       stock:
         amount: Quantidade
+        remaining: Restante
         kind_cd: Tipo
         kind: Tipo
         translated_kind: Tipo
