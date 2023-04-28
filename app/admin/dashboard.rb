@@ -34,13 +34,19 @@ ActiveAdmin.register_page("Dashboard") do
 
     columns do
       column do
-        panel 'Criação de novas unidades' do
-          line_chart(Unit.group_by_month(:created_at, format: :chart).count)
+        panel 'Suprimentos nas unidades' do
+          pie_chart(Batch.joins(:supply).group('supplies.name').sum(:remaining), donut: true)
         end
       end
       column do
-        panel 'Suprimentos nas unidades' do
-          pie_chart(Batch.joins(:supply).group('supplies.name').sum(:remaining), donut: true)
+        panel 'Quantidade de suprimentos à vencer' do
+          column_chart(
+            Batch.joins(:supply)
+                 .group('supplies.name')
+                 .where("expiration_date >= ? AND expiration_date <= ?", Date.current, Date.current + 1.year)
+                 .group_by_month(:expiration_date, format: :chart)
+                 .sum(:amount)
+          )
         end
       end
     end
