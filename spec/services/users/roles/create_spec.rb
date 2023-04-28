@@ -44,11 +44,11 @@ RSpec.describe Users::Roles::Create, type: :service do
     end
 
     context 'when user exists' do
-      let!(:user) { create(:user) }
+      let!(:user) { create(:user, :with_person) }
       let!(:params) do
         {
-          representative_document_number: user.person&.document_number,
-          representative_name: user.person&.name,
+          representative_document_number: user.person.document_number,
+          representative_name: user.person.name,
           email: user.email
         }
       end

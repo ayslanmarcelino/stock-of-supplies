@@ -20,10 +20,10 @@ ActiveAdmin.register_page("Dashboard") do
         panel 'Últimos usuários cadastrados' do
           table_for User.includes(:person).order(created_at: :desc).limit(5) do
             column :name do |user|
-              user.person&.name
+              user.person.name
             end
             column :cns_number do |user|
-              user.person&.cns_number
+              user.person.cns_number
             end
             column :email
             column :created_at
