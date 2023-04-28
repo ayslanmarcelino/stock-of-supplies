@@ -38,6 +38,11 @@ ActiveAdmin.register_page("Dashboard") do
           line_chart(Unit.group_by_month(:created_at, format: :chart).count)
         end
       end
+      column do
+        panel 'Suprimentos nas unidades' do
+          pie_chart(Batch.joins(:supply).group('supplies.name').sum(:remaining), donut: true)
+        end
+      end
     end
   end
 end
