@@ -16,6 +16,8 @@ module Stocks
     private
 
     def create!
+      return if amount.to_i <= 0
+
       Stock.create!(
         created_by: @params.created_by,
         supply: @params.supply,

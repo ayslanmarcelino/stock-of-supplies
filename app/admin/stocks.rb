@@ -9,7 +9,7 @@ ActiveAdmin.register(Stock) do
   filter :reason, as: :select, collection: Stock.all.map(&:reason).uniq.sort
   filter :supply
   filter :unit
-  filter :created_by, as: :select, collection: User.all.map { |user| ["#{user.person.name} | #{user.email}", user.id] }
+  filter :created_by, as: :select, collection: User.all.map { |user| ["#{user.person&.name} | #{user.email}", user.id] }
   filter :created_at
 
   index do

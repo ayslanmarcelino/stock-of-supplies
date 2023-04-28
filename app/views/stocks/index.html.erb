@@ -7,14 +7,6 @@
         <%= render(partial: 'layouts/components/filter/footer', locals: { form: form }) %>
       <% end %>
     <% end %>
-    <div class="pull-right mb-2">
-      <% if can?(:read, Stock) %>
-        <%= link_to(stocks_path, class: 'btn btn-sm -transparent-danger') do %>
-          <i class="bi bi-arrow-left"></i>
-          <%= t('application.new_output') %>
-        <% end %>
-      <% end %>
-    </div>
   </div>
   <h6>
     <i class="bi bi-arrow-left-right"></i>

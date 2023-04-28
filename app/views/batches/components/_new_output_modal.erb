@@ -1,0 +1,39 @@
+<div class="btn btn-sm">
+  <%= link_to('#', data: { toggle: "modal", target: "#newOutput#{resource.id}" }, class: 'text-secondary') do %>
+    <i class="bi bi-arrow-left"></i>
+  <% end %>
+  <div class="modal fade" id="newOutput<%= resource.id %>" tabindex="-1" role="dialog" aria-labelledby="newOutput<%= resource.id %>Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header g-0 row">
+          <h5 class="modal-title"><%= t('application.new_output') %> - <%= resource.identifier %></h5>
+        </div>
+        <div class="modal-body">
+          <%= form_for(resource, url: new_output_batch_path(resource), method: :patch, local: true) do |form| %>
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <%= form.label(:amount, class: 'required-label') %>
+                  <%= form.number_field(:remaining, value: 0, class: 'form-control required', required: true) %>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="form-group">
+                  <%= form.label(:arrived_date, class: 'required-label') %>
+                  <%= form.date_field(:arrived_date, value: Date.current, class: 'form-control required', required: true ) %>
+                </div>
+              </div>
+              <div class="col-lg-12 mt-4">
+                <div class="form-group">
+                  <button class="btn -transparent-danger pull-right col-lg-12">
+                    <%= t("application.create") %>
+                  </button>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
