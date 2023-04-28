@@ -40,8 +40,9 @@ RSpec.describe Users::Create, type: :service do
         subject.call
         user = User.last
         expect(user.email).to eq(params[:email])
-        expect(user.person_id).to eq(person.id)
-        expect(user.current_unit_id).to eq(unit.id)
+        expect(user.person).to eq(person)
+        expect(user.current_unit).to eq(unit)
+        expect(user.created_by).to eq(unit.created_by)
       end
 
       it 'updates the person' do

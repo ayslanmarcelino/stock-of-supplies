@@ -28,7 +28,8 @@ module Users
         password: @params[:email],
         password_confirmation: @params[:email],
         person_id: @person.id,
-        current_unit_id: @unit.id
+        current_unit_id: @unit.id,
+        created_by: @unit.created_by
       )
       @user.save
     end
