@@ -2,14 +2,14 @@ pt-BR:
   stocks:
     index:
       id: Código
-      supply_name: Suprimento
+      identifier: Identificador
       amount: Quantidade
-      kind: Tipo
-      reason: Motivo
+      remaining: Restante
+      supply: Suprimento
+      arrived_date: Última chegada
+      expiration_date: Validade
       created_by: Criado por
       created_at: Criado em
-      source: Origem
-      expiration_date: Validade
-      occurrence_date: Ocorreu em
-      input_and_output: Entrada e saída
-      batch: Lote
+      updated_at: Atualizado em
+      new_output_confirm: Tem certeza que deseja criar esta saída de suprimento?
+      increment_amount_confirm: Tem certeza que deseja adicionar esta quantidade no mesmo estoque?

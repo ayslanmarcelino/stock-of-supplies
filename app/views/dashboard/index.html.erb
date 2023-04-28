@@ -43,14 +43,14 @@
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
-              <h4 class="text-center"><%= t('.stock_chart') %></h4>
+              <h4 class="text-center"><%= t('.movement_chart') %></h4>
               <hr>
               <% if @chart[:labels].present? && @chart[:values].present? %>
                 <div class="d-flex justify-content-between">
                   <canvas id="chart" data-labels="<%= @chart[:labels] %>" data-values="<%= @chart[:values] %>"></canvas>
                 </div>
                 <span class="pull-right mt-4">
-                  <%= link_to('Ver detalhes', stocks_path, style: 'font-size: 12px;') %>
+                  <%= link_to('Ver detalhes', movements_path, style: 'font-size: 12px;') %>
                 </span>
               <% else %>
                 <div class="text-center">

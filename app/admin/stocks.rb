@@ -1,26 +1,45 @@
 ActiveAdmin.register(Stock) do
-  menu priority: 8
+  menu priority: 7
 
-  includes :supply, :unit, :created_by
+  includes :supply, :created_by
 
-  actions :index
+  permit_params Stock.permitted_params
 
-  filter :kind_cd, as: :select, collection: Stock::KINDS
-  filter :reason, as: :select, collection: Stock.all.map(&:reason).uniq.sort
-  filter :supply
-  filter :unit
-  filter :created_by, as: :select, collection: User.all.map { |user| ["#{user.person&.name} | #{user.email}", user.id] }
-  filter :created_at
+  actions :index, :show, :new, :create, :edit, :update
 
-  index do
-    selectable_column
-    id_column
-    column :amount
-    column :translated_kind
-    column :reason
-    column :supply
-    column :unit
-    column :created_by
-    column :created_at
+  form do |f|
+    f.inputs('Informações gerais') do
+      f.input(:identifier)
+      f.input(:supply)
+      f.input(:amount)
+      f.input(:arrived_date)
+      f.input(:expiration_date)
+      f.input(:created_by, as: :select, collection: User.all.map { |user| ["#{user.person.name} | #{user.email}", user.id] })
+    end
+
+    f.actions
+  end
+
+  controller do
+    def create
+      super
+
+      if resource.persisted?
+        resource.update(remaining: resource.amount)
+        create_input_movement!
+      end
+    end
+
+    private
+
+    def create_input_movement!
+      Movements::Create.call(
+        current_user: current_user,
+        params: @stock,
+        stock: @stock,
+        reason: 'Recebido pelo Estado',
+        kind: :input
+      )
+    end
   end
 end

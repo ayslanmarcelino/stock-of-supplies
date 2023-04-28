@@ -1,0 +1,5 @@
+pt-BR:
+  movements:
+    components:
+      layout:
+        resource: Movimentações

@@ -2,4 +2,4 @@ pt-BR:
   stocks:
     components:
       layout:
-        resource: Movimentações
+        resource: Estoque

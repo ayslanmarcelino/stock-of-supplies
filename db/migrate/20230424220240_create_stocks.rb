@@ -1,6 +1,6 @@
-class CreateBatches < ActiveRecord::Migration[7.0]
+class CreateStocks < ActiveRecord::Migration[7.0]
   def change
-    create_table :batches do |t|
+    create_table :stocks do |t|
       t.string :identifier
       t.date :arrived_date
       t.date :expiration_date

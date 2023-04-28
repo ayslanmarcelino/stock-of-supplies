@@ -1,23 +1,35 @@
 <div class="row">
+  <div class="col-md-4">
+    <%= form.text_field :identifier_cont, placeholder: t('stocks.index.identifier'), class: 'form-control' %>
+  </div>
   <div class="col-md-5">
     <%= form.select :created_by_id_eq, users_collection, { include_blank: 'Selecione o criador' }, class: 'form-control' %>
   </div>
   <div class="col-md-3">
-    <%= form.select :kind_cd_eq, Stock::KINDS, { include_blank: 'Selecione o tipo' }, class: 'form-control' %>
-  </div>
-  <div class="col-md-4">
-    <%= form.select :reason_eq, stock_reason_collection, { include_blank: 'Selecione o motivo' }, class: 'form-control' %>
+    <%= form.select :supply_name_eq, Supply.all.map(&:name).sort, { include_blank: 'Selecione o suprimento' }, class: 'form-control' %>
   </div>
 </div>
 <hr>
-<h6><%= t('stocks.index.created_at') %></h6>
+<h6><%= t('stocks.index.arrived_date') %></h6>
 <div class="row mb-3">
   <div class="col-md-2">
     <span>Data inicial</span>
-    <%= form.date_field :created_at_gteq, class: 'form-control' %>
+    <%= form.date_field :arrived_date_gteq, class: 'form-control' %>
   </div>
   <div class="col-md-2">
     <span>Data final</span>
-    <%= form.date_field :created_at_lteq, class: 'form-control' %>
+    <%= form.date_field :arrived_date_lteq, class: 'form-control' %>
+  </div>
+</div>
+<hr>
+<h6><%= t('stocks.index.expiration_date') %></h6>
+<div class="row">
+  <div class="col-md-2">
+    <span>Data inicial</span>
+    <%= form.date_field :arrived_date_gteq, class: 'form-control' %>
+  </div>
+  <div class="col-md-2">
+    <span>Data final</span>
+    <%= form.date_field :arrived_date_lteq, class: 'form-control' %>
   </div>
 </div>
