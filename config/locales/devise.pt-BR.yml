@@ -42,7 +42,7 @@ pt-BR:
       person: Pessoa
       supply: Suprimento
       batch: Lote
-      movement: Estoque
+      movement: Movimentação
       comment: Comentário
   devise:
     confirmations:
