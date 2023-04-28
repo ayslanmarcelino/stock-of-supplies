@@ -2,10 +2,14 @@ pt-BR:
   batches:
     index:
       id: Código
-      identifier: Nome
+      identifier: Identificador
       amount: Quantidade
       remaining: Restante
       supply: Suprimento
-      arrived_date: Data de chegada
-      expiration_date: Data de validade
+      arrived_date: Chegada
+      expiration_date: Validade
       created_by: Criado por
+      created_at: Criado em
+      updated_at: Atualizado em
+      new_output_confirm: Tem certeza que deseja criar esta saída de suprimento?
+      increment_amount_confirm: Tem certeza que deseja adicionar esta quantidade no mesmo lote?

@@ -21,5 +21,13 @@ Rails.application.routes.draw do
   end
 
   resources :supplies, only: [:index, :new, :create]
-  resources :batches, only: [:index, :new, :create]
+
+  resources :batches, only: [:index, :new, :create] do
+    member do
+      patch :increment_amount
+      patch :new_output
+    end
+  end
+
+  resources :stocks, only: :index
 end

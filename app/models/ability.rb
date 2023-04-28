@@ -6,7 +6,7 @@ class Ability
     return unless user
 
     @user = user
-    @user.roles.each do |role|
+    @user.roles.includes(:unit).find_each do |role|
       next unless user.current_unit == role.unit
 
       PerUnitAbility.new(self, unit: user.current_unit, user: user).permit(role.kind)
@@ -57,8 +57,11 @@ class Ability
 
       if @unit.kind_pni?
         can([:read, :create], Supply)
-        can([:read, :create], Batch)
+        can([:create, :increment_amount], Batch, unit: @unit)
       end
+
+      can([:read, :new_output], Batch, unit: @unit)
+      can(:read, Stock, unit: @unit)
     end
 
     def viewer_abilities
@@ -67,8 +70,10 @@ class Ability
 
       if @unit.kind_pni?
         can(:read, Supply)
-        can(:read, Batch)
       end
+
+      can(:read, Batch, unit: @unit)
+      can(:read, Stock, unit: @unit)
     end
   end
 end

@@ -1,0 +1,6 @@
+pt-BR:
+  dashboard:
+    index:
+      supplies: Suprimentos
+      stock_chart: Estoque de suprimentos
+      no_data: Não há dados suficientes para gerar este gráfico

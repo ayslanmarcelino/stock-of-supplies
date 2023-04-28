@@ -48,7 +48,7 @@ RSpec.describe Supply, type: :model do
 
       it do
         expect(subject).not_to be_valid
-        expect(subject.errors.full_messages.to_sentence).to eq('Nome imunobiológico já está em uso')
+        expect(subject.errors.full_messages.to_sentence).to eq('Imunobiológico já está em uso')
       end
     end
 
@@ -57,7 +57,7 @@ RSpec.describe Supply, type: :model do
 
       it do
         expect(subject).not_to be_valid
-        expect(subject.errors.full_messages.to_sentence).to eq('Nome imunobiológico não pode ficar em branco')
+        expect(subject.errors.full_messages.to_sentence).to eq('Imunobiológico não pode ficar em branco')
       end
     end
 

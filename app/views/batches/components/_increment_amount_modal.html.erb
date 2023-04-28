@@ -1,0 +1,43 @@
+<div class="btn btn-sm">
+  <%= link_to('#', data: { toggle: "modal", target: "#incrementAmount#{resource.id}" }, class: 'nav-link text-secondary') do %>
+    <i class="bi bi-arrow-repeat"></i>
+  <% end %>
+  <div class="modal fade" id="incrementAmount<%= resource.id %>" tabindex="-1" role="dialog" aria-labelledby="incrementAmount<%= resource.id %>Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header g-0 row">
+          <h5 class="modal-title text-center">Novo recebimento do lote - <%= resource.identifier %></h5>
+        </div>
+        <div class="modal-body">
+          <%= form_for(resource, url: increment_amount_batch_path(resource), method: :patch, local: true) do |form| %>
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <%= form.label(:amount, class: 'required-label') %>
+                  <%= form.number_field(:amount, value: 0, class: 'form-control required', required: true) %>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="form-group">
+                  <%= form.label(:arrived_date, class: 'required-label') %>
+                  <%= form.date_field(:arrived_date, value: Date.current, class: 'form-control required', required: true ) %>
+                </div>
+              </div>
+              <div class="col-lg-12 mt-4">
+                <div class="form-group">
+                  <%=
+                    form.submit(
+                      t("application.update"),
+                      class: 'btn btn-secondary pull-right col-lg-12',
+                      data: { turbo_confirm: t('batches.index.increment_amount_confirm') }
+                    )
+                  %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

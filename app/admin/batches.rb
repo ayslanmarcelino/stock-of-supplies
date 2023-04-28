@@ -14,7 +14,7 @@ ActiveAdmin.register(Batch) do
       f.input(:amount)
       f.input(:arrived_date)
       f.input(:expiration_date)
-      f.input(:created_by)
+      f.input(:created_by, as: :select, collection: User.all.map { |user| ["#{user.person.name} | #{user.email}", user.id] })
     end
 
     f.actions
@@ -24,7 +24,22 @@ ActiveAdmin.register(Batch) do
     def create
       super
 
-      resource.update(remaining: resource.amount) if resource.persisted?
+      if resource.persisted?
+        resource.update(remaining: resource.amount)
+        create_input_stock!
+      end
+    end
+
+    private
+
+    def create_input_stock!
+      Stocks::Create.call(
+        current_user: current_user,
+        params: @batch,
+        batch: @batch,
+        reason: 'Recebido pelo Estado',
+        kind: :input
+      )
     end
   end
 end

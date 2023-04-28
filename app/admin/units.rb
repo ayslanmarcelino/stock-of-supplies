@@ -14,7 +14,7 @@ ActiveAdmin.register(Unit) do
   filter :email
   filter :representative_name
   filter :representative_document_number
-  filter :created_by, as: :select, collection: User.all.map { |user| ["#{user.person.name} | #{user.email}", user.id] }.sort
+  filter :created_by, as: :select, collection: User.all.map { |user| ["#{user.person&.name} | #{user.email}", user.id] }.sort
   filter :created_at
 
   scope('Todos', :all)

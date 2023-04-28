@@ -43,3 +43,15 @@
     </div>
   <% end %>
 <% end %>
+
+<% if can?(:read, Stock) %>
+  <%= link_to(stocks_path, class: "#{'active-menu' if request.path.include?(stocks_path)} list-item-menu list-group-item-action",
+                            id: 'user') do %>
+    <div class="menu">
+      <div class="icon">
+        <i class="bi bi-boxes"></i>
+      </div>
+      <span><%= t('stocks.components.layout.resource') %></span>
+    </div>
+  <% end %>
+<% end %>

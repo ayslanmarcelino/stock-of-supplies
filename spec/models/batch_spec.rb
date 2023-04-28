@@ -12,16 +12,19 @@
 #  updated_at      :datetime         not null
 #  created_by_id   :bigint
 #  supply_id       :bigint
+#  unit_id         :bigint
 #
 # Indexes
 #
 #  index_batches_on_created_by_id  (created_by_id)
 #  index_batches_on_supply_id      (supply_id)
+#  index_batches_on_unit_id        (unit_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (created_by_id => users.id)
 #  fk_rails_...  (supply_id => supplies.id)
+#  fk_rails_...  (unit_id => units.id)
 #
 require 'rails_helper'
 
@@ -33,7 +36,9 @@ RSpec.describe Batch, type: :model do
       arrived_date: arrived_date,
       expiration_date: expiration_date,
       supply: supply,
-      created_by: created_by
+      created_by: created_by,
+      unit: unit,
+      remaining: remaining
     )
   end
 
@@ -43,6 +48,8 @@ RSpec.describe Batch, type: :model do
   let!(:expiration_date) { Date.current + 1.month }
   let!(:supply) { create(:supply) }
   let!(:created_by) { create(:user, :with_person) }
+  let!(:unit) { create(:unit) }
+  let!(:remaining) { rand(1..100) }
 
   context 'when successful' do
     it do
@@ -73,6 +80,26 @@ RSpec.describe Batch, type: :model do
           expect(subject.errors.full_messages.to_sentence).to eq(message)
         end
       end
+
+      context "when does not pass remaining" do
+        let!(:remaining) {}
+        let!(:message) { 'Restante não é um número válido' }
+
+        it do
+          expect(subject).not_to be_valid
+          expect(subject.errors.full_messages.to_sentence).to eq(message)
+        end
+      end
+
+      context "when does not pass unit" do
+        let!(:unit) {}
+        let!(:message) { 'Unidade não pode ficar em branco' }
+
+        it do
+          expect(subject).not_to be_valid
+          expect(subject.errors.full_messages.to_sentence).to eq(message)
+        end
+      end
     end
 
     context 'when pass a existing attribute' do
@@ -81,7 +108,7 @@ RSpec.describe Batch, type: :model do
 
         it do
           expect(subject).not_to be_valid
-          expect(subject.errors.full_messages.to_sentence).to eq('Nome já está em uso')
+          expect(subject.errors.full_messages.to_sentence).to eq('Identificador já está em uso')
         end
       end
     end
@@ -101,7 +128,7 @@ RSpec.describe Batch, type: :model do
 
         it do
           expect(subject).not_to be_valid
-          expect(subject.errors.full_messages.to_sentence).to eq('Data de chegada deve ser hoje ou antes')
+          expect(subject.errors.full_messages.to_sentence).to eq('Chegada deve ser hoje ou antes')
         end
       end
 
@@ -110,7 +137,7 @@ RSpec.describe Batch, type: :model do
 
         it do
           expect(subject).not_to be_valid
-          expect(subject.errors.full_messages.to_sentence).to eq('Data de validade deve ser hoje ou depois')
+          expect(subject.errors.full_messages.to_sentence).to eq('Validade deve ser hoje ou depois')
         end
       end
     end

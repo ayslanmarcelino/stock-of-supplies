@@ -53,6 +53,7 @@ Lint/InheritException:
 
 Metrics/ParameterLists:
   Exclude:
+    - 'app/services/stocks/create.rb'
 
 Metrics/ModuleLength:
   Exclude:
@@ -81,6 +82,7 @@ Metrics/MethodLength:
 
 Metrics/ClassLength:
   Exclude:
+    - 'app/controllers/batches_controller.rb'
 
 Rails:
   Enabled: true

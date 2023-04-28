@@ -134,3 +134,13 @@ label.required-label::after {
   content: ' *';
   color: $dark-red;
 }
+
+.badge {
+  &.-success {
+    background-color: $success;
+  }
+
+  &.-danger {
+    background-color: $danger;
+  }
+}

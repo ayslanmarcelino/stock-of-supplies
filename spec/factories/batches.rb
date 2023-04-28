@@ -7,5 +7,6 @@ FactoryBot.define do
     remaining { amount }
     supply { create(:supply) }
     created_by { create(:user, :with_person) }
+    unit { create(:unit) }
   end
 end

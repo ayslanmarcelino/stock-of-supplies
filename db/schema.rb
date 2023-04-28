@@ -48,11 +48,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_171308) do
     t.integer "amount"
     t.integer "remaining"
     t.bigint "supply_id"
+    t.bigint "unit_id"
     t.bigint "created_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["created_by_id"], name: "index_batches_on_created_by_id"
     t.index ["supply_id"], name: "index_batches_on_supply_id"
+    t.index ["unit_id"], name: "index_batches_on_unit_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -76,6 +78,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_171308) do
     t.index ["address_id"], name: "index_people_on_address_id"
     t.index ["owner_type", "owner_id"], name: "index_people_on_owner"
     t.index ["unit_id"], name: "index_people_on_unit_id"
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.integer "amount"
+    t.string "kind_cd"
+    t.string "reason"
+    t.date "expiration_date"
+    t.date "occurrence_date"
+    t.bigint "batch_id"
+    t.bigint "supply_id"
+    t.bigint "unit_id"
+    t.bigint "created_by_id"
+    t.string "source_type"
+    t.bigint "source_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["batch_id"], name: "index_stocks_on_batch_id"
+    t.index ["created_by_id"], name: "index_stocks_on_created_by_id"
+    t.index ["source_type", "source_id"], name: "index_stocks_on_source"
+    t.index ["supply_id"], name: "index_stocks_on_supply_id"
+    t.index ["unit_id"], name: "index_stocks_on_unit_id"
   end
 
   create_table "supplies", force: :cascade do |t|
@@ -144,9 +167,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_171308) do
   end
 
   add_foreign_key "batches", "supplies"
+  add_foreign_key "batches", "units"
   add_foreign_key "batches", "users", column: "created_by_id"
   add_foreign_key "people", "addresses"
   add_foreign_key "people", "units"
+  add_foreign_key "stocks", "batches"
+  add_foreign_key "stocks", "supplies"
+  add_foreign_key "stocks", "units"
+  add_foreign_key "stocks", "users", column: "created_by_id"
   add_foreign_key "supplies", "users", column: "created_by_id"
   add_foreign_key "units", "addresses"
   add_foreign_key "units", "users", column: "created_by_id"

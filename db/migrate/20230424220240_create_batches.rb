@@ -8,6 +8,7 @@ class CreateBatches < ActiveRecord::Migration[7.0]
       t.integer :remaining
 
       t.references :supply, foreign_key: true
+      t.references :unit, foreign_key: true
       t.references :created_by, foreign_key: { to_table: :users }
 
       t.timestamps

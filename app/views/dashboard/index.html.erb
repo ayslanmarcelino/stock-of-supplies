@@ -1,1 +1,66 @@
-<%= "Bem-vindo(a), #{current_user.person.name}." %>
+<div class="row col-md-12">
+  <div>
+    <h4><%= t('dashboard.components.layout.resource') %> - <%= current_user.current_unit.name %></h4>
+    <div class="pull-right mb-2">
+      <% if current_user.roles.kind_admin_masters.any? %>
+        <%= link_to(admin_root_path, class: 'btn btn-sm -transparent-standard') do %>
+          <i class="bi bi-bar-chart"></i>
+          <%= t('application.admin_dashboard') %>
+        <% end %>
+      <% end %>
+      <%= link_to(root_path, class: 'btn btn-sm -transparent-standard') do %>
+        <i class="bi bi-filetype-pdf"></i>
+        <%= t('application.generate_pdf') %>
+      <% end %>
+    </div>
+  </div>
+  <% if can?(:read, Supply) %>
+    <div>
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-uppercase mb-1">
+                  <%= link_to(t('.supplies'), supplies_path) %>
+                </div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  <%= Supply.count %>
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="bi bi-capsule" style="font-size: 30px;"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div>
+    <div class="col-xl-6 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <h4 class="text-center"><%= t('.stock_chart') %></h4>
+              <hr>
+              <% if @chart[:labels].present? && @chart[:values].present? %>
+                <div class="d-flex justify-content-between">
+                  <canvas id="chart" data-labels="<%= @chart[:labels] %>" data-values="<%= @chart[:values] %>"></canvas>
+                </div>
+                <span class="pull-right mt-4">
+                  <%= link_to('Ver detalhes', stocks_path, style: 'font-size: 12px;') %>
+                </span>
+              <% else %>
+                <div class="text-center">
+                  <%= t('.no_data') %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -44,4 +44,26 @@ module ApplicationHelper
 
     users.sort
   end
+
+  def kind_class(kind)
+    case kind
+    when :input
+      'success'
+    when :output
+      'danger'
+    end
+  end
+
+  def kind_icon(kind)
+    case kind
+    when :input
+      'right'
+    when :output
+      'left'
+    end
+  end
+
+  def stock_reason_collection
+    Stock.all.map(&:reason).uniq.sort
+  end
 end

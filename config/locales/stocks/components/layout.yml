@@ -1,0 +1,5 @@
+pt-BR:
+  stocks:
+    components:
+      layout:
+        resource: Estoque
