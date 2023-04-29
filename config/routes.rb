@@ -30,5 +30,5 @@ Rails.application.routes.draw do
   end
 
   resources :movements, only: :index
-  resources :orders, only: :index
+  resources :orders, only: [:index, :new, :create]
 end
