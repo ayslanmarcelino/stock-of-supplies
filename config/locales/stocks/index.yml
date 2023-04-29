@@ -11,5 +11,5 @@ pt-BR:
       created_by: Criado por
       created_at: Criado em
       updated_at: Atualizado em
-      new_output_confirm: Tem certeza que deseja criar esta saída de suprimento?
-      increment_amount_confirm: Tem certeza que deseja adicionar esta quantidade no mesmo estoque?
+      new_output_confirm: Tem certeza que deseja realizar a SAÍDA dessa quantidade de suprimento neste lote?
+      increment_amount_confirm: Tem certeza que deseja realizar a ENTRADA dessa quantidade neste lote?

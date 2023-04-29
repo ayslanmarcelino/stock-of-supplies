@@ -60,6 +60,8 @@ class Unit < ApplicationRecord
 
   has_many :stocks
 
+  before_validation :format_representative_document_number
+
   def self.permitted_params
     [
       :email,
@@ -78,5 +80,17 @@ class Unit < ApplicationRecord
       :address_id,
       :created_by_id
     ]
+  end
+
+  def format_representative_document_number
+    return if representative_document_number.blank?
+
+    unless representative_document_number.match?(/\A\d+\z/)
+      self.representative_document_number = representative_document_number.gsub!(
+        /[^0-9a-zA-Z]/,
+        ''
+      )
+    end
+    errors.add(:representative_document_number, 'não é válido') unless CPF.valid?(representative_document_number)
   end
 end
