@@ -66,4 +66,12 @@ module ApplicationHelper
   def movement_reason_collection
     Movement.all.map(&:reason).uniq.sort
   end
+
+  def current_stock_collection
+    current_user.current_unit.stocks.map(&:identifier).sort
+  end
+
+  def supply_collection
+    Supply.all.map(&:name).sort
+  end
 end

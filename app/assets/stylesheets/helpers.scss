@@ -154,3 +154,10 @@ label.required-label::after {
     background-color: $danger;
   }
 }
+
+@media print
+{    
+  .no-print, .no-print * {
+    display: none !important;
+  }
+}

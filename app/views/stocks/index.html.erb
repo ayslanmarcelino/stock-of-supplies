@@ -20,7 +20,6 @@
     <table class="table table-responsive">
       <thead>
         <tr>
-          <th><%= sort_link(@query, :id, t('.id')) %></th>
           <th><%= sort_link(@query, :identifier, t('.identifier')) %></th>
           <th><%= sort_link(@query, :amount, t('.amount')) %></th>
           <th><%= sort_link(@query, :remaining, t('.remaining')) %></th>
@@ -36,7 +35,6 @@
       <tbody>
         <% @stocks.each do |stock| %>
           <tr>
-            <td><%= stock.id %></td>
             <td><%= stock.identifier %></td>
             <td><%= stock.amount %></td>
             <td><%= stock.remaining %></td>

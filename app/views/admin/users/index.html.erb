@@ -27,6 +27,7 @@
       <thead>
         <tr>
           <th><%= t('.document_number') %></th>
+          <th><%= sort_link(@query, :person_cns_number, t('.cns_number')) %></th>
           <th><%= sort_link(@query, :person_name, t('.name')) %></th>
           <th><%= sort_link(@query, :email, t('.email')) %></th>
           <th><%= t('.status') %></th>
@@ -37,6 +38,7 @@
         <% @users.each do |user| %>
           <tr>
             <td><%= formatted(user.person.document_number) %></td>
+            <td><%= user.person.cns_number %></td>
             <td><%= user.person.name %></td>
             <td><%= user.email %></td>
             <td class="status">
