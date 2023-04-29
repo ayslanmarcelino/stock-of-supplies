@@ -86,5 +86,6 @@ class Person < ApplicationRecord
 
   def format_document_number
     self.document_number = document_number.gsub!(/[^0-9a-zA-Z]/, '') unless document_number.match?(/\A\d+\z/)
+    errors.add(:document_number, 'não é válido') unless CPF.valid?(self.document_number)
   end
 end
