@@ -1,5 +1,5 @@
-<div class="btn btn-sm">
-  <%= link_to('#', data: { toggle: "modal", target: "#incrementAmount#{resource.id}" }, class: 'nav-link text-secondary') do %>
+<div>
+  <%= link_to('#', data: { toggle: "modal", target: "#incrementAmount#{resource.id}" }, class: 'btn btn-sm -transparent-success') do %>
     <i class="bi bi-arrow-repeat"></i>
   <% end %>
   <div class="modal fade" id="incrementAmount<%= resource.id %>" tabindex="-1" role="dialog" aria-labelledby="incrementAmount<%= resource.id %>Label" aria-hidden="true">
@@ -27,8 +27,8 @@
                 <div class="form-group">
                   <%=
                     form.submit(
-                      t("application.update"),
-                      class: 'btn btn-secondary pull-right col-lg-12',
+                      t("application.increment_amount"),
+                      class: 'btn -transparent-border-success pull-right col-lg-12',
                       data: { turbo_confirm: t('stocks.index.increment_amount_confirm') }
                     )
                   %>
