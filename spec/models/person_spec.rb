@@ -37,7 +37,7 @@ require 'rails_helper'
 RSpec.describe Person, type: :model do
   subject { described_class.new(document_number: document_number, name: name, owner: owner, unit: unit, cns_number: cns_number) }
 
-  let!(:document_number) { CNPJ.generate }
+  let!(:document_number) { CPF.generate }
   let!(:name) { Faker::Name.name }
   let!(:owner) { create(:user) }
   let!(:unit) { create(:unit) }
@@ -65,7 +65,7 @@ RSpec.describe Person, type: :model do
     end
 
     context 'when does not have same document_number, same owner and same unit' do
-      let!(:document_number) { CNPJ.generate }
+      let!(:document_number) { CPF.generate }
       let!(:owner) { create(:address) }
       let!(:unit) { create(:unit) }
 
