@@ -63,6 +63,19 @@ module ApplicationHelper
     end
   end
 
+  def status_class(status)
+    case status
+    when 'pending'
+      'primary'
+    when 'rejected'
+      'danger'
+    when 'approved'
+      'success'
+    when 'delivered'
+      'info'
+    end
+  end
+
   def movement_reason_collection
     Movement.all.map(&:reason).uniq.sort
   end
