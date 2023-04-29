@@ -3,7 +3,7 @@
 # Table name: orders
 #
 #  id                 :bigint           not null, primary key
-#  amount             :string
+#  amount             :integer
 #  approval_date      :date
 #  delivery_date      :date
 #  reason             :string

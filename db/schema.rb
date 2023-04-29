@@ -63,8 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_29_195933) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.integer "amount"
     t.string "status"
-    t.string "amount"
     t.string "reason"
     t.date "approval_date"
     t.date "rejection_date"
