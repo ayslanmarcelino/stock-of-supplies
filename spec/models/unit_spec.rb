@@ -66,6 +66,17 @@ RSpec.describe Unit, type: :model do
   end
 
   context 'when unsucessful' do
+    context 'when param is invalid' do
+      context 'when representative_document_number' do
+        let!(:representative_document_number) { '12345678912' }
+
+        it do
+          expect(subject).not_to be_valid
+          expect(subject.errors.full_messages.to_sentence).to eq('CPF não é válido')
+        end
+      end
+    end
+
     context 'when has unit with existing cnes_number' do
       let!(:unit) { create(:unit, cnes_number: cnes_number) }
 

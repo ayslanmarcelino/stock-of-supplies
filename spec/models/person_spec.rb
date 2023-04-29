@@ -76,6 +76,17 @@ RSpec.describe Person, type: :model do
   end
 
   context 'when unsucessful' do
+    context 'when param is invalid' do
+      context 'when document_number' do
+        let(:document_number) { '123456789012' }
+  
+        it do
+          expect(subject).not_to be_valid
+          expect(subject.errors.full_messages.to_sentence).to eq('CPF não é válido')
+        end
+      end
+    end
+
     context 'when has person with same document_number, unit and owner' do
       let!(:person) { create(:person, document_number: document_number, unit: unit, owner: owner) }
 

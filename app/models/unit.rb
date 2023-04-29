@@ -83,7 +83,14 @@ class Unit < ApplicationRecord
   end
 
   def format_representative_document_number
-    self.representative_document_number = representative_document_number.gsub!(/[^0-9a-zA-Z]/, '') unless representative_document_number.match?(/\A\d+\z/)
-    errors.add(:representative_document_number, 'não é válido') unless CPF.valid?(self.representative_document_number)
+    return if representative_document_number.blank?
+
+    unless representative_document_number.match?(/\A\d+\z/)
+      self.representative_document_number = representative_document_number.gsub!(
+        /[^0-9a-zA-Z]/,
+        ''
+      )
+    end
+    errors.add(:representative_document_number, 'não é válido') unless CPF.valid?(representative_document_number)
   end
 end
