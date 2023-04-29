@@ -5,6 +5,7 @@ pt-BR:
         id: Código
         email: E-mail
         document_number: CPF
+        cns_number: CNS
         name: Nome completo
         status: Status
         user_roles: Regras de usuário

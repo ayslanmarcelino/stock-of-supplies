@@ -1,8 +1,11 @@
 <div class="row mb-3">
-  <div class="col-md-3">
+  <div class="col-md-2">
     <%= form.text_field :person_document_number_cont, placeholder: t('admin.users.index.document_number'), class: 'form-control' %>
   </div>
-  <div class="col-md-5">
+  <div class="col-md-2">
+    <%= form.text_field :person_cns_number_cont, placeholder: t('admin.users.index.cns_number'), class: 'form-control' %>
+  </div>
+  <div class="col-md-4">
     <%= form.text_field :person_name_cont, placeholder: t('admin.users.index.name'), class: 'form-control' %>
   </div>
   <div class="col-md-4">
