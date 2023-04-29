@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :order do
     amount { rand(1..100) }
     created_by { create(:user, :with_person) }
+    requesting_unit { create(:unit) }
 
     association :stock
 

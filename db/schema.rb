@@ -70,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_29_195933) do
     t.date "rejection_date"
     t.date "delivery_date"
     t.bigint "stock_id"
+    t.bigint "requesting_unit_id"
     t.bigint "created_by_id"
     t.bigint "approved_by_id"
     t.bigint "rejected_by_id"
@@ -80,6 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_29_195933) do
     t.index ["created_by_id"], name: "index_orders_on_created_by_id"
     t.index ["delivered_by_id"], name: "index_orders_on_delivered_by_id"
     t.index ["rejected_by_id"], name: "index_orders_on_rejected_by_id"
+    t.index ["requesting_unit_id"], name: "index_orders_on_requesting_unit_id"
     t.index ["stock_id"], name: "index_orders_on_stock_id"
   end
 
@@ -192,6 +194,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_29_195933) do
   add_foreign_key "movements", "units"
   add_foreign_key "movements", "users", column: "created_by_id"
   add_foreign_key "orders", "stocks"
+  add_foreign_key "orders", "units", column: "requesting_unit_id"
   add_foreign_key "orders", "users", column: "approved_by_id"
   add_foreign_key "orders", "users", column: "created_by_id"
   add_foreign_key "orders", "users", column: "delivered_by_id"

@@ -10,6 +10,7 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.date :delivery_date
 
       t.references :stock, foreign_key: true
+      t.references :requesting_unit, foreign_key: { to_table: :units }
       t.references :created_by, foreign_key: { to_table: :users }
       t.references :approved_by, foreign_key: { to_table: :users }
       t.references :rejected_by, foreign_key: { to_table: :users }

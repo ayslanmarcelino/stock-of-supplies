@@ -58,6 +58,9 @@ class Ability
       if @unit.kind_pni?
         can([:read, :create], Supply)
         can([:create, :increment_amount], Stock, unit: @unit)
+        can(:read, Order)
+      elsif @unit.kind_unit?
+        can(:read, Order, requesting_unit: @unit)
       end
 
       can([:read, :new_output], Stock, unit: @unit)
@@ -70,6 +73,9 @@ class Ability
 
       if @unit.kind_pni?
         can(:read, Supply)
+        can(:read, Order)
+      elsif @unit.kind_unit?
+        can(:read, Order, requesting_unit: @unit)
       end
 
       can(:read, Stock, unit: @unit)
