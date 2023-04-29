@@ -16,5 +16,6 @@ pt-BR:
     update: Atualizar
     editing: Você está editando
     generate_pdf: Gerar PDF (em breve)
+    increment_amount: Nova entrada
     new_output: Nova saída
-    admin_dashboard: Dashboard administrativo
+    admin_dashboard: Administrativo

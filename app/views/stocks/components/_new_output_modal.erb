@@ -1,5 +1,5 @@
-<div class="btn btn-sm">
-  <%= link_to('#', data: { toggle: "modal", target: "#newOutput#{resource.id}" }, class: 'text-secondary') do %>
+<div>
+  <%= link_to('#', data: { toggle: "modal", target: "#newOutput#{resource.id}" }, class: 'btn btn-sm -transparent-danger') do %>
     <i class="bi bi-arrow-left"></i>
   <% end %>
   <div class="modal fade" id="newOutput<%= resource.id %>" tabindex="-1" role="dialog" aria-labelledby="newOutput<%= resource.id %>Label" aria-hidden="true">
@@ -27,8 +27,8 @@
                 <div class="form-group">
                   <%=
                     form.submit(
-                      t("application.create"),
-                      class: 'btn -transparent-danger pull-right col-lg-12',
+                      t("application.new_output"),
+                      class: 'btn -transparent-border-danger pull-right col-lg-12',
                       data: { turbo_confirm: t('stocks.index.new_output_confirm') }
                     )
                   %>
