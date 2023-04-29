@@ -153,6 +153,14 @@ label.required-label::after {
   &.-danger {
     background-color: $danger;
   }
+
+  &.-primary {
+    background-color: $light-grey;
+  }
+
+  &.-info {
+    background-color: $primary;
+  }
 }
 
 @media print
