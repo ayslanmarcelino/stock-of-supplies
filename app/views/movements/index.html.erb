@@ -1,0 +1,55 @@
+<div class="row col-md-12">
+  <h4><%= t('movements.components.layout.resource') %></h4>
+  <div>
+    <%= render(layout: 'layouts/components/filter/body') do %>
+      <%= search_form_for(@query, url: movements_path) do |form| %>
+        <%= render(partial: 'movements/components/filters', locals: { form: form }) %>
+        <%= render(partial: 'layouts/components/filter/footer', locals: { form: form }) %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="table-wrap">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th><%= sort_link(@query, :supply_name, t('.supply_name')) %></th>
+          <th><%= sort_link(@query, :stock, t('.stock')) %></th>
+          <th><%= sort_link(@query, :expiration_date, t('.expiration_date')) %></th>
+          <th><%= sort_link(@query, :amount, t('.amount')) %></th>
+          <th><%= sort_link(@query, :kind_cd, t('.kind')) %></th>
+          <th><%= sort_link(@query, :reason, t('.reason')) %></th>
+          <th><%= sort_link(@query, :occurrence_date, t('.occurrence_date')) %></th>
+          <th><%= sort_link(@query, :source, t('.source')) %></th>
+          <th><%= sort_link(@query, :created_at, t('.created_at')) %></th>
+          <th><%= sort_link(@query, :created_by, t('.created_by')) %></th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @movements.each do |movement| %>
+          <tr>
+            <td><%= movement.supply.name %></td>
+            <td><%= movement.stock.identifier %></td>
+            <td><%= l(movement.expiration_date) %></td>
+            <td><%= movement.amount %></td>
+            <td>
+              <span class="badge -<%= kind_class(movement.kind) %> w-100">
+                <i class="bi bi-arrow-<%= kind_icon(movement.kind) %>"></i>
+              </span>
+            <td><%= movement.reason %></td>
+            <td><%= l(movement.occurrence_date) %></td>
+            <td><%= I18n.t("activerecord.models.#{movement.source.class.name.downcase}") %></td>
+            <td><%= l(movement.created_at) %></td>
+            <td><%= link_to(movement.created_by.person.name, admin_user_path(movement.created_by)) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%=
+  render partial: 'layouts/components/index/footer',
+         locals: {
+           resource: @movements
+         }
+%>

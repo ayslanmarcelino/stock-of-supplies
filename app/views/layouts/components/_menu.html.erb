@@ -32,18 +32,6 @@
   <% end %>
 <% end %>
 
-<% if can?(:read, Batch) %>
-  <%= link_to(batches_path, class: "#{'active-menu' if request.path.include?(batches_path)} list-item-menu list-group-item-action",
-                            id: 'user') do %>
-    <div class="menu">
-      <div class="icon">
-        <i class="bi bi-box-seam"></i>
-      </div>
-      <span><%= t('batches.components.layout.resource') %></span>
-    </div>
-  <% end %>
-<% end %>
-
 <% if can?(:read, Stock) %>
   <%= link_to(stocks_path, class: "#{'active-menu' if request.path.include?(stocks_path)} list-item-menu list-group-item-action",
                             id: 'user') do %>
@@ -52,6 +40,18 @@
         <i class="bi bi-boxes"></i>
       </div>
       <span><%= t('stocks.components.layout.resource') %></span>
+    </div>
+  <% end %>
+<% end %>
+
+<% if can?(:read, Movement) %>
+  <%= link_to(movements_path, class: "#{'active-menu' if request.path.include?(movements_path)} list-item-menu list-group-item-action",
+                            id: 'user') do %>
+    <div class="menu">
+      <div class="icon">
+        <i class="bi bi-arrow-left-right"></i>
+      </div>
+      <span><%= t('movements.components.layout.resource') %></span>
     </div>
   <% end %>
 <% end %>

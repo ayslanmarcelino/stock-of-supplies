@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= form.select :supply_name_eq, supply_collection, { include_blank: 'Selecione o suprimento' }, class: 'form-control' %>
+  </div>
+  <div class="col-md-2">
+    <%= form.select :stock_id_eq, current_stock_collection, { include_blank: 'Selecione o lote' }, class: 'form-control' %>
+  </div>
+  <div class="col-md-2">
+    <%= form.select :kind_cd_eq, Movement::KINDS, { include_blank: 'Selecione o tipo' }, class: 'form-control' %>
+  </div>
+  <div class="col-md-5">
+    <%= form.select :reason_eq, movement_reason_collection, { include_blank: 'Selecione o motivo' }, class: 'form-control' %>
+  </div>
+  <div class="col-md-12 mt-2">
+    <%= form.select :created_by_id_eq, users_collection, { include_blank: 'Selecione o movimentador' }, class: 'form-control' %>
+  </div>
+</div>
+<hr>
+<h6><%= t('movements.index.created_at') %></h6>
+<div class="row mb-3">
+  <div class="col-md-2">
+    <span>Data inicial</span>
+    <%= form.date_field :created_at_gteq, class: 'form-control' %>
+  </div>
+  <div class="col-md-2">
+    <span>Data final</span>
+    <%= form.date_field :created_at_lteq, class: 'form-control' %>
+  </div>
+</div>
+<hr>
+<h6><%= t('movements.index.occurrence_date') %></h6>
+<div class="row mb-3">
+  <div class="col-md-2">
+    <span>Data inicial</span>
+    <%= form.date_field :occurrence_date_gteq, class: 'form-control' %>
+  </div>
+  <div class="col-md-2">
+    <span>Data final</span>
+    <%= form.date_field :occurrence_date_lteq, class: 'form-control' %>
+  </div>
+</div>

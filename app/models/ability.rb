@@ -57,11 +57,11 @@ class Ability
 
       if @unit.kind_pni?
         can([:read, :create], Supply)
-        can([:create, :increment_amount], Batch, unit: @unit)
+        can([:create, :increment_amount], Stock, unit: @unit)
       end
 
-      can([:read, :new_output], Batch, unit: @unit)
-      can(:read, Stock, unit: @unit)
+      can([:read, :new_output], Stock, unit: @unit)
+      can(:read, Movement, unit: @unit)
     end
 
     def viewer_abilities
@@ -72,8 +72,8 @@ class Ability
         can(:read, Supply)
       end
 
-      can(:read, Batch, unit: @unit)
       can(:read, Stock, unit: @unit)
+      can(:read, Movement, unit: @unit)
     end
   end
 end

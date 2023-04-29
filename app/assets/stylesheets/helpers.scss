@@ -52,7 +52,6 @@
   }
 
   &.-transparent-danger {
-    border-color: $grey;
     color: $grey;
 
     &:hover {
@@ -63,7 +62,6 @@
   }
 
   &.-transparent-success {
-    border-color: $grey;
     color: $grey;
 
     &:hover {
@@ -71,6 +69,18 @@
       border-color: $success;
       background-color: $success;
     }
+  }
+
+  &.-transparent-border-danger {
+    border-color: $grey;
+
+    @extend .-transparent-danger;
+  }
+
+  &.-transparent-border-success {
+    border-color: $grey;
+
+    @extend .-transparent-success;
   }
 }
 
@@ -142,5 +152,12 @@ label.required-label::after {
 
   &.-danger {
     background-color: $danger;
+  }
+}
+
+@media print
+{    
+  .no-print, .no-print * {
+    display: none !important;
   }
 }

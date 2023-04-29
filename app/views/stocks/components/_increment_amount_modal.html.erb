@@ -1,15 +1,15 @@
-<div class="btn btn-sm">
-  <%= link_to('#', data: { toggle: "modal", target: "#incrementAmount#{resource.id}" }, class: 'nav-link text-secondary') do %>
+<div>
+  <%= link_to('#', data: { toggle: "modal", target: "#incrementAmount#{resource.id}" }, class: 'btn btn-sm -transparent-success') do %>
     <i class="bi bi-arrow-repeat"></i>
   <% end %>
   <div class="modal fade" id="incrementAmount<%= resource.id %>" tabindex="-1" role="dialog" aria-labelledby="incrementAmount<%= resource.id %>Label" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header g-0 row">
-          <h5 class="modal-title text-center">Novo recebimento do lote - <%= resource.identifier %></h5>
+          <h5 class="modal-title text-center">Novo recebimento do estoque - <%= resource.identifier %></h5>
         </div>
         <div class="modal-body">
-          <%= form_for(resource, url: increment_amount_batch_path(resource), method: :patch, local: true) do |form| %>
+          <%= form_for(resource, url: increment_amount_stock_path(resource), method: :patch, local: true) do |form| %>
             <div class="row">
               <div class="col-lg-4">
                 <div class="form-group">
@@ -27,9 +27,9 @@
                 <div class="form-group">
                   <%=
                     form.submit(
-                      t("application.update"),
-                      class: 'btn btn-secondary pull-right col-lg-12',
-                      data: { turbo_confirm: t('batches.index.increment_amount_confirm') }
+                      t("application.increment_amount"),
+                      class: 'btn -transparent-border-success pull-right col-lg-12',
+                      data: { turbo_confirm: t('stocks.index.increment_amount_confirm') }
                     )
                   %>
                 </div>

@@ -1,0 +1,15 @@
+pt-BR:
+  movements:
+    index:
+      id: Código
+      supply_name: Suprimento
+      amount: Quantidade
+      kind: Tipo
+      reason: Motivo
+      created_by: Movimentado por
+      created_at: Criado em
+      source: Origem
+      expiration_date: Validade
+      occurrence_date: Ocorrido
+      input_and_output: Entrada e saída
+      stock: Lote
