@@ -18,6 +18,7 @@ FactoryBot.define do
     trait :rejected do
       status { :rejected }
       rejected_by { create(:user, :with_person) }
+      reason { 'Suprimentos venceram' }
     end
 
     trait :delivered do

@@ -40,7 +40,7 @@ class Order < ApplicationRecord
   belongs_to :stock
   belongs_to :requesting_unit, class_name: 'Unit'
   belongs_to :created_by, class_name: 'User'
-  belongs_to :approved_by_id, class_name: 'User', optional: true
-  belongs_to :delivered_by_id, class_name: 'User', optional: true
-  belongs_to :rejected_by_id, class_name: 'User', optional: true
+  belongs_to :approved_by, class_name: 'User', optional: true
+  belongs_to :delivered_by, class_name: 'User', optional: true
+  belongs_to :rejected_by, class_name: 'User', optional: true
 end
