@@ -34,4 +34,9 @@
 #  fk_rails_...  (stock_id => stocks.id)
 #
 class Order < ApplicationRecord
+  belongs_to :stock
+  belongs_to :created_by, class_name: 'User'
+  belongs_to :approved_by_id, class_name: 'User', optional: true
+  belongs_to :delivered_by_id, class_name: 'User', optional: true
+  belongs_to :rejected_by_id, class_name: 'User', optional: true
 end
