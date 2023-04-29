@@ -13,17 +13,20 @@ FactoryBot.define do
     trait :approved do
       status { :approved }
       approved_by { create(:user, :with_person) }
+      approval_date { Time.current }
     end
 
     trait :rejected do
       status { :rejected }
       rejected_by { create(:user, :with_person) }
       reason { 'Suprimentos venceram' }
+      rejection_date { Time.current }
     end
 
     trait :delivered do
       status { :delivered }
       delivered_by { create(:user, :with_person) }
+      delivery_date { Time.current }
     end
   end
 end

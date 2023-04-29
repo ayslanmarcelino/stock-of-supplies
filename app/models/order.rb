@@ -4,10 +4,10 @@
 #
 #  id                 :bigint           not null, primary key
 #  amount             :integer
-#  approval_date      :date
-#  delivery_date      :date
+#  approval_date      :datetime
+#  delivery_date      :datetime
 #  reason             :string
-#  rejection_date     :date
+#  rejection_date     :datetime
 #  status             :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null

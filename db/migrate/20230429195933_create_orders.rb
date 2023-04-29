@@ -6,9 +6,9 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.string :status
       t.string :reason
 
-      t.date :approval_date
-      t.date :rejection_date
-      t.date :delivery_date
+      t.datetime :approval_date
+      t.datetime :rejection_date
+      t.datetime :delivery_date
 
       t.references :stock, foreign_key: true
       t.references :requesting_unit, foreign_key: { to_table: :units }
