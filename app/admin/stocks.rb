@@ -1,7 +1,7 @@
 ActiveAdmin.register(Stock) do
   menu priority: 7
 
-  includes :supply, :created_by
+  includes :supply, :created_by, :unit
 
   permit_params Stock.permitted_params
 

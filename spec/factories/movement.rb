@@ -6,8 +6,8 @@ FactoryBot.define do
     source { create(:stock) }
     supply { stock.supply }
     created_by { create(:user) }
-    expiration_date { Date.current + 5.years }
-    occurrence_date { Date.current - 2.days }
+    expiration_date { Date.current + rand(1..4).years }
+    occurrence_date { Date.current - rand(1..60).days }
     unit { create(:unit) }
     stock { create(:stock) }
   end
