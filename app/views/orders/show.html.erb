@@ -5,3 +5,30 @@
     <%= t('application.back') %>
   <% end %>
 </div>
+<div class="row col-md-12">
+  <div class="table-wrap">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th><%= t('.responsible') %></th>
+          <th><%= t('.status') %></th>
+          <th><%= t('.created_at') %></th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @versions.each do |version| %>
+          <tr>
+            <td><%= link_to("#{version.responsible.person.name}", admin_user_path(version.responsible)) %></td>
+            <td>
+              <span class="badge -<%= status_class(version.aasm_state) %>">
+                <%= I18n.t("activerecord.attributes.order.aasm_state_list.#{version.aasm_state}") %></td>
+              </span>
+            </td>
+            <td><%= l(version.created_at) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

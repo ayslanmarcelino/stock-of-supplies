@@ -15,7 +15,9 @@ class OrdersController < ApplicationController
     @orders = @query.result(distinct: false)
   end
 
-  def show; end
+  def show
+    @versions = @order.versions.includes(:responsible, responsible: :person).order(created_at: :desc)
+  end
 
   def new
     @order = Order.new
@@ -25,6 +27,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
 
     if @order.save
+      create_order_version!
       redirect_success(path: orders_path, action: 'solicitado')
     else
       render(:new, status: :unprocessable_entity)
@@ -33,8 +36,8 @@ class OrdersController < ApplicationController
 
   def approve
     if @order.may_approve?
-      @order.update(approved_by: current_user, approval_date: Time.current)
       @order.approve!
+      create_order_version!
       flash[:success] = 'Pedido aprovado com sucesso. Favor separar para envio.'
     elsif @order.approved?
       flash[:alert] = 'Pedido já aprovado.'
@@ -49,8 +52,8 @@ class OrdersController < ApplicationController
     # adicionar preenchimento de motivo
 
     if @order.may_reject?
-      @order.update(rejected_by: current_user, rejection_date: Time.current)
       @order.reject!
+      create_order_version!
       flash[:success] = 'Pedido reprovado com sucesso.'
     elsif @order.rejected?
       flash[:alert] = 'Pedido já reprovado.'
@@ -63,8 +66,8 @@ class OrdersController < ApplicationController
 
   def deliver
     if @order.may_deliver?
-      @order.update(delivered_by: current_user, delivery_date: Time.current)
       @order.deliver!
+      create_order_version!
       flash[:success] = 'Pedido enviado com sucesso.'
     elsif @order.delivered?
       flash[:alert] = 'Pedido já enviado.'
@@ -77,12 +80,12 @@ class OrdersController < ApplicationController
 
   def finish
     if @order.may_finish?
-      @order.update(finished_by: current_user, final_date: Time.current)
       update_sent_stock!
       find_or_create_received_stock!
       create_output_movement!
       create_input_movement!
       @order.finish!
+      create_order_version!
       flash[:success] = 'Pedido concluído com sucesso.'
     elsif @order.finished?
       flash[:alert] = 'Pedido já foi concluído.'
@@ -117,6 +120,10 @@ class OrdersController < ApplicationController
 
   def order
     @order ||= Order.find(params[:id])
+  end
+
+  def create_order_version!
+    Order::Version.create!(order: @order, aasm_state: @order.aasm_state, responsible: current_user)
   end
 
   def update_sent_stock!

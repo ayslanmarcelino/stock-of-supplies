@@ -6,18 +6,9 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.string :aasm_state
       t.string :reason
 
-      t.datetime :approval_date
-      t.datetime :rejection_date
-      t.datetime :delivery_date
-      t.datetime :final_date
-
       t.references :stock, foreign_key: true
       t.references :requesting_unit, foreign_key: { to_table: :units }
       t.references :created_by, foreign_key: { to_table: :users }
-      t.references :approved_by, foreign_key: { to_table: :users }
-      t.references :rejected_by, foreign_key: { to_table: :users }
-      t.references :delivered_by, foreign_key: { to_table: :users }
-      t.references :finished_by, foreign_key: { to_table: :users }
 
       t.timestamps
     end

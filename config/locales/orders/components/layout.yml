@@ -3,4 +3,4 @@ pt-BR:
     components:
       layout:
         resource: Pedidos
-        show: Você está visualizando o pedido
+        show: Histórico do pedido
