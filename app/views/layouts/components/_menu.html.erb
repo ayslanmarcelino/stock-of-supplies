@@ -57,8 +57,9 @@
 <% end %>
 
 <% if can?(:read, Order) %>
-  <%= link_to(orders_path, class: "#{'active-menu' if request.path.include?(orders_path)} list-item-menu list-group-item-action",
-                           id: 'user') do %>
+  <%= link_to(orders_path(q: { status_cd_eq: :pending }),
+              class: "#{'active-menu' if request.path.include?(orders_path)} list-item-menu list-group-item-action",
+              id: 'user') do %>
     <div class="menu">
       <div class="icon">
         <i class="bi bi-list-check"></i>

@@ -65,13 +65,13 @@ module ApplicationHelper
 
   def status_class(status)
     case status
-    when 'pending'
+    when :pending
       'primary'
-    when 'rejected'
+    when :rejected
       'danger'
-    when 'approved'
+    when :approved
       'success'
-    when 'delivered'
+    when :delivered
       'info'
     end
   end

@@ -50,6 +50,21 @@
                   <i class="bi bi-eye"></i>
                 <% end %>
               <% end %>
+              <% if can?(:approve, Order) && order.status_pending? %>
+                <%= link_to(order_path(order), class: 'btn btn-sm -transparent-success') do %>
+                  <i class="bi bi-hand-thumbs-up"></i>
+                <% end %>
+              <% end %>
+              <% if can?(:reject, Order) && order.status_pending? %>
+                <%= link_to(order_path(order), class: 'btn btn-sm -transparent-danger') do %>
+                  <i class="bi bi-hand-thumbs-down"></i>
+                <% end %>
+              <% end %>
+              <% if can?(:deliver, Order) && order.status_approved? %>
+                <%= link_to(order_path(order), class: 'btn btn-sm -transparent-info') do %>
+                  <i class="bi bi-truck"></i>
+                <% end %>
+              <% end %>
             </td>
           </tr>
         <% end %>

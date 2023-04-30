@@ -8,7 +8,7 @@
 #  delivery_date      :datetime
 #  reason             :string
 #  rejection_date     :datetime
-#  status             :string
+#  status_cd          :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  approved_by_id     :bigint
@@ -43,6 +43,8 @@ class Order < ApplicationRecord
   belongs_to :approved_by, class_name: 'User', optional: true
   belongs_to :delivered_by, class_name: 'User', optional: true
   belongs_to :rejected_by, class_name: 'User', optional: true
+
+  as_enum :status, [:pending, :approved, :rejected, :delivered], prefix: true, map: :string
 
   def self.permitted_params
     [

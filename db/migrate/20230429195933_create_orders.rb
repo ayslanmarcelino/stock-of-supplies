@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration[7.0]
     create_table :orders do |t|
       t.integer :amount
 
-      t.string :status
+      t.string :status_cd
       t.string :reason
 
       t.datetime :approval_date

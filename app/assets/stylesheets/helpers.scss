@@ -51,6 +51,16 @@
     }
   }
 
+  &.-transparent-info {
+    color: $grey;
+
+    &:hover {
+      color: $white;
+      border-color: $info;
+      background-color: $info;
+    }
+  }
+
   &.-transparent-danger {
     color: $grey;
 
@@ -159,7 +169,7 @@ label.required-label::after {
   }
 
   &.-info {
-    background-color: $primary;
+    background-color: $info;
   }
 }
 

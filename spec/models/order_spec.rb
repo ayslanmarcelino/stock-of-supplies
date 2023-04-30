@@ -8,7 +8,7 @@
 #  delivery_date      :datetime
 #  reason             :string
 #  rejection_date     :datetime
-#  status             :string
+#  status_cd          :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  approved_by_id     :bigint
