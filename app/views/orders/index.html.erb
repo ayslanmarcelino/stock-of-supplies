@@ -36,7 +36,7 @@
             <td><%= order.id %></td>
             <td>
               <span class="badge -<%= status_class(order.status) %> w-100">
-                <%= order.status %>
+                <%= I18n.t("activerecord.attributes.order.status_list.#{order.status}") %>
               </span>
             </td>
             <td><%= order.amount %></td>
