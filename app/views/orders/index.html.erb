@@ -35,8 +35,8 @@
           <tr>
             <td><%= order.id %></td>
             <td>
-              <span class="badge -<%= status_class(order.status) %> w-100">
-                <%= I18n.t("activerecord.attributes.order.status_list.#{order.status}") %>
+              <span class="badge -<%= status_class(order.state) %> w-100">
+                <%= I18n.t("activerecord.attributes.order.aasm_state_list.#{order.state}") %>
               </span>
             </td>
             <td><%= order.amount %></td>
@@ -50,17 +50,17 @@
                   <i class="bi bi-eye"></i>
                 <% end %>
               <% end %>
-              <% if can?(:approve, Order) && order.status_pending? %>
+              <% if can?(:approve, Order) && order.pending? %>
                 <%= link_to(order_path(order), class: 'btn btn-sm -transparent-success') do %>
                   <i class="bi bi-hand-thumbs-up"></i>
                 <% end %>
               <% end %>
-              <% if can?(:reject, Order) && order.status_pending? %>
+              <% if can?(:reject, Order) && order.pending? %>
                 <%= link_to(order_path(order), class: 'btn btn-sm -transparent-danger') do %>
                   <i class="bi bi-hand-thumbs-down"></i>
                 <% end %>
               <% end %>
-              <% if can?(:deliver, Order) && order.status_approved? %>
+              <% if can?(:deliver, Order) && order.approved? %>
                 <%= link_to(order_path(order), class: 'btn btn-sm -transparent-info') do %>
                   <i class="bi bi-truck"></i>
                 <% end %>

@@ -2,7 +2,7 @@ pt-BR:
   orders:
     index:
       id: Número
-      status: Status
+      aasm_state: Status
       amount: Quantidade
       supply_name: Suprimento
       stock_identifier: Lote

@@ -3,12 +3,12 @@
 # Table name: orders
 #
 #  id                 :bigint           not null, primary key
+#  aasm_state         :string
 #  amount             :integer
 #  approval_date      :datetime
 #  delivery_date      :datetime
 #  reason             :string
 #  rejection_date     :datetime
-#  status_cd          :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  approved_by_id     :bigint

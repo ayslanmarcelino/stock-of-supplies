@@ -3,12 +3,12 @@
 # Table name: orders
 #
 #  id                 :bigint           not null, primary key
+#  aasm_state         :string
 #  amount             :integer
 #  approval_date      :datetime
 #  delivery_date      :datetime
 #  reason             :string
 #  rejection_date     :datetime
-#  status_cd          :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  approved_by_id     :bigint
@@ -37,6 +37,8 @@
 #  fk_rails_...  (stock_id => stocks.id)
 #
 class Order < ApplicationRecord
+  include Orders
+
   belongs_to :stock
   belongs_to :requesting_unit, class_name: 'Unit'
   belongs_to :created_by, class_name: 'User'
@@ -44,7 +46,7 @@ class Order < ApplicationRecord
   belongs_to :delivered_by, class_name: 'User', optional: true
   belongs_to :rejected_by, class_name: 'User', optional: true
 
-  as_enum :status, [:pending, :approved, :rejected, :delivered], prefix: true, map: :string
+  as_enum :state, [:pending, :approved, :rejected, :delivered], map: :string, source: :aasm_state
 
   def self.permitted_params
     [

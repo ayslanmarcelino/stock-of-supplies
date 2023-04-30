@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
           ).merge(
             requesting_unit: current_user.current_unit,
             created_by: current_user,
-            status: :pending
+            aasm_state: :pending
           )
   end
 

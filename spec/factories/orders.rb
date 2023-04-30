@@ -7,24 +7,24 @@ FactoryBot.define do
     association :stock
 
     trait :pending do
-      status { :pending }
+      aasm_state { :pending }
     end
 
     trait :approved do
-      status { :approved }
+      aasm_state { :approved }
       approved_by { create(:user, :with_person) }
       approval_date { Time.current }
     end
 
     trait :rejected do
-      status { :rejected }
+      aasm_state { :rejected }
       rejected_by { create(:user, :with_person) }
       reason { 'Suprimentos venceram' }
       rejection_date { Time.current }
     end
 
     trait :delivered do
-      status { :delivered }
+      aasm_state { :delivered }
       delivered_by { create(:user, :with_person) }
       delivery_date { Time.current }
       approved_by { create(:user, :with_person) }

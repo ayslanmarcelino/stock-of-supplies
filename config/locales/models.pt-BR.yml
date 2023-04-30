@@ -118,7 +118,7 @@ pt-BR:
         stock_id: Lote
         stock: Lote
         amount: Quantidade
-        status_list:
+        aasm_state_list:
           pending: Pendente
           rejected: Rejeitado
           approved: Aprovado
