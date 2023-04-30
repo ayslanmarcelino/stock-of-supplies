@@ -27,6 +27,8 @@ FactoryBot.define do
       status { :delivered }
       delivered_by { create(:user, :with_person) }
       delivery_date { Time.current }
+      approved_by { create(:user, :with_person) }
+      approval_date { Time.current }
     end
   end
 end

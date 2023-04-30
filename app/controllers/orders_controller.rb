@@ -13,6 +13,8 @@ class OrdersController < ApplicationController
     @orders = @query.result(distinct: false)
   end
 
+  def show; end
+
   def new
     @order = Order.new
   end
@@ -47,5 +49,9 @@ class OrdersController < ApplicationController
 
   def supplies
     @supplies ||= Supply.all.sort
+  end
+
+  def order
+    @order ||= Order.find(params[:id])
   end
 end

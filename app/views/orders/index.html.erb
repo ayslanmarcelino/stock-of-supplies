@@ -44,6 +44,13 @@
             <td><%= order.stock.identifier %></td>
             <td><%= link_to(order.created_by.person.name, admin_user_path(order.created_by)) %></td>
             <td><%= l(order.created_at) %></td>
+            <td>
+              <% if can?(:read, Order) %>
+                <%= link_to(order_path(order), class: 'btn btn-sm') do %>
+                  <i class="bi bi-eye"></i>
+                <% end %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

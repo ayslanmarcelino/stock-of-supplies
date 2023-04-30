@@ -1,10 +1,15 @@
 pt-BR:
-  orders:
+  stocks:
     index:
       id: Código
-      status: Status
+      identifier: Identificador
       amount: Quantidade
-      supply_name: Suprimento
-      stock_identifier: Lote
-      created_at: Solicitado em
-      created_by: Solicitante
+      remaining: Restante
+      supply: Suprimento
+      arrived_date: Última chegada
+      expiration_date: Validade
+      created_by: Criado por
+      created_at: Criado em
+      updated_at: Atualizado em
+      new_output_confirm: Tem certeza que deseja realizar a SAÍDA dessa quantidade de suprimento neste lote?
+      increment_amount_confirm: Tem certeza que deseja realizar a ENTRADA dessa quantidade neste lote?
