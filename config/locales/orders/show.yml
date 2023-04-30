@@ -1,0 +1,7 @@
+pt-BR:
+  orders:
+    show:
+      responsible: Pedidos
+      status: Status
+      created_at: Data do ocorrido
+      reason: Motivo

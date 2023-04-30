@@ -1,0 +1,11 @@
+pt-BR:
+  orders:
+    index:
+      id: Número
+      aasm_state: Status
+      amount: Quantidade
+      supply_name: Suprimento
+      stock_identifier: Lote
+      created_at: Solicitado em
+      created_by: Solicitante
+      updated_at: Última atualização

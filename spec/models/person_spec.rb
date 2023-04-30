@@ -37,7 +37,7 @@ require 'rails_helper'
 RSpec.describe Person, type: :model do
   subject { described_class.new(document_number: document_number, name: name, owner: owner, unit: unit, cns_number: cns_number) }
 
-  let!(:document_number) { CNPJ.generate }
+  let!(:document_number) { CPF.generate }
   let!(:name) { Faker::Name.name }
   let!(:owner) { create(:user) }
   let!(:unit) { create(:unit) }
@@ -65,7 +65,7 @@ RSpec.describe Person, type: :model do
     end
 
     context 'when does not have same document_number, same owner and same unit' do
-      let!(:document_number) { CNPJ.generate }
+      let!(:document_number) { CPF.generate }
       let!(:owner) { create(:address) }
       let!(:unit) { create(:unit) }
 
@@ -76,6 +76,17 @@ RSpec.describe Person, type: :model do
   end
 
   context 'when unsucessful' do
+    context 'when param is invalid' do
+      context 'when document_number' do
+        let(:document_number) { '123456789012' }
+
+        it do
+          expect(subject).not_to be_valid
+          expect(subject.errors.full_messages.to_sentence).to eq('CPF não é válido')
+        end
+      end
+    end
+
     context 'when has person with same document_number, unit and owner' do
       let!(:person) { create(:person, document_number: document_number, unit: unit, owner: owner) }
 

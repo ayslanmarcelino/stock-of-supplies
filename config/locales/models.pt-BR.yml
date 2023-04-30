@@ -112,3 +112,27 @@ pt-BR:
         stock_id: Estoque
         created_at: Criado em
         updated_at: Atualizado em
+      order:
+        supply: Suprimento
+        supply_id: Suprimento
+        stock_id: Lote
+        stock: Lote
+        amount: Quantidade
+        requesting_unit: Unidade
+        requesting_unit_id: Unidade
+        created_by_id: Solicitante
+        created_by: Solicitante
+        reason: Motivo
+        aasm_state: Status
+        aasm_state_list:
+          pending: Pendente
+          rejected: Rejeitado
+          approved: Aprovado
+          delivered: Entregue
+          finished: Concluído
+      order/version:
+        order_id: Pedido
+        order: Pedido
+        responsible_id: Responsável
+        responsible: Responsável
+        aasm_state: Status

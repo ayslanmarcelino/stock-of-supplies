@@ -1,0 +1,35 @@
+<%= link_to('#', data: { toggle: "modal", target: "#rejectOrder#{resource.id}" }, class: 'btn btn-sm -transparent-danger') do %>
+  <i class="bi bi-hand-thumbs-down"></i>
+<% end %>
+<div class="modal fade" id="rejectOrder<%= resource.id %>" tabindex="-1" role="dialog" aria-labelledby="rejectOrder<%= resource.id %>Label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header g-0 row">
+        <h5 class="modal-title"><%= t('application.reject_order') %> - <%= resource.id %></h5>
+      </div>
+      <div class="modal-body">
+        <%= form_for(resource, url: reject_order_path(resource), method: :patch, local: true) do |form| %>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <%= form.label(:reason, class: 'required-label') %>
+                <%= form.select(:reason, Order::REASONS, { include_blank: 'Selecione um motivo' }, { class: 'form-control', required: true }) %>
+              </div>
+            </div>
+            <div class="col-lg-12 mt-4">
+              <div class="form-group">
+                <%=
+                  form.submit(
+                    t("application.reject_order"),
+                    class: 'btn btn-sm -transparent-border-danger col-lg-12',
+                    data: { turbo_confirm: "#{t('orders.components.layout.reject_confirm')} ##{resource.id}?" }
+                  )
+                %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

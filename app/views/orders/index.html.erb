@@ -1,0 +1,100 @@
+<div class="row col-md-12">
+  <h4><%= t('orders.components.layout.resource') %></h4>
+  <div>
+    <%= render(layout: 'layouts/components/filter/body') do %>
+      <%= search_form_for(@query, url: orders_path) do |form| %>
+        <%= render(partial: 'orders/components/filters', locals: { form: form }) %>
+        <%= render(partial: 'layouts/components/filter/footer', locals: { form: form }) %>
+      <% end %>
+    <% end %>
+    <div class="pull-right mb-2">
+      <% if can?(:create, Order) %>
+        <%= link_to(new_order_path, class: 'btn btn-sm btn-success') do %>
+          <i class="bi bi-plus-circle"></i>
+          <%= t('application.new') %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th><%= sort_link(@query, :id, t('.id')) %></th>
+          <th><%= sort_link(@query, :status, t('.status')) %></th>
+          <th><%= sort_link(@query, :amount, t('.amount')) %></th>
+          <th><%= sort_link(@query, :supply_name, t('.supply_name')) %></th>
+          <th><%= sort_link(@query, :stock_identifier, t('.stock_identifier')) %></th>
+          <th><%= sort_link(@query, :created_by, t('.created_by')) %></th>
+          <th><%= sort_link(@query, :created_at, t('.created_at')) %></th>
+          <th><%= sort_link(@query, :updated_at, t('.updated_at')) %></th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.id %></td>
+            <td>
+              <span class="badge -<%= status_class(order.state) %> w-100">
+                <%= I18n.t("activerecord.attributes.order.aasm_state_list.#{order.state}") %>
+              </span>
+            </td>
+            <td><%= order.amount %></td>
+            <td><%= order.stock.supply.name %></td>
+            <td><%= order.stock.identifier %></td>
+            <td><%= link_to(order.created_by.person.name, admin_user_path(order.created_by)) %></td>
+            <td><%= l(order.created_at) %></td>
+            <td><%= l(order.updated_at) %></td>
+            <td>
+              <% if can?(:read, Order) %>
+                <%= link_to(order_path(order), class: 'btn btn-sm') do %>
+                  <i class="bi bi-eye"></i>
+                <% end %>
+              <% end %>
+              <% if can?(:approve, Order) && order.pending? %>
+                <%= link_to(approve_order_path(order),
+                            data: {
+                              turbo_method: :patch,
+                              turbo_confirm: "#{t('orders.components.layout.approve_confirm')} ##{order.id}?"
+                            },
+                            class: 'btn btn-sm -transparent-success') do %>
+                  <i class="bi bi-hand-thumbs-up"></i>
+                <% end %>
+              <% end %>
+              <% if can?(:reject, Order) && order.pending? %>
+                <%= render partial: 'orders/components/reject_order_modal', locals: { resource: order } %>
+              <% end %>
+              <% if can?(:deliver, Order) && order.approved? %>
+                <%= link_to(deliver_order_path(order),
+                            data: {
+                              turbo_method: :patch,
+                              turbo_confirm: "#{t('orders.components.layout.deliver_confirm')} ##{order.id}?"
+                            },
+                            class: 'btn btn-sm -transparent-info') do %>
+                  <i class="bi bi-truck"></i>
+                <% end %>
+              <% end %>
+              <% if can?(:finish, Order) && order.delivered? %>
+                <%= link_to(finish_order_path(order),
+                            data: {
+                              turbo_method: :patch,
+                              turbo_confirm: "#{t('orders.components.layout.finish_confirm')} ##{order.id}?"
+                            },
+                            class: 'btn btn-sm -transparent-primary') do %>
+                  <i class="bi bi-check2-all"></i>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%=
+  render partial: 'layouts/components/index/footer',
+         locals: {
+           resource: @orders
+         }
+%>
