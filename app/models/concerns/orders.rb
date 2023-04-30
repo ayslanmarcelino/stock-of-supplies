@@ -9,6 +9,7 @@ module Orders
       state :approved
       state :rejected
       state :delivered
+      state :finished
 
       event :approve do
         transitions from: :pending, to: :approved
@@ -20,6 +21,10 @@ module Orders
 
       event :deliver do
         transitions from: :approved, to: :delivered
+      end
+
+      event :finish do
+        transitions from: :delivered, to: :finished
       end
     end
   end

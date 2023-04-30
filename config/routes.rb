@@ -32,5 +32,12 @@ Rails.application.routes.draw do
   end
 
   resources :movements, only: :index
-  resources :orders, only: [:index, :show, :new, :create]
+  resources :orders, only: [:index, :show, :new, :create] do
+    member do
+      patch :approve
+      patch :reject
+      patch :deliver
+      patch :finish
+    end
+  end
 end

@@ -65,10 +65,11 @@ module ApplicationHelper
 
   def status_class(status)
     status_map = {
-      pending: 'primary',
+      pending: 'warning',
       rejected: 'danger',
       approved: 'success',
-      delivered: 'info'
+      delivered: 'info',
+      finished: 'primary'
     }
 
     status_map[status.to_sym] || ''

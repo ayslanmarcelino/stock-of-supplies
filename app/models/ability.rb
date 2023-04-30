@@ -60,9 +60,10 @@ class Ability
         can([:create, :increment_amount], Stock, unit: @unit)
         can([:read, :approve, :reject, :deliver], Order)
       elsif @unit.kind_unit?
-        can([:read, :create], Order, requesting_unit: @unit)
+        can([:read, :create, :finish], Order, requesting_unit: @unit)
       end
 
+      can(:stocks, Supply)
       can([:read, :new_output], Stock, unit: @unit)
       can(:read, Movement, unit: @unit)
     end

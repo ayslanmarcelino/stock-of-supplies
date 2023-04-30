@@ -51,18 +51,43 @@
                 <% end %>
               <% end %>
               <% if can?(:approve, Order) && order.pending? %>
-                <%= link_to(order_path(order), class: 'btn btn-sm -transparent-success') do %>
+                <%= link_to(approve_order_path(order),
+                            data: {
+                              turbo_method: :patch,
+                              turbo_confirm: "#{t('orders.components.layout.approve_confirm')} ##{order.id}?"
+                            },
+                            class: 'btn btn-sm -transparent-success') do %>
                   <i class="bi bi-hand-thumbs-up"></i>
                 <% end %>
               <% end %>
               <% if can?(:reject, Order) && order.pending? %>
-                <%= link_to(order_path(order), class: 'btn btn-sm -transparent-danger') do %>
+                <%= link_to(reject_order_path(order),
+                            data: {
+                              turbo_method: :patch,
+                              turbo_confirm: "#{t('orders.components.layout.reject_confirm')} ##{order.id}?"
+                            },
+                            class: 'btn btn-sm -transparent-danger') do %>
                   <i class="bi bi-hand-thumbs-down"></i>
                 <% end %>
               <% end %>
               <% if can?(:deliver, Order) && order.approved? %>
-                <%= link_to(order_path(order), class: 'btn btn-sm -transparent-info') do %>
+                <%= link_to(deliver_order_path(order),
+                            data: {
+                              turbo_method: :patch,
+                              turbo_confirm: "#{t('orders.components.layout.deliver_confirm')} ##{order.id}?"
+                            },
+                            class: 'btn btn-sm -transparent-info') do %>
                   <i class="bi bi-truck"></i>
+                <% end %>
+              <% end %>
+              <% if can?(:finish, Order) && order.delivered? %>
+                <%= link_to(finish_order_path(order),
+                            data: {
+                              turbo_method: :patch,
+                              turbo_confirm: "#{t('orders.components.layout.finish_confirm')} ##{order.id}?"
+                            },
+                            class: 'btn btn-sm -transparent-primary') do %>
+                  <i class="bi bi-check2-all"></i>
                 <% end %>
               <% end %>
             </td>
