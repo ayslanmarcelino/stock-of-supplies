@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   before_action :supplies, only: [:new, :create]
 
   def index
-    @query = Order.includes(:created_by, stock: :supply)
+    @query = Order.includes(created_by: :person, stock: :supply)
                   .order(:created_at)
                   .accessible_by(current_ability)
                   .page(params[:page])
