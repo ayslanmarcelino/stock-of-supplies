@@ -7,6 +7,7 @@ class StocksController < ApplicationController
 
   def index
     @query = Stock.includes(:supply, created_by: :person)
+                  .where(unit: current_user.current_unit)
                   .order(created_at: :desc)
                   .accessible_by(current_ability)
                   .page(params[:page])

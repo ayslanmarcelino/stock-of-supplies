@@ -5,6 +5,7 @@ class MovementsController < ApplicationController
 
   def index
     @query = Movement.includes(:supply, :created_by, :source, :stock)
+                     .where(unit: current_user.current_unit)
                      .order(created_at: :desc)
                      .accessible_by(current_ability)
                      .page(params[:page])

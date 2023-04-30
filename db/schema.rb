@@ -64,6 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_200547) do
 
   create_table "order_versions", force: :cascade do |t|
     t.string "aasm_state"
+    t.string "reason"
     t.bigint "order_id"
     t.bigint "responsible_id"
     t.datetime "created_at", null: false

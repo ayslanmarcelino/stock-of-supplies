@@ -63,14 +63,7 @@
                 <% end %>
               <% end %>
               <% if can?(:reject, Order) && order.pending? %>
-                <%= link_to(reject_order_path(order),
-                            data: {
-                              turbo_method: :patch,
-                              turbo_confirm: "#{t('orders.components.layout.reject_confirm')} ##{order.id}?"
-                            },
-                            class: 'btn btn-sm -transparent-danger') do %>
-                  <i class="bi bi-hand-thumbs-down"></i>
-                <% end %>
+                <%= render partial: 'orders/components/reject_order_modal', locals: { resource: order } %>
               <% end %>
               <% if can?(:deliver, Order) && order.approved? %>
                 <%= link_to(deliver_order_path(order),

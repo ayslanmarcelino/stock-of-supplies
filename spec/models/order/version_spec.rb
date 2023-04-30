@@ -4,6 +4,7 @@
 #
 #  id             :bigint           not null, primary key
 #  aasm_state     :string
+#  reason         :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  order_id       :bigint

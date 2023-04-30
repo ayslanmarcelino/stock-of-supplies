@@ -12,6 +12,9 @@
         <tr>
           <th><%= t('.responsible') %></th>
           <th><%= t('.status') %></th>
+          <% if @order.versions.map(&:aasm_state).include?('rejected') %>
+            <th><%= t('.reason') %></th>
+          <% end %>
           <th><%= t('.created_at') %></th>
           <th>&nbsp;</th>
         </tr>
@@ -25,6 +28,9 @@
                 <%= I18n.t("activerecord.attributes.order.aasm_state_list.#{version.aasm_state}") %></td>
               </span>
             </td>
+            <% if @order.versions.map(&:aasm_state).include?('rejected') %>
+              <td><%= version.reason %></td>
+            <% end %>
             <td><%= l(version.created_at) %></td>
           </tr>
         <% end %>

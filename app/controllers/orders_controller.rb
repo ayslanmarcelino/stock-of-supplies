@@ -53,6 +53,7 @@ class OrdersController < ApplicationController
 
     if @order.may_reject?
       @order.reject!
+      @order.update(reason: params[:order][:reason])
       create_order_version!
       flash[:success] = 'Pedido reprovado com sucesso.'
     elsif @order.rejected?
@@ -123,13 +124,17 @@ class OrdersController < ApplicationController
   end
 
   def create_order_version!
-    Order::Version.create!(order: @order, aasm_state: @order.aasm_state, responsible: current_user)
+    Order::Version.create!(
+      order: @order,
+      aasm_state: @order.aasm_state,
+      responsible: current_user,
+      reason: @order.reason
+    )
   end
 
   def update_sent_stock!
     stock = Stock.find_by(unit: @order.stock.unit, identifier: @order.stock.identifier)
 
-    stock.amount -= @order.amount
     stock.remaining -= @order.amount
     stock.save!
   end

@@ -122,6 +122,7 @@ pt-BR:
         requesting_unit_id: Unidade
         created_by_id: Solicitante
         created_by: Solicitante
+        reason: Motivo
         aasm_state: Status
         aasm_state_list:
           pending: Pendente

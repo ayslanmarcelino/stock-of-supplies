@@ -35,6 +35,11 @@ class Order < ApplicationRecord
     :finished
   ].freeze
 
+  REASONS = [
+    'Estoque comprometido',
+    'Outros'
+  ].freeze
+
   belongs_to :stock
   belongs_to :requesting_unit, class_name: 'Unit'
   belongs_to :created_by, class_name: 'User'
