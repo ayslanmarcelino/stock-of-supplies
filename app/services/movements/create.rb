@@ -1,6 +1,6 @@
 module Movements
   class Create < ApplicationService
-    def initialize(params:, reason:, kind:, stock:, current_user:, amount: nil, arrived_date: nil)
+    def initialize(params:, reason:, kind:, stock:, current_user:, amount: nil, arrived_date: nil, unit: nil)
       @params = params
       @reason = reason
       @kind = kind
@@ -8,6 +8,7 @@ module Movements
       @current_user = current_user
       @amount = amount
       @arrived_date = arrived_date
+      @unit = unit
     end
 
     def call
@@ -23,7 +24,7 @@ module Movements
         created_by: @current_user,
         supply: @params.supply,
         amount: amount,
-        unit: @params.unit,
+        unit: unit,
         expiration_date: @params.expiration_date,
         occurrence_date: occurrence_date,
         reason: @reason,
@@ -35,6 +36,10 @@ module Movements
 
     def amount
       @amount.presence || @params.amount
+    end
+
+    def unit
+      @unit.presence || @params.unit
     end
 
     def occurrence_date

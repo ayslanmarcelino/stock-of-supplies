@@ -11,7 +11,7 @@ module Orders
       state :delivered
       state :finished
 
-      event :approve do
+      event :approve, if: :available_stock? do
         transitions from: :pending, to: :approved
       end
 
@@ -19,13 +19,19 @@ module Orders
         transitions from: :pending, to: :rejected
       end
 
-      event :deliver do
+      event :deliver, if: :available_stock? do
         transitions from: :approved, to: :delivered
       end
 
-      event :finish do
+      event :finish, if: :available_stock? do
         transitions from: :delivered, to: :finished
       end
     end
+  end
+
+  private
+
+  def available_stock?
+    stock.remaining > amount
   end
 end

@@ -57,7 +57,7 @@
 <% end %>
 
 <% if can?(:read, Order) %>
-  <%= link_to(orders_path(q: { aasm_state_eq: :pending }),
+  <%= link_to(orders_path,
               class: "#{'active-menu' if request.path.include?(orders_path)} list-item-menu list-group-item-action",
               id: 'user') do %>
     <div class="menu">

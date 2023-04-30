@@ -34,7 +34,7 @@ class Stock < ApplicationRecord
   validates :amount,
             :identifier,
             presence: true
-  validates :identifier, uniqueness: true
+  validates :identifier, uniqueness: { scope: :unit_id }
   validates :amount, numericality: { greater_than: 0 }
   validates :remaining, numericality: { greater_than_or_equal_to: 0 }
   validates :arrived_date, comparison: { less_than_or_equal_to: Date.current }

@@ -6,7 +6,9 @@ class OrdersController < ApplicationController
   before_action :supplies, only: [:new, :create]
 
   def index
-    @query = Order.accessible_by(current_ability)
+    @query = Order.includes(:created_by, stock: :supply)
+                  .order(:created_at)
+                  .accessible_by(current_ability)
                   .page(params[:page])
                   .ransack(params[:q])
 
@@ -76,6 +78,10 @@ class OrdersController < ApplicationController
   def finish
     if @order.may_finish?
       @order.update(finished_by: current_user, final_date: Time.current)
+      update_sent_stock!
+      find_or_create_received_stock!
+      create_output_movement!
+      create_input_movement!
       @order.finish!
       flash[:success] = 'Pedido concluído com sucesso.'
     elsif @order.finished?
@@ -111,5 +117,57 @@ class OrdersController < ApplicationController
 
   def order
     @order ||= Order.find(params[:id])
+  end
+
+  def update_sent_stock!
+    stock = Stock.find_by(unit: @order.stock.unit, identifier: @order.stock.identifier)
+
+    stock.amount -= @order.amount
+    stock.remaining -= @order.amount
+    stock.save!
+  end
+
+  def find_or_create_received_stock!
+    stock = Stock.find_or_create_by(unit: current_user.current_unit, identifier: @order.stock.identifier)
+
+    if stock.persisted?
+      stock.amount += @order.amount
+      stock.remaining += @order.amount
+      stock.arrived_date = Date.current
+    else
+      stock.assign_attributes(
+        amount: @order.amount,
+        remaining: @order.amount,
+        supply: @order.stock.supply,
+        created_by: @order.created_by,
+        arrived_date: Date.current,
+        expiration_date: @order.stock.expiration_date
+      )
+    end
+
+    stock.save!
+  end
+
+  def create_input_movement!
+    Movements::Create.call(
+      params: @order.stock,
+      reason: 'Recebido pelo PNI',
+      kind: :input,
+      stock: @order.stock,
+      amount: @order.amount,
+      current_user: current_user,
+      unit: current_user.current_unit
+    )
+  end
+
+  def create_output_movement!
+    Movements::Create.call(
+      params: @order.stock,
+      reason: "Pedido pela UBS - #{@order.requesting_unit.name}",
+      kind: :output,
+      stock: @order.stock,
+      amount: @order.amount,
+      current_user: current_user
+    )
   end
 end

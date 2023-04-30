@@ -29,7 +29,7 @@ class SuppliesController < ApplicationController
 
   def stocks
     @supply = Supply.find(params[:id])
-    @stocks = @supply.stocks
+    @stocks = @supply.stocks.joins(:unit).where(units: { kind_cd: :pni })
 
     respond_to do |format|
       format.json { render(json: @stocks) }
