@@ -64,16 +64,14 @@ module ApplicationHelper
   end
 
   def status_class(status)
-    case status
-    when :pending
-      'primary'
-    when :rejected
-      'danger'
-    when :approved
-      'success'
-    when :delivered
-      'info'
-    end
+    status_map = {
+      pending: 'primary',
+      rejected: 'danger',
+      approved: 'success',
+      delivered: 'info'
+    }
+
+    status_map[status.to_sym] || ''
   end
 
   def movement_reason_collection

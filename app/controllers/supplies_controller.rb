@@ -32,7 +32,7 @@ class SuppliesController < ApplicationController
     @stocks = @supply.stocks
 
     respond_to do |format|
-      format.json { render json: @stocks }
+      format.json { render(json: @stocks) }
     end
   end
 
