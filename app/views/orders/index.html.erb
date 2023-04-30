@@ -23,6 +23,7 @@
           <th><%= sort_link(@query, :id, t('.id')) %></th>
           <th><%= sort_link(@query, :status, t('.status')) %></th>
           <th><%= sort_link(@query, :amount, t('.amount')) %></th>
+          <th><%= sort_link(@query, :remaining, t('.remaining')) %></th>
           <th><%= sort_link(@query, :supply_name, t('.supply_name')) %></th>
           <th><%= sort_link(@query, :stock_identifier, t('.stock_identifier')) %></th>
           <th><%= sort_link(@query, :created_by, t('.created_by')) %></th>
@@ -41,6 +42,7 @@
               </span>
             </td>
             <td><%= order.amount %></td>
+            <td><%= order.stock.remaining %></td>
             <td><%= order.stock.supply.name %></td>
             <td><%= order.stock.identifier %></td>
             <td><%= link_to(order.created_by.person.name, admin_user_path(order.created_by)) %></td>

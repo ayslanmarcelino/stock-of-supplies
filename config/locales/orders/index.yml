@@ -4,6 +4,7 @@ pt-BR:
       id: Número
       aasm_state: Status
       amount: Quantidade
+      remaining: Restante (PNI)
       supply_name: Suprimento
       stock_identifier: Lote
       created_at: Solicitado em
