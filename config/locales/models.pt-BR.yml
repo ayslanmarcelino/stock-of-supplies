@@ -112,3 +112,9 @@ pt-BR:
         stock_id: Estoque
         created_at: Criado em
         updated_at: Atualizado em
+      order:
+        supply: Suprimento
+        supply_id: Suprimento
+        stock_id: Lote
+        stock: Lote
+        amount: Quantidade

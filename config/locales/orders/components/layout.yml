@@ -1,0 +1,5 @@
+pt-BR:
+  orders:
+    components:
+      layout:
+        resource: Pedidos

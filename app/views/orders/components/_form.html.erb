@@ -4,7 +4,7 @@
     <%= form.collection_select(:supply_id, @supplies, :id, :name, { include_blank: 'Selecione um suprimento' }, { class: 'form-control required', id: 'supply', required: true }) %>
   </div>
   <div class="col-lg-12 mt-2">
-    <%= form.label('Lotes', class: 'required-label', id: 'stock_label') %>
+    <%= form.label(:stock_id, class: 'required-label', id: 'stock_label') %>
     <%= form.collection_select(:stock_id, [], :id, :formatted_identifier, { include_blank: 'Selecione um lote' }, { class: 'form-control required', required: true, id: 'stock_select' }) %>
   </div>
   <div class="col-lg-12 mt-2">
