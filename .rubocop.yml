@@ -40,6 +40,7 @@ Layout/LineLength:
   Max: 130
   AllowedPatterns: ['\A#']
   Exclude:
+    - 'app/models/concerns/orders.rb'
 
 Lint/AmbiguousBlockAssociation:
   Exclude:
