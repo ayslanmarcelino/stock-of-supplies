@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     resources :roles, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
-  resources :supplies, only: [:index, :new, :create]
+  resources :supplies, only: [:index, :new, :create] do
+    get 'stocks', on: :member
+  end
 
   resources :stocks, only: [:index, :new, :create] do
     member do

@@ -146,7 +146,7 @@ class StocksController < ApplicationController
 
   def new_output_error_message
     if resource.remaining <= 0
-      'Quantidade da saída ultrapassa a quantidade do estoque. Tente novamente com a quantidade correta.'
+      'A quantidade selecionada é maior do que a quantidade disponível em estoque.'
     else
       resource.errors.full_messages.to_sentence
     end

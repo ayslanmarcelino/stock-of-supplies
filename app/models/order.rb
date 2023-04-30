@@ -43,4 +43,12 @@ class Order < ApplicationRecord
   belongs_to :approved_by, class_name: 'User', optional: true
   belongs_to :delivered_by, class_name: 'User', optional: true
   belongs_to :rejected_by, class_name: 'User', optional: true
+
+  def self.permitted_params
+    [
+      :id,
+      :amount,
+      :stock_id
+    ]
+  end
 end
