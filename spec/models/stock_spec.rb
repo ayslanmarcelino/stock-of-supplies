@@ -91,7 +91,7 @@ RSpec.describe Stock, type: :model do
 
       context "when does not pass remaining" do
         let!(:remaining) {}
-        let!(:message) { 'Restante não é um número válido' }
+        let!(:message) { 'Disponível não é um número válido' }
 
         it do
           expect(subject).not_to be_valid

@@ -4,7 +4,7 @@ pt-BR:
       id: Código
       identifier: Identificador
       amount: Quantidade
-      remaining: Restante
+      remaining: Disponível
       supply: Suprimento
       arrived_date: Última chegada
       expiration_date: Validade

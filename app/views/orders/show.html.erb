@@ -1,4 +1,4 @@
-<h4><%= t('orders.components.layout.show') %> #<%= @order.id %></h4>
+<h4><%= t('orders.components.layout.show') %> #<%= @order.id %> - <%= @order.requesting_unit.name %></h4>
 <div class="mb-2">
   <%= link_to :back, class: 'btn btn-sm -bg-primary' do %>
     <i class="bi bi-arrow-left"></i>
