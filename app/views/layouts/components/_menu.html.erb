@@ -83,15 +83,13 @@
   <% end %>
 <% end %>
 
-
-  <%= link_to(root_path,
-              class: "list-item-menu list-group-item-action",
-              style: 'pointer-events: none; cursor: default;') do %>
-    <div class="menu">
-      <div class="icon">
-        <i class="bi bi-file-earmark-bar-graph"></i>
-      </div>
-      <span><%= t('reports.components.layout.resource') %> (em breve)</span>
+<%= link_to(root_path,
+            class: "list-item-menu list-group-item-action",
+            style: 'pointer-events: none; cursor: default;') do %>
+  <div class="menu">
+    <div class="icon">
+      <i class="bi bi-file-earmark-bar-graph"></i>
     </div>
-  <% end %>
-
+    <span><%= t('reports.components.layout.resource') %> (em breve)</span>
+  </div>
+<% end %>
