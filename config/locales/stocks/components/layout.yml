@@ -3,3 +3,4 @@ pt-BR:
     components:
       layout:
         resource: Estoque
+        batches: Lotes
