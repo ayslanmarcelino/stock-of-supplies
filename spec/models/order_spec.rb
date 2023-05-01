@@ -53,7 +53,7 @@ RSpec.describe Order, type: :model do
 
   context 'when unsuccessful' do
     context 'when does not pass a required attribute' do
-      [:aasm_state, :amount, :created_by, :requesting_unit, :stock].each do |attribute|
+      [:aasm_state, :created_by, :requesting_unit, :stock].each do |attribute|
         context "when does not pass #{attribute}" do
           let!(attribute) {}
           let!(:message) { "#{I18n.t("activerecord.attributes.order.#{attribute}")} não pode ficar em branco" }
@@ -63,6 +63,28 @@ RSpec.describe Order, type: :model do
           it do
             expect(subject).not_to be_valid
             expect(subject.errors.full_messages.to_sentence).to eq(message)
+          end
+        end
+      end
+    end
+
+    context 'when pass a incorrect attribute' do
+      context 'when amount' do
+        context 'when negative' do
+          let!(:amount) { -1 }
+
+          it do
+            expect(subject).not_to be_valid
+            expect(subject.errors.full_messages.to_sentence).to eq('Quantidade deve ser maior que 0')
+          end
+        end
+
+        context 'when nil' do
+          let!(:amount) {}
+
+          it do
+            expect(subject).not_to be_valid
+            expect(subject.errors.full_messages.to_sentence).to eq('Quantidade não pode ficar em branco and Quantidade não é um número válido')
           end
         end
       end
