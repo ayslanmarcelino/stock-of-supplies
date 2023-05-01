@@ -81,10 +81,11 @@ RSpec.describe Order, type: :model do
 
         context 'when nil' do
           let!(:amount) {}
+          let!(:message) { 'Quantidade não pode ficar em branco and Quantidade não é um número válido' }
 
           it do
             expect(subject).not_to be_valid
-            expect(subject.errors.full_messages.to_sentence).to eq('Quantidade não pode ficar em branco and Quantidade não é um número válido')
+            expect(subject.errors.full_messages.to_sentence).to eq(message)
           end
         end
       end
