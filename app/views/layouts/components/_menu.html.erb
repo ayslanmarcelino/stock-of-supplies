@@ -10,7 +10,7 @@
 
 <% if can?(:read, User) %>
   <%= link_to(admin_users_path, class: "#{'active-menu' if request.path.include?(admin_users_path) || request.path.include?(user_roles_path)} list-item-menu list-group-item-action",
-                                id: 'user') do %>
+                                id: 'users') do %>
     <div class="menu">
       <div class="icon">
         <i class="bi bi-people"></i>
@@ -22,7 +22,7 @@
 
 <% if can?(:read, Supply) %>
   <%= link_to(supplies_path, class: "#{'active-menu' if request.path.include?(supplies_path)} list-item-menu list-group-item-action",
-                             id: 'user') do %>
+                             id: 'supply') do %>
     <div class="menu">
       <div class="icon">
         <i class="bi bi-capsule"></i>
@@ -47,7 +47,7 @@
   <div class="dropdown-container">
     <% if can?(:read, Stock) %>
       <%= link_to(stocks_path, class: "#{'active-submenu' if request.path.include?(stocks_path)} list-item-submenu list-group-item-action",
-                               id: 'users') do %>
+                               id: 'stocks') do %>
         <div class="menu">
           <div class="icon">
             <i class="bi bi-box-seam"></i>
@@ -58,7 +58,7 @@
     <% end %>
     <% if can?(:read, Movement) %>
       <%= link_to(movements_path, class: "#{'active-submenu' if request.path.include?(movements_path)} list-item-submenu list-group-item-action",
-                                  id: 'user-roles') do %>
+                                  id: 'movements') do %>
         <div class="menu">
           <div class="icon">
             <i class="bi bi-arrow-left-right"></i>
@@ -73,7 +73,7 @@
 <% if can?(:read, Order) %>
   <%= link_to(orders_path,
               class: "#{'active-menu' if request.path.include?(orders_path)} list-item-menu list-group-item-action",
-              id: 'user') do %>
+              id: 'orders') do %>
     <div class="menu">
       <div class="icon">
         <i class="bi bi-list-check"></i>
@@ -82,3 +82,16 @@
     </div>
   <% end %>
 <% end %>
+
+
+  <%= link_to(root_path,
+              class: "list-item-menu list-group-item-action",
+              style: 'pointer-events: none; cursor: default;') do %>
+    <div class="menu">
+      <div class="icon">
+        <i class="bi bi-file-earmark-bar-graph"></i>
+      </div>
+      <span><%= t('reports.components.layout.resource') %> (em breve)</span>
+    </div>
+  <% end %>
+

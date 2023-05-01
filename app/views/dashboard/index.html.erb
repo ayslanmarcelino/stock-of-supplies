@@ -1,6 +1,6 @@
 <div class="row col-md-12">
   <div>
-    <h4><%= t('dashboard.components.layout.resource') %> - <%= current_user.current_unit.name %></h4>
+    <h4><%= t('dashboard.components.layout.resource') %> - <%= current_user&.current_unit ? current_user.current_unit.name : 'Selecione uma unidade' %></h4>
     <div class="pull-right mb-2 no-print">
       <% if current_user.roles.kind_admin_masters.any? %>
         <%= link_to(admin_root_path, class: 'btn btn-sm -transparent-standard') do %>
