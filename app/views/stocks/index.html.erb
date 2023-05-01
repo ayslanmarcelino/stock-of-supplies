@@ -46,6 +46,11 @@
             <td><%= link_to(stock.created_by.person.name, admin_user_path(stock.created_by)) %></td>
             <td>
               <div class="d-inline-flex">
+                <% if can?(:read, Movement) %>
+                  <%= link_to(movements_path(q: { stock_id_eq: stock }), class: 'btn btn-sm') do %>
+                    <i class="bi bi-arrow-left-right"></i>
+                  <% end %>
+                <% end %>
                 <% if can?(:increment_amount, Stock) %>
                   <%= render partial: 'stocks/components/increment_amount_modal', locals: { resource: stock } %>
                 <% end %>
