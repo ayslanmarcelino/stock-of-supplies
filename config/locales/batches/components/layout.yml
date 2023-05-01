@@ -1,5 +1,5 @@
 pt-BR:
-  batches:
+  reports:
     components:
       layout:
-        resource: Lotes
+        resource: Relatórios
