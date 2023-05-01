@@ -49,6 +49,7 @@ class Order < ApplicationRecord
   as_enum :state, STATES, map: :string, source: :aasm_state
 
   validates :amount, :aasm_state, presence: true
+  validates :amount, numericality: { greater_than: 0 }
 
   def self.permitted_params
     [

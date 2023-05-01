@@ -29,6 +29,9 @@ class OrdersController < ApplicationController
     if @order.save
       create_order_version!
       redirect_success(path: orders_path, action: 'solicitado')
+    elsif @order.amount <= 0
+      flash[:alert] = 'Valor deve ser maior que 0'
+      redirect_to(new_order_path)
     else
       render(:new, status: :unprocessable_entity)
     end
