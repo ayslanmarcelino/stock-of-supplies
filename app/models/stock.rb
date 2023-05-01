@@ -42,6 +42,8 @@ class Stock < ApplicationRecord
 
   before_validation :upcase_identifier
 
+  has_many :movements
+
   def self.permitted_params
     [
       :id,
