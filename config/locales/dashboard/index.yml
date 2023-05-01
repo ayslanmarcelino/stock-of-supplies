@@ -2,5 +2,5 @@ pt-BR:
   dashboard:
     index:
       supplies: Suprimentos
-      movement_chart: Movimentação de suprimentos
+      stock_chart: Estoque de suprimentos
       no_data: Não há dados suficientes para gerar este gráfico
