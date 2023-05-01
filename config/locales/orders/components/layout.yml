@@ -1,0 +1,11 @@
+pt-BR:
+  orders:
+    components:
+      layout:
+        resource: Pedidos
+        show: Pedido
+        version: Histórico
+        approve_confirm: Tem certeza que deseja APROVAR o pedido
+        reject_confirm: Tem certeza que deseja REJEITAR o pedido
+        deliver_confirm: Tem certeza que deseja marcar como ENVIADO o pedido
+        finish_confirm: Tem certeza que deseja marcar como RECEBIDO o pedido

@@ -7,6 +7,7 @@ class StocksController < ApplicationController
 
   def index
     @query = Stock.includes(:supply, created_by: :person)
+                  .where(unit: current_user.current_unit)
                   .order(created_at: :desc)
                   .accessible_by(current_ability)
                   .page(params[:page])
@@ -146,7 +147,7 @@ class StocksController < ApplicationController
 
   def new_output_error_message
     if resource.remaining <= 0
-      'Quantidade da saída ultrapassa a quantidade do estoque. Tente novamente com a quantidade correta.'
+      'A quantidade selecionada é maior do que a quantidade disponível em estoque.'
     else
       resource.errors.full_messages.to_sentence
     end

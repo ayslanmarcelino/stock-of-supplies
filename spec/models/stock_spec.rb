@@ -55,6 +55,14 @@ RSpec.describe Stock, type: :model do
     it do
       expect(subject).to be_valid
     end
+
+    context 'when has a stock with same identifier in other unit' do
+      let!(:stock) { create(:stock, identifier: identifier) }
+
+      it do
+        expect(subject).to be_valid
+      end
+    end
   end
 
   context 'when unsuccessful' do
@@ -83,7 +91,7 @@ RSpec.describe Stock, type: :model do
 
       context "when does not pass remaining" do
         let!(:remaining) {}
-        let!(:message) { 'Restante não é um número válido' }
+        let!(:message) { 'Disponível não é um número válido' }
 
         it do
           expect(subject).not_to be_valid
@@ -103,12 +111,14 @@ RSpec.describe Stock, type: :model do
     end
 
     context 'when pass a existing attribute' do
-      context 'when identifier' do
-        let!(:stock) { create(:stock, identifier: identifier) }
+      context 'when is same unit' do
+        context 'when identifier' do
+          let!(:stock) { create(:stock, identifier: identifier, unit: unit) }
 
-        it do
-          expect(subject).not_to be_valid
-          expect(subject.errors.full_messages.to_sentence).to eq('Identificador já está em uso')
+          it do
+            expect(subject).not_to be_valid
+            expect(subject.errors.full_messages.to_sentence).to eq('Identificador já está em uso')
+          end
         end
       end
     end

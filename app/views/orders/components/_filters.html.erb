@@ -1,0 +1,28 @@
+<div class="row">
+  <% if current_user.current_unit.kind_pni? %>
+    <div class="col-md-12 mb-2">
+      <%= form.select :requesting_unit_id_eq, Unit.kind_units.map(&:name), { include_blank: 'Selecione a unidade solicitante' }, class: 'form-control' %>
+    </div>
+  <% end %>
+  <div class="col-md-6">
+    <%= form.select :created_by_id_eq, users_collection, { include_blank: 'Selecione o solicitante' }, class: 'form-control' %>
+  </div>
+  <div class="col-md-3">
+    <%= form.select :aasm_state_eq, Order::TRANSLATED_STATES, { include_blank: 'Selecione o status' }, class: 'form-control' %>
+  </div>
+  <div class="col-md-3">
+    <%= form.select :stock_supply_name_eq, supply_collection, { include_blank: 'Selecione o suprimento' }, class: 'form-control' %>
+  </div>
+</div>
+<hr>
+<h6><%= t('orders.index.created_at') %></h6>
+<div class="row mb-3">
+  <div class="col-md-2">
+    <span>Data inicial</span>
+    <%= form.date_field :created_at_gteq, class: 'form-control' %>
+  </div>
+  <div class="col-md-2">
+    <span>Data final</span>
+    <%= form.date_field :created_at_lteq, class: 'form-control' %>
+  </div>
+</div>

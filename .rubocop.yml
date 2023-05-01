@@ -40,6 +40,7 @@ Layout/LineLength:
   Max: 130
   AllowedPatterns: ['\A#']
   Exclude:
+    - 'app/models/concerns/orders.rb'
 
 Lint/AmbiguousBlockAssociation:
   Exclude:
@@ -83,6 +84,7 @@ Metrics/MethodLength:
 Metrics/ClassLength:
   Exclude:
     - 'app/controllers/stocks_controller.rb'
+    - 'app/controllers/orders_controller.rb'
 
 Rails:
   Enabled: true

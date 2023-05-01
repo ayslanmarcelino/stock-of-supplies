@@ -27,6 +27,15 @@ class SuppliesController < ApplicationController
     end
   end
 
+  def stocks
+    @supply = Supply.find(params[:id])
+    @stocks = @supply.stocks.joins(:unit).where(units: { kind_cd: :pni })
+
+    respond_to do |format|
+      format.json { render(json: @stocks) }
+    end
+  end
+
   private
 
   def supply_params

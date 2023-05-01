@@ -51,6 +51,16 @@
     }
   }
 
+  &.-transparent-info {
+    color: $grey;
+
+    &:hover {
+      color: $white;
+      border-color: $info;
+      background-color: $info;
+    }
+  }
+
   &.-transparent-danger {
     color: $grey;
 
@@ -68,6 +78,16 @@
       color: $white;
       border-color: $success;
       background-color: $success;
+    }
+  }
+
+  &.-transparent-primary {
+    color: $grey;
+
+    &:hover {
+      color: $white;
+      border-color: $light-grey;
+      background-color: $light-grey;
     }
   }
 
@@ -152,6 +172,18 @@ label.required-label::after {
 
   &.-danger {
     background-color: $danger;
+  }
+
+  &.-primary {
+    background-color: $light-grey;
+  }
+
+  &.-info {
+    background-color: $info;
+  }
+
+  &.-warning {
+    background-color: $warning;
   }
 }
 

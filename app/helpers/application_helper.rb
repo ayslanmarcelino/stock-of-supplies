@@ -63,6 +63,18 @@ module ApplicationHelper
     end
   end
 
+  def status_class(status)
+    status_map = {
+      pending: 'warning',
+      rejected: 'danger',
+      approved: 'success',
+      delivered: 'info',
+      finished: 'primary'
+    }
+
+    status_map[status.to_sym] || ''
+  end
+
   def movement_reason_collection
     Movement.all.map(&:reason).uniq.sort
   end
