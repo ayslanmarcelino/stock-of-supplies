@@ -1,0 +1,76 @@
+.container{
+  width: 1200px;
+  margin: 200px auto;
+}
+
+.timeline{
+  position: relative;
+}
+
+.timeline li{
+  list-style: none;
+  float: left;
+  position: relative;
+  text-align: center;
+}
+
+.timeline li .circle {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  transition: all ease-in-out .3s;
+}
+
+.timeline li .circle.-warning {
+  background-color: $warning;
+}
+
+.timeline li .circle.-success {
+  background-color: $success;
+}
+
+.timeline li .circle.-danger {
+  background-color: $danger;
+}
+
+.timeline li .circle.-info {
+  background-color: $info;
+}
+
+.timeline li .circle.-primary {
+  background-color: $grey;
+}
+
+.timeline li:after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: grey;
+  top: 15px;
+  left: -50%;
+  z-index: -999;
+  transition: all ease-in-out .3s;
+}
+
+.timeline li:first-child:after{
+  content: none;
+}
+
+.timeline li.warning + li:after{
+  background: $warning;
+}
+.timeline li.success + li:after{
+  background: $success;
+}
+.timeline li.danger + li:after{
+  background: $danger;
+}
+.timeline li.info + li:after{
+  background: $info;
+}
+.timeline li.primary + li:after{
+  background: $grey;
+}

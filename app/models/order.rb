@@ -35,6 +35,14 @@ class Order < ApplicationRecord
     :finished
   ].freeze
 
+  TRANSLATED_STATES = [
+    [I18n.t('activerecord.attributes.order.aasm_state_list.pending'), :pending],
+    [I18n.t('activerecord.attributes.order.aasm_state_list.approved'), :approved],
+    [I18n.t('activerecord.attributes.order.aasm_state_list.rejected'), :rejected],
+    [I18n.t('activerecord.attributes.order.aasm_state_list.delivered'), :delivered],
+    [I18n.t('activerecord.attributes.order.aasm_state_list.finished'), :finished]
+  ].freeze
+
   REASONS = [
     'Estoque comprometido',
     'Outros'

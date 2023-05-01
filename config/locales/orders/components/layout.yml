@@ -3,7 +3,8 @@ pt-BR:
     components:
       layout:
         resource: Pedidos
-        show: Histórico do pedido
+        show: Pedido
+        version: Histórico
         approve_confirm: Tem certeza que deseja APROVAR o pedido
         reject_confirm: Tem certeza que deseja REJEITAR o pedido
         deliver_confirm: Tem certeza que deseja marcar como ENVIADO o pedido

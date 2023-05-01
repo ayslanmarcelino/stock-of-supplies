@@ -80,7 +80,7 @@ pt-BR:
         id: Código
         identifier: Identificador
         amount: Quantidade
-        remaining: Restante
+        remaining: Disponível
         supply: Suprimento
         supply_id: Suprimento
         arrived_date: Chegada
@@ -91,7 +91,7 @@ pt-BR:
         unit: Unidade
       movement:
         amount: Quantidade
-        remaining: Restante
+        remaining: Disponível
         kind_cd: Tipo
         kind: Tipo
         translated_kind: Tipo
