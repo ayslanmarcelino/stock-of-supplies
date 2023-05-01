@@ -106,6 +106,10 @@
   font-weight: bold;
   border-left: 2px solid $grey;
   border-radius: 0;
+
+  &:hover {
+    background-color: $white;
+  }
 }
 
 .dropdown-btn.list-item-menu.list-group-item-action.active {
@@ -129,7 +133,8 @@
 
 .dropdown-container {
   display: none;
-  margin-left: 1rem;
+  margin-left: 0.8rem;
+  font-size: 0.8rem;
 }
 
 .icon-dropdown {

@@ -32,28 +32,42 @@
   <% end %>
 <% end %>
 
-<% if can?(:read, Stock) %>
-  <%= link_to(stocks_path, class: "#{'active-menu' if request.path.include?(stocks_path)} list-item-menu list-group-item-action",
-                           id: 'user') do %>
+<% if can?(:read, Stock) || can?(:read, Movement) %>
+  <a class="<%= 'active-menu' if request.path.include?(stocks_path) || request.path.include?(movements_path) %> dropdown-btn list-item-menu list-group-item-action">
     <div class="menu">
       <div class="icon">
         <i class="bi bi-boxes"></i>
       </div>
-      <span><%= t('stocks.components.layout.resource') %></span>
+      <span>
+        <span><%= t('stocks.components.layout.resource') %></span>
+      </span>
     </div>
-  <% end %>
-<% end %>
-
-<% if can?(:read, Movement) %>
-  <%= link_to(movements_path, class: "#{'active-menu' if request.path.include?(movements_path)} list-item-menu list-group-item-action",
-                              id: 'user') do %>
-    <div class="menu">
-      <div class="icon">
-        <i class="bi bi-arrow-left-right"></i>
-      </div>
-      <span><%= t('movements.components.layout.resource') %></span>
-    </div>
-  <% end %>
+    <i id="icon-dropdown" class="bi bi-caret-down"></i>
+  </a>
+  <div class="dropdown-container">
+    <% if can?(:read, Stock) %>
+      <%= link_to(stocks_path, class: "#{'active-submenu' if request.path.include?(stocks_path)} list-item-submenu list-group-item-action",
+                               id: 'users') do %>
+        <div class="menu">
+          <div class="icon">
+            <i class="bi bi-box-seam"></i>
+          </div>
+          <span><%= t('batches.components.layout.resource') %></span>
+        </div>
+      <% end %>
+    <% end %>
+    <% if can?(:read, Movement) %>
+      <%= link_to(movements_path, class: "#{'active-submenu' if request.path.include?(movements_path)} list-item-submenu list-group-item-action",
+                                  id: 'user-roles') do %>
+        <div class="menu">
+          <div class="icon">
+            <i class="bi bi-arrow-left-right"></i>
+          </div>
+          <span><%= t('movements.components.layout.resource') %></span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
 
 <% if can?(:read, Order) %>
