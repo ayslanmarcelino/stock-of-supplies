@@ -20,12 +20,13 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class User::Role < ApplicationRecord
-  ADMIN_KINDS = [:admin_master].freeze
+  ADMIN_KINDS = [:admin_master, :admin_support].freeze
   USER_KINDS = [:coordinator, :viewer].freeze
   KINDS = ADMIN_KINDS + USER_KINDS
 
   ADMIN_ROLES = [
-    [I18n.t('activerecord.attributes.user/role.kinds.admin_master'), 'admin_master']
+    [I18n.t('activerecord.attributes.user/role.kinds.admin_master'), 'admin_master'],
+    [I18n.t('activerecord.attributes.user/role.kinds.admin_support'), 'admin_support']
   ].freeze
 
   USER_ROLES = [

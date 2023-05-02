@@ -41,8 +41,10 @@ pt-BR:
       all_users: Usuário
       person: Pessoa
       supply: Suprimento
-      stock: Estoque
+      stock: Lote
       movement: Movimentação
+      order: Pedido
+      order/version: Versão do pedido
       comment: Comentário
   devise:
     confirmations:
