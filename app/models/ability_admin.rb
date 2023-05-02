@@ -26,6 +26,8 @@ class AbilityAdmin
       when :admin_support
         can(:manage, [Unit, ActiveAdmin::Comment])
         can(:read, [User, User::Role, Person, Supply, Stock, Movement, Order, Order::Version])
+        can(:create, User::Role)
+        can([:update, :destroy], User::Role, kind_cd: User::Role::KINDS.map(&:to_s) - ['admin_master'])
       end
     end
 
