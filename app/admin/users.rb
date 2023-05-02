@@ -1,5 +1,5 @@
 ActiveAdmin.register(User, as: 'all_users') do
-  menu priority: 3
+  menu parent: 'Usuários', priority: 0
 
   includes created_by: :person
 

@@ -37,6 +37,7 @@ RSpec.describe User::Role, type: :model do
       let(:kinds) do
         [
           :admin_master,
+          :admin_support,
           :coordinator,
           :viewer
         ]
