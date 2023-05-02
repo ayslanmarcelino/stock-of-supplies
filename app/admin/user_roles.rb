@@ -1,7 +1,7 @@
 ActiveAdmin.register(User::Role) do
   menu parent: 'Usuários', priority: 1
 
-  includes :unit
+  includes :unit, :user
 
   permit_params User::Role.permitted_params
 
