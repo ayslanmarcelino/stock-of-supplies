@@ -9,8 +9,6 @@ class AbilityAdmin
     @user.roles.each do |role|
       PerAbility.new(self, user: @user).permit(role.kind)
     end
-
-    can(:read, ActiveAdmin::Page, name: 'Dashboard')
   end
 
   class PerAbility
@@ -23,8 +21,11 @@ class AbilityAdmin
       case kind
       when :admin_master
         can(:manage, :all)
+      when :coordinator
+        can(:read, ActiveAdmin::Page, name: 'Dashboard')
       when :admin_support
-        can(:manage, [Unit, ActiveAdmin::Comment])
+        can(:read, ActiveAdmin::Page, name: 'Dashboard')
+        can([:read, :create], [Unit, ActiveAdmin::Comment])
         can(:read, [User, User::Role, Person, Supply, Stock, Movement, Order, Order::Version])
         can(:create, User::Role)
         can([:update, :destroy], User::Role, kind_cd: User::Role::KINDS.map(&:to_s) - ['admin_master'])
