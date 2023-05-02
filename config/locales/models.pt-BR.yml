@@ -66,6 +66,7 @@ pt-BR:
         user: Usuário
         kinds:
           admin_master: Admin master
+          admin_support: Suporte
           coordinator: Coordenador(a)
           viewer: Visualizador
         created_at: Criado em
@@ -113,13 +114,14 @@ pt-BR:
         created_at: Criado em
         updated_at: Atualizado em
       order:
+        id: Número
         supply: Suprimento
         supply_id: Suprimento
         stock_id: Lote
         stock: Lote
         amount: Quantidade
-        requesting_unit: Unidade
-        requesting_unit_id: Unidade
+        requesting_unit: Unidade solicitante
+        requesting_unit_id: Unidade solicitante
         created_by_id: Solicitante
         created_by: Solicitante
         reason: Motivo
@@ -130,9 +132,15 @@ pt-BR:
           approved: Aprovado
           delivered: Entregue
           finished: Concluído
+        created_at: Criado em
+        updated_at: Atualizado em
       order/version:
         order_id: Pedido
         order: Pedido
         responsible_id: Responsável
         responsible: Responsável
         aasm_state: Status
+        requesting_unit: Unidade solicitante
+        requesting_unit_id: Unidade solicitante
+        reason: Motivo
+        created_at: Solicitado em

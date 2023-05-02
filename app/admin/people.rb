@@ -1,5 +1,5 @@
 ActiveAdmin.register(Person) do
-  menu priority: 4
+  menu priority: 3
 
   permit_params Person.permitted_params,
                 address_attributes: Address.permitted_params

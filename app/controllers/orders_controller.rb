@@ -6,12 +6,7 @@ class OrdersController < ApplicationController
   before_action :supplies, only: [:new, :create]
 
   def index
-    @query = Order.includes([created_by: :person], [stock: :supply], :requesting_unit)
-                  .order(:created_at)
-                  .accessible_by(current_ability)
-                  .page(params[:page])
-                  .ransack(params[:q])
-
+    @query = query
     @orders = @query.result(distinct: false)
   end
 
@@ -90,6 +85,19 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def query
+    orders_query = Order.includes([created_by: :person], [stock: :supply], :requesting_unit)
+
+    unless current_user.current_unit.kind_pni?
+      orders_query = orders_query.where(requesting_unit: current_user.current_unit)
+    end
+
+    orders_query.accessible_by(current_ability)
+                .order(created_at: :desc)
+                .page(params[:page])
+                .ransack(params[:q])
+  end
 
   def order_params
     params.require(:order)

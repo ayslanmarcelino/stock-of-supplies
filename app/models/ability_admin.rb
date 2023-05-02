@@ -9,6 +9,8 @@ class AbilityAdmin
     @user.roles.each do |role|
       PerAbility.new(self, user: @user).permit(role.kind)
     end
+
+    can(:read, ActiveAdmin::Page, name: 'Dashboard')
   end
 
   class PerAbility
@@ -21,6 +23,9 @@ class AbilityAdmin
       case kind
       when :admin_master
         can(:manage, :all)
+      when :admin_support
+        can(:manage, [Unit, ActiveAdmin::Comment])
+        can(:read, [User, User::Role, Person, Supply, Stock, Movement, Order, Order::Version])
       end
     end
 

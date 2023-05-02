@@ -1,5 +1,5 @@
 ActiveAdmin.register(Movement) do
-  menu priority: 8
+  menu parent: 'Estoque', priority: 2
 
   includes :supply, :unit, :created_by
 
