@@ -14,7 +14,11 @@ ActiveAdmin.register(User::Role) do
     f.inputs('Informações gerais') do
       f.input(:unit)
       f.input(:user, as: :select, collection: User.all.map { |user| ["#{user.person.name} | #{user.email}", user.id] }.sort)
-      f.input(:kind_cd, as: :select, collection: User::Role::ROLES)
+      if current_user.roles.kind_admin_masters.any?
+        f.input(:kind_cd, as: :select, collection: User::Role::ROLES)
+      else
+        f.input(:kind_cd, as: :select, collection: User::Role::USER_KINDS)
+      end
     end
 
     f.actions
