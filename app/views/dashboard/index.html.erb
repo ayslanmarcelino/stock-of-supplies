@@ -2,12 +2,6 @@
   <div>
     <h4><%= t('dashboard.components.layout.resource') %> - <%= current_user&.current_unit ? current_user.current_unit.name : 'Selecione uma unidade' %></h4>
     <div class="pull-right mb-2 no-print">
-      <% if current_user.present? && current_user.current_unit.present? && can_access_admin? %>
-        <%= link_to(admin_root_path, class: 'btn btn-sm -transparent-standard') do %>
-          <i class="bi bi-bar-chart"></i>
-          <%= t('application.admin_dashboard') %>
-        <% end %>
-      <% end %>
       <%= link_to(root_path, class: 'btn btn-sm -transparent-standard') do %>
         <i class="bi bi-filetype-pdf"></i>
         <%= t('application.generate_pdf') %>
