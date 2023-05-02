@@ -2,7 +2,7 @@
   <div>
     <h4><%= t('dashboard.components.layout.resource') %> - <%= current_user&.current_unit ? current_user.current_unit.name : 'Selecione uma unidade' %></h4>
     <div class="pull-right mb-2 no-print">
-      <% if User::Role::ADMIN_KINDS.include?(current_user.roles.find_by(unit: current_user.current_unit).kind) %>
+      <% if current_user.current_unit.present? && User::Role::ADMIN_KINDS.include?(current_user.roles.find_by(unit: current_user.current_unit).kind) %>
         <%= link_to(admin_root_path, class: 'btn btn-sm -transparent-standard') do %>
           <i class="bi bi-bar-chart"></i>
           <%= t('application.admin_dashboard') %>
