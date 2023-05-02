@@ -86,4 +86,12 @@ module ApplicationHelper
   def supply_collection
     Supply.all.map(&:name).sort
   end
+
+  def current_role_kind
+    current_role_kind ||= current_user.roles.find_by(unit: current_user.current_unit).kind
+  end
+
+  def can_access_admin?
+    User::Role::ADMIN_KINDS.include?(current_role_kind) || current_user.roles.kind_coordinators.any?
+  end
 end

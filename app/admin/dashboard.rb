@@ -6,40 +6,27 @@ ActiveAdmin.register_page("Dashboard") do
   content do
     columns do
       column do
-        panel 'Últimas unidades cadastradas' do
-          table_for Unit.order(created_at: :desc).limit(5) do
-            column :name
-            column :cnes_number
-            column :email
-            column :created_at
-          end
+        panel 'Suprimentos nas unidades' do
+          pie_chart(Stock.joins(:supply).group('supplies.name').sum(:remaining), donut: true)
         end
       end
-
       column do
-        panel 'Últimos usuários cadastrados' do
-          table_for User.includes(:person).order(created_at: :desc).limit(5) do
-            column :name do |user|
-              user.person&.name
-            end
-            column :cns_number do |user|
-              user.person&.cns_number
-            end
-            column :email
-            column :created_at
-          end
+        panel 'Quantidade de suprimentos utilizados' do
+          column_chart(
+            Movement.joins(:stock, :supply)
+                    .kind_outputs
+                    .where(reason: 'Utilizado em pacientes')
+                    .group('supplies.name')
+                    .group_by_month(:created_at, format: :chart)
+                    .sum(:amount)
+          )
         end
       end
     end
 
     columns do
       column do
-        panel 'Suprimentos nas unidades' do
-          pie_chart(Stock.joins(:supply).group('supplies.name').sum(:remaining), donut: true)
-        end
-      end
-      column do
-        panel 'Quantidade de suprimentos à vencer nos próximos 12 meses' do
+        panel 'Lotes à vencer nos próximos 12 meses' do
           column_chart(
             Stock.joins(:supply)
                  .group("identifier || ' - ' || supplies.name")
@@ -47,7 +34,7 @@ ActiveAdmin.register_page("Dashboard") do
                  .group_by_month(:expiration_date, format: :chart)
                  .sum(:remaining)
           )
-        end
+        end 
       end
     end
   end
