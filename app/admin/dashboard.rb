@@ -34,7 +34,7 @@ ActiveAdmin.register_page("Dashboard") do
                  .group_by_month(:expiration_date, format: :chart)
                  .sum(:remaining)
           )
-        end 
+        end
       end
     end
   end
