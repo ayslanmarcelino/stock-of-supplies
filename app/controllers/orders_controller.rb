@@ -88,7 +88,7 @@ class OrdersController < ApplicationController
 
   def query
     orders_query = Order.includes([created_by: :person], [stock: :supply], :requesting_unit)
-    
+
     unless current_user.current_unit.kind_pni?
       orders_query = orders_query.where(requesting_unit: current_user.current_unit)
     end
@@ -97,7 +97,7 @@ class OrdersController < ApplicationController
                 .order(created_at: :desc)
                 .page(params[:page])
                 .ransack(params[:q])
-  end  
+  end
 
   def order_params
     params.require(:order)
