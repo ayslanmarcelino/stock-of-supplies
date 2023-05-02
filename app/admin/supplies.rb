@@ -1,5 +1,5 @@
 ActiveAdmin.register(Supply) do
-  menu priority: 6
+  menu parent: 'Estoque', priority: 0
 
   includes :created_by
 

@@ -1,5 +1,5 @@
 ActiveAdmin.register(User::Role) do
-  menu priority: 5
+  menu parent: 'Usuários', priority: 1
 
   includes :unit
 
