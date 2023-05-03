@@ -56,7 +56,7 @@ module Orders
     stock.save!
   end
 
-  def assign_attributes_to_persisted_stock(stock)
+  def assign_attributes_to_persisted_stock(params, stock)
     stock.amount += params[:order].amount
     stock.remaining += params[:order].amount
     stock.arrived_date = Date.current
