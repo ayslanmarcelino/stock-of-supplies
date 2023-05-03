@@ -87,7 +87,7 @@ class OrdersController < ApplicationController
   private
 
   def query
-    orders_query = Order.includes([created_by: :person], [stock: :supply], :requesting_unit)
+    orders_query = Order.includes([created_by: :person], [stock: :supply])
 
     unless current_user.current_unit.kind_pni?
       orders_query = orders_query.where(requesting_unit: current_user.current_unit)
