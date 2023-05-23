@@ -80,7 +80,13 @@ module ApplicationHelper
   end
 
   def current_stock_collection
-    current_user.current_unit.stocks.map(&:identifier).sort
+    stocks = []
+
+    current_user.current_unit.stocks.each do |stock|
+      stocks << [stock.identifier, stock.id]
+    end
+
+    stocks.sort
   end
 
   def supply_collection

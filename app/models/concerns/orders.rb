@@ -101,7 +101,7 @@ module Orders
       params: params[:order].stock,
       reason: 'Recebido pelo PNI',
       kind: :input,
-      stock: params[:order].stock,
+      stock: Stock.find_by(unit: params[:current_user].current_unit, identifier: params[:order].stock.identifier),
       amount: params[:order].amount,
       current_user: params[:current_user],
       unit: params[:current_user].current_unit
