@@ -33,7 +33,7 @@ module Orders
   private
 
   def available_stock?
-    stock.remaining > amount
+    stock.remaining >= amount
   end
 
   def add_reason!(params)

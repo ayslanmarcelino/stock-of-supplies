@@ -38,6 +38,8 @@ class OrdersController < ApplicationController
       flash[:success] = 'Pedido aprovado com sucesso. Favor separar para envio.'
     elsif @order.approved?
       flash[:alert] = 'Pedido já aprovado.'
+    elsif @order.amount >= @order.stock.remaining
+      flash[:alert] = 'Pedido não pode ser aprovado. A quantidade solicitada é maior do que a quantidade disponível em estoque.'
     else
       flash[:alert] = 'Pedido não pode ser aprovado.'
     end
@@ -64,6 +66,8 @@ class OrdersController < ApplicationController
       flash[:success] = 'Pedido enviado com sucesso.'
     elsif @order.delivered?
       flash[:alert] = 'Pedido já enviado.'
+    elsif @order.amount >= @order.stock.remaining
+      flash[:alert] = 'Pedido não pode ser enviado. A quantidade solicitada é maior do que a quantidade disponível em estoque.'
     else
       flash[:alert] = 'Pedido não pode ser enviado.'
     end
