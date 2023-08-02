@@ -1,24 +1,14 @@
-# README
+# Stock of Supplies
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Stock of Supplies** is a supply inventory management project aimed at helping basic health units efficiently control their resources. With this web application, you'll be able to track inventory, record incoming and outgoing supply movements, and gain valuable insights into stored items.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+-   Registration of new supplies in the inventory.
+-   Recording of incoming and outgoing supply movements.
+-   Quick and intuitive view of the current stock.
+-   Management reports with information about the inventory and movement history.
 
-* System dependencies
+## Contribution
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+If you encounter any issues, bugs, or have any suggestions to improve the project, feel free to create an issue or send a pull request. Your contribution is highly appreciated!
